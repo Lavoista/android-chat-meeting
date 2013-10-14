@@ -8,7 +8,11 @@ import java.util.Date;
  */
 public class FriendsRequests implements java.io.Serializable {
 
+    /**
+     * 
+     */
     private FriendsRequestsId id;
+    
     private Users sender;
     private Users receiver;
     private String message;
