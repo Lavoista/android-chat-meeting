@@ -1,0 +1,241 @@
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:theme="@android:style/Theme.Dialog"
+	tools:context=".MainActivity" >
+    <TextView
+		android:id="@+id/imageView1"
+		android:paddingTop="8dp"
+		android:layout_width="wrap_content"
+		android:layout_height="40dp"
+		android:text="Registrazione Utente"
+		android:layout_centerHorizontal="true"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:textColor="#ffffff"
+		android:typeface="serif" />
+    <ScrollView 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_below="@+id/imageView1">
+    	<LinearLayout
+    	    android:orientation="vertical"
+    	    android:layout_width="match_parent"
+    		android:layout_height="wrap_content">
+    		<TableLayout
+    		    android:paddingTop="20dp"
+			    android:layout_height="wrap_content" 
+			    android:layout_width="match_parent">
+			    <TableRow 
+			        android:layout_height="10dp" 
+					android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+		        		android:id="@+id/editText01"
+		        		android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:inputType="textPersonName"
+				        android:selectAllOnFocus="true"
+				        android:hint="Nome Utente"/>
+			    </TableRow>
+			    <TableRow
+			        android:layout_height="10dp" 
+				    android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+				        android:id="@+id/EditText02"
+				        android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:inputType="textPassword"
+				        android:selectAllOnFocus="true"
+				        android:hint="@string/Password" />
+			    </TableRow>
+			    <TableRow
+			        android:layout_height="10dp" 
+				    android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+				        android:id="@+id/EditText022"
+		        		android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:inputType="textPassword"
+				        android:selectAllOnFocus="true"
+				        android:hint="Conferma Password" />
+			    </TableRow>
+			    <TableRow
+			        android:layout_height="10dp" 
+	    			android:paddingTop="10dp"
+			    	android:gravity="center">
+				    <EditText
+				        android:id="@+id/EditText03"
+				        android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:selectAllOnFocus="true"
+				        android:inputType="textPersonName"
+				        android:hint="Nome" />
+			    </TableRow>
+				<TableRow
+				    android:layout_height="10dp" 
+				    android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+				        android:id="@+id/EditText04"
+				        android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:selectAllOnFocus="true"
+				        android:inputType="textPersonName"
+				        android:hint="Cognome" />
+				</TableRow>
+				<TableRow
+				    android:layout_height="10dp" 
+				    android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+				        android:id="@+id/EditText05"
+				        android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:selectAllOnFocus="true"
+				        android:inputType="textEmailAddress"
+				        android:hint="Email" />
+				</TableRow>
+    			<TableRow
+    			    android:layout_height="10dp" 
+		    		android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+	        			android:id="@+id/EditText0"
+				        android:layout_width="200dp"
+				        android:layout_height="wrap_content"
+				        android:selectAllOnFocus="true"
+				        android:inputType="phone"
+				        android:hint="Telefono" />
+    			</TableRow>
+    			<TableRow
+    			    android:layout_height="10dp" 
+				    android:paddingTop="10dp"
+				    android:gravity="center">
+				    <EditText
+	         			android:id="@+id/EditTextData"
+						android:layout_width="200dp"
+						android:layout_height="wrap_content"
+						android:inputType="date"
+						android:hint="Data Di Nascita" />
+    			</TableRow>
+    			<TableRow
+    			    android:layout_height="10dp" 
+				    android:paddingTop="10dp"
+				    android:gravity="center">
+				    <RadioGroup
+				        android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:orientation="horizontal">
+					    <RadioButton android:id="@+id/radio_pirates"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:textColor="#ffffff"
+					        android:text="Maschio"/>
+					    <RadioButton android:id="@+id/radio_ninjas"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_marginLeft="10dp"
+					        android:textColor="#ffffff"
+					        android:text="Femmina"/>
+				    </RadioGroup>
+				</TableRow>
+			</TableLayout>
+			<TableLayout
+				android:paddingTop="20dp"
+			    android:layout_height="wrap_content" 
+			    android:layout_width="match_parent">
+				<TableRow 
+				    android:paddingTop="10dp"
+				    android:gravity="center"
+				    android:layout_height="wrap_content">
+					<TableLayout 
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+						<TableRow
+						    android:paddingTop="10dp"
+						    android:gravity="center"
+						    android:layout_height="match_parent">
+							<Button
+							    android:id="@+id/buttonCaricaFoto"
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content"
+								android:textColor="#ffffff"
+								android:text="Carica Foto" />
+							<Button
+							    android:id="@+id/buttonScattaFoto"
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content"
+								android:textColor="#ffffff"
+								android:text="Scatta Foto" />
+						</TableRow>
+						<TableRow
+						    android:paddingTop="15dp"
+						    android:layout_width="wrap_content"
+        					android:layout_height="wrap_content"
+
+			        		android:gravity="center_horizontal">
+							<LinearLayout 
+							    android:layout_width="wrap_content"
+        						android:layout_height="wrap_content"
+        						android:gravity="center_horizontal">
+							<ImageView
+								android:id="@+id/viewFoto"
+								android:layout_height="100dp"
+								android:layout_width="100dp"
+								android:background="#000000" />
+							</LinearLayout>
+						</TableRow>
+						<TableRow
+						    android:paddingTop="15dp"
+			        		android:gravity="center">
+							<TextView
+							    android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="Ruota foto"
+								android:textColor="#ffffff"
+								android:layout_span="2"
+								android:layout_gravity="center_horizontal"
+								android:textSize="16sp"
+								android:textStyle="bold"
+								android:typeface="serif" />
+						</TableRow>
+						<TableRow
+						    android:gravity="center">
+							<Button
+							    android:id="@+id/ruotaFotoSinistra"
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content"
+								android:textColor="#ffffff"
+								android:text="-90°" />
+							<Button
+								android:id="@+id/ruotaFotoDestra"
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content"
+								android:textColor="#ffffff"
+								android:text="+90°" />
+						</TableRow>
+					</TableLayout>
+				</TableRow>
+    			<TableRow
+    			    android:layout_height="10dp" 
+				    android:paddingTop="20dp"
+				    android:gravity="center">
+					<Button
+					    android:layout_gravity="center_horizontal"
+						android:id="@+id/confermaRegistrazioneButton"
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:width="200dp"
+						android:layout_span="2"
+						android:textColor="#ffffff"
+						android:text="Conferma" />
+    			</TableRow>
+			</TableLayout>  
+		</LinearLayout>
+	</ScrollView>	
+</RelativeLayout>
