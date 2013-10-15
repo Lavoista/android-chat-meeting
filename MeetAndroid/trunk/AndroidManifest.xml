@@ -62,7 +62,7 @@
             android:name="it.meet.activities.MainActivity">
         </activity>
 		<receiver
-            android:name="it.meet.GCM.GcmBroadcastReceiver"
+            android:name="it.meet.GCMUpper.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />

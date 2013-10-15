@@ -16,7 +16,7 @@
 
 package it.meet.services;
 
-import it.meet.GCM.GcmBroadcastReceiver;
+import it.meet.GCMUpper.GcmBroadcastReceiver;
 import it.meet.activities.StartActivity;
 import tom.meets.R;
 

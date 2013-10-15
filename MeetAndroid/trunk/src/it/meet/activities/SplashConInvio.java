@@ -15,7 +15,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import it.meet.GCM.GCMRegistrarCompat;
+import it.meet.GCMUpper.GCMRegistrarCompat;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
