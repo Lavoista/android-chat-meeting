@@ -13,7 +13,7 @@
     http://commonsware.com/Android
  */
 
-package it.meet.gcm;
+package it.meet.GCM;
 
 import android.content.Context;
 import android.content.Intent;
