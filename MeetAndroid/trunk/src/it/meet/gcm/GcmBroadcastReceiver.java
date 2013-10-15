@@ -1,4 +1,4 @@
-package it.meet.GCMUpper;
+package it.meet.gcm;
 
 import it.meet.services.GcmIntentService;
 import android.app.Activity;
