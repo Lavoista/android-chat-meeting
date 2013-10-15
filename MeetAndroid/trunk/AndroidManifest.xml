@@ -51,7 +51,7 @@
             android:value="AIzaSyBCHXQvMS6B731TXymhoYLH7lGK0c1hT_o"/>
 		
         <activity
-            android:name=".StartActivity"
+            android:name="it.meet.activities.StartActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,17 +59,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity">
+            android:name="it.meet.activities.MainActivity">
         </activity>
 		<receiver
-            android:name=".GcmBroadcastReceiver"
+            android:name="it.meet.GCM.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="tom.meets" />
             </intent-filter>
         </receiver>
-        <service android:name=".GcmIntentService" />
+        <service android:name="it.meet.services.GcmIntentService" />
 		
     </application>
 

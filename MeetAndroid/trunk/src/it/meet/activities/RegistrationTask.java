@@ -1,4 +1,4 @@
-package tom.meets;
+package it.meet.activities;
 
 import java.net.MalformedURLException;
 import java.net.URL;

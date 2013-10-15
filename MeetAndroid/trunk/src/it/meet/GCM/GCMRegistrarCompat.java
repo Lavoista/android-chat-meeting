@@ -13,7 +13,7 @@
     http://commonsware.com/Android
  */
 
-package tom.meets;
+package it.meet.GCM;
 
 import android.content.Context;
 import android.content.Intent;
@@ -194,7 +194,7 @@ public class GCMRegistrarCompat {
 			AsyncTask<String, Void, String> {
 		protected Context context = null;
 
-		BaseRegisterTask(Context context) {
+		protected BaseRegisterTask(Context context) {
 			this.context = context;
 		}
 

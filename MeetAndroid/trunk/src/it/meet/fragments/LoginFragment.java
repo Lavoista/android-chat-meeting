@@ -1,6 +1,7 @@
-package tom.meets;
+package it.meet.fragments;
 
-import tom.meets.MainActivity.PlanetFragment;
+import it.meet.activities.MainActivity.PlanetFragment;
+import tom.meets.R;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;

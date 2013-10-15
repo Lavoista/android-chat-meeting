@@ -1,5 +1,8 @@
-package tom.meets;
+package it.meet.fragments;
 
+import it.meet.activities.MainActivity;
+import it.meet.activities.RegistrationTask;
+import it.meet.activities.MainActivity.PlanetFragment;
 import it.meet.service.user.entity.UserDTO;
 
 import java.io.ByteArrayOutputStream;
@@ -8,7 +11,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import tom.meets.MainActivity.PlanetFragment;
+import tom.meets.R;
 import android.R.color;
 import android.app.Activity;
 import android.app.DatePickerDialog;

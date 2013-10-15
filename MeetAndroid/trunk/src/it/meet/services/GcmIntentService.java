@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-package tom.meets;
+package it.meet.services;
+
+import it.meet.GCM.GcmBroadcastReceiver;
+import it.meet.activities.StartActivity;
+import tom.meets.R;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 

@@ -1,4 +1,4 @@
-package tom.meets;
+package it.meet.activities;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -14,8 +14,14 @@ import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import it.meet.GCM.GCMRegistrarCompat;
+
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import tom.meets.BuildConfig;
+import tom.meets.R;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;

@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package tom.meets;
+package it.meet.GCM;
 
+import it.meet.services.GcmIntentService;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;

@@ -1,5 +1,6 @@
-package tom.meets;
+package it.meet.activities;
 
+import tom.meets.R;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;

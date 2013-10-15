@@ -1,11 +1,13 @@
-package tom.meets;
+package it.meet.fragments;
+
+import it.meet.activities.MainActivity.PlanetFragment;
 
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import tom.meets.MainActivity.PlanetFragment;
+import tom.meets.R;
 import android.R.color;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
