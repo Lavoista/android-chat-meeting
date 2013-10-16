@@ -77,13 +77,4 @@ public class ChatServerListener extends Thread {
         }
     }
 
-//    /**
-//     * TO DELETE
-//     *
-//     * @param args
-//     */
-//    public static void main(String[] args) {
-//        ChatServerListener chatServerListener = new ChatServerListener();
-//        chatServerListener.start();
-//    }
 }

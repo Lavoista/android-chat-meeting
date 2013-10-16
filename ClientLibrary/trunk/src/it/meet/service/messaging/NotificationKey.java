@@ -9,7 +9,9 @@ public enum NotificationKey {
 
     MESSAGE("message"),
     RECEIVER_USER("receiver"),
-    SENDER_USER("sender");
+    SENDER_USER("sender"),
+    TIMESTAMP("timestap");
+    
     
     /**
      * The key string
