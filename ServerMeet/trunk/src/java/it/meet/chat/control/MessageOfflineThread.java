@@ -2,8 +2,12 @@ package it.meet.chat.control;
 
 import it.meet.administrator.message.MessageAdminisrator;
 import it.meet.administrator.user.UserAdministrator;
+import it.meet.chat.control.gcm.NotificationManager;
+import it.meet.chat.control.gcm.NotificationManagerFactory;
+import it.meet.chat.control.gcm.NotificationManagerType;
 import it.meet.common.database.DatabaseAdministrator;
 import it.meet.service.common.util.MeetException;
+import it.meet.service.common.util.StringUtils;
 import it.meet.service.messaging.Message;
 import it.meet.service.messaging.MessageType;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -52,7 +56,6 @@ public class MessageOfflineThread extends Thread {
             while (!terminated) {
                 Message message = messageQueeueToSave.take();
                 if (!MessageType.TERMINATION_TYPE.equals(message.getMessageType())) {
-                    notifyOfflineClient(message);
                     saveMessageOnDatabase(message);
                 } else {
                     //TERMINATION MESSAGE RECEIVED
@@ -76,6 +79,10 @@ public class MessageOfflineThread extends Thread {
         try {
             session = DatabaseAdministrator.getInstance().openSession();
             messageAdminisrator.saveMessage(message, session);
+            
+            //Send off line notification
+            notifyOfflineClient(message, session);
+
         } catch (MeetException ex) {
             Logger.getLogger(ClientControlThread.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -86,28 +93,27 @@ public class MessageOfflineThread extends Thread {
     }
 
     /**
+     * **
      * Notify a client offline with a notification.
      *
-     * @param message
+     * @param message the message to send
+     * @param session the session with database
+     * 
+     * @throws MeetException if any error occurs
+     * 
      */
-    private void notifyOfflineClient(Message message) {
+    private void notifyOfflineClient(Message message, Session session) throws MeetException {
         String receiver = message.getReceiver();
         UserAdministrator userAdministrator = new UserAdministrator();
-        Session session = null;
         try {
-            session = DatabaseAdministrator.getInstance().openSession();
-            
-            boolean sendNotificaiton = userAdministrator.checkSendNotification(receiver, session);
-            if(sendNotificaiton){
-                
+            String registrationId = userAdministrator.checkSendNotification(receiver, session);
+            if (StringUtils.isNotEmpty(registrationId)) {
+                NotificationManager  notificationManager = NotificationManagerFactory.getInstance().getNotificationManager(NotificationManagerType.ANDOID_MANAGER);
+                notificationManager.sendNotificationToClient(registrationId, message);
             }
-            
         } catch (MeetException ex) {
             Logger.getLogger(MessageOfflineThread.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (session != null) {
-                session.disconnect();
-            }
+            throw ex;
         }
     }
 
