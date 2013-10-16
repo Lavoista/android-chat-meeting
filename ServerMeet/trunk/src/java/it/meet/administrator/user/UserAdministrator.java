@@ -42,7 +42,7 @@ public class UserAdministrator {
     public boolean authenticate(String username, String password, Session session) throws MeetException {
         boolean authenticate = false;
         try {
-            
+
             Criteria criteria = session.createCriteria(Users.class);
             criteria.add(Restrictions.eq("username", username));
             criteria.add(Restrictions.eq("password", password));
@@ -351,6 +351,44 @@ public class UserAdministrator {
                 throw new MeetException(ErrorCodeEnumeration.MEET9999, ex);
             }
         }
+    }
+
+    /**
+     * Check if the user have a registration id to send a offline notification and 
+     * if there isn't a notification already sent.
+     * 
+     * @param username
+     * @param session
+     * @return
+     * @throws MeetException 
+     */
+    public boolean checkSendNotification(String username, Session session) throws MeetException {
+        boolean sendNotificaton = false;
+
+        try {
+
+            Criteria criteria = session.createCriteria(Users.class);
+            criteria.add(Restrictions.eq("username", username));
+            criteria.add(Restrictions.isNotEmpty("registrationId"));
+            
+
+
+            List<Users> result = criteria.list();
+            if (result != null && !result.isEmpty()) {
+                sendNotificaton = true;
+            }
+        } catch (Exception ex) {
+            if (ex instanceof MeetException) {
+                throw ((MeetException) ex);
+            } else {
+                throw new MeetException(ErrorCodeEnumeration.MEET9999, ex);
+            }
+        }
+
+
+
+
+        return sendNotificaton;
     }
 
     /**

@@ -1,6 +1,7 @@
 package it.meet.chat.control;
 
 import it.meet.administrator.message.MessageAdminisrator;
+import it.meet.administrator.user.UserAdministrator;
 import it.meet.common.database.DatabaseAdministrator;
 import it.meet.service.common.util.MeetException;
 import it.meet.service.messaging.Message;
@@ -51,6 +52,7 @@ public class MessageOfflineThread extends Thread {
             while (!terminated) {
                 Message message = messageQueeueToSave.take();
                 if (!MessageType.TERMINATION_TYPE.equals(message.getMessageType())) {
+                    notifyOfflineClient(message);
                     saveMessageOnDatabase(message);
                 } else {
                     //TERMINATION MESSAGE RECEIVED
@@ -76,6 +78,32 @@ public class MessageOfflineThread extends Thread {
             messageAdminisrator.saveMessage(message, session);
         } catch (MeetException ex) {
             Logger.getLogger(ClientControlThread.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (session != null) {
+                session.disconnect();
+            }
+        }
+    }
+
+    /**
+     * Notify a client offline with a notification.
+     *
+     * @param message
+     */
+    private void notifyOfflineClient(Message message) {
+        String receiver = message.getReceiver();
+        UserAdministrator userAdministrator = new UserAdministrator();
+        Session session = null;
+        try {
+            session = DatabaseAdministrator.getInstance().openSession();
+            
+            boolean sendNotificaiton = userAdministrator.checkSendNotification(receiver, session);
+            if(sendNotificaiton){
+                
+            }
+            
+        } catch (MeetException ex) {
+            Logger.getLogger(MessageOfflineThread.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (session != null) {
                 session.disconnect();
