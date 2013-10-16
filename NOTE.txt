@@ -1,1 +1,0 @@
-BISOGNA AGGIUNGERE IL CAMPO "registrationid" SULLA TABELLA "users" varchar(200) NULLABLE.
