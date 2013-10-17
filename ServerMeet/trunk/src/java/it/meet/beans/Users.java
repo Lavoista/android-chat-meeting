@@ -1,6 +1,7 @@
 package it.meet.beans;
 // Generated 21-set-2013 9.59.58 by Hibernate Tools 3.2.1.GA
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,8 @@ public class Users implements java.io.Serializable {
     private Character sex;
     private String email;
     private String enddate;
-    private Integer age;
+    private Date dateOfBirth;
     private String telephonenumber;
-    private String registrationId;
     private byte[] photo;
     private Set<Users> blackList = new HashSet<Users>(0);
     private Set<FriendsRequests> friendRequestSent = new HashSet<FriendsRequests>(0);
@@ -26,6 +26,7 @@ public class Users implements java.io.Serializable {
     private Set<Messages> messagesesSent = new HashSet<Messages>(0);
     private Set<FriendsRequests> friendRequestReceived = new HashSet<FriendsRequests>(0);
     private Set<Users> friends = new HashSet<Users>(0);
+    private NotificatonOffline lastNotificationOffline;
 
     public Users() {
     }
@@ -36,7 +37,7 @@ public class Users implements java.io.Serializable {
         this.enddate = enddate;
     }
 
-    public Users(String username, String password, String name, String surname, Character sex, String email, String enddate, Integer age, String telephonenumber, String registrationId, byte[] photo, Set<Users> blackList, Set<FriendsRequests> friendRequestSent, Set<Messages> messagesesReceived, Set<Messages> messagesesSent, Set<FriendsRequests> friendRequestReceived, Set<Users> friends) {
+    public Users(String username, String password, String name, String surname, Character sex, String email, String enddate, Date dateOfBirth, String telephonenumber, byte[] photo, Set<Users> blackList, Set<FriendsRequests> friendRequestSent, Set<Messages> messagesesReceived, Set<Messages> messagesesSent, Set<FriendsRequests> friendRequestReceived, Set<Users> friends, NotificatonOffline lastNotificationOffline) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -44,9 +45,8 @@ public class Users implements java.io.Serializable {
         this.sex = sex;
         this.email = email;
         this.enddate = enddate;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.telephonenumber = telephonenumber;
-        this.registrationId = registrationId;
         this.photo = photo;
         this.blackList = blackList;
         this.friendRequestSent = friendRequestSent;
@@ -54,6 +54,7 @@ public class Users implements java.io.Serializable {
         this.messagesesSent = messagesesSent;
         this.friendRequestReceived = friendRequestReceived;
         this.friends = friends;
+        this.lastNotificationOffline = lastNotificationOffline;
     }
 
     public String getUsername() {
@@ -112,12 +113,12 @@ public class Users implements java.io.Serializable {
         this.enddate = enddate;
     }
 
-    public Integer getAge() {
-        return this.age;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getTelephonenumber() {
@@ -185,16 +186,16 @@ public class Users implements java.io.Serializable {
     }
 
     /**
-     * @return the registrationId
+     * @return the lastNotificationOffline
      */
-    public String getRegistrationId() {
-        return registrationId;
+    public NotificatonOffline getLastNotificationOffline() {
+        return lastNotificationOffline;
     }
 
     /**
-     * @param registrationId the registrationId to set
+     * @param lastNotificationOffline the lastNotificationOffline to set
      */
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
+    public void setLastNotificationOffline(NotificatonOffline lastNotificationOffline) {
+        this.lastNotificationOffline = lastNotificationOffline;
     }
 }

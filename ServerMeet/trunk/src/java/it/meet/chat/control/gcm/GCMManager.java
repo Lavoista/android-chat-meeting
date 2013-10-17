@@ -49,16 +49,16 @@ public class GCMManager extends NotificationManager {
         }
     }
     
-    public static void main(String[] args) throws ParseException{
-        GCMManager gCMManager = new GCMManager();
-        String regId = "APA91bHXuIvPvDmOPER_6eC5ruAr9N5tWN5DKTpTiLWjkcEx1ChXnqBDJ91kFB-yR6SGiZANxRS3OtGAWCyLFC3vnbbbx7OK9_FOAYnTOh-MTdmtv1NBpTT-S_5cNvLA38Szy7YxA9BJ1zYcG-DyswtL5uC2TLTKgw";
-        
-        it.meet.service.messaging.Message message = new it.meet.service.messaging.Message();
-        message.setMessage("Messaggio di prova");
-        message.setSender("luigi");
-        message.setReceiver("tommy");
-        message.setTimestap(DateUtils.getDateString(new Date()));
-        
-        gCMManager.sendNotificationToClient(regId, message);
-    }
+//    public static void main(String[] args) throws ParseException{
+//        GCMManager gCMManager = new GCMManager();
+//        String regId = "APA91bHXuIvPvDmOPER_6eC5ruAr9N5tWN5DKTpTiLWjkcEx1ChXnqBDJ91kFB-yR6SGiZANxRS3OtGAWCyLFC3vnbbbx7OK9_FOAYnTOh-MTdmtv1NBpTT-S_5cNvLA38Szy7YxA9BJ1zYcG-DyswtL5uC2TLTKgw";
+//        
+//        it.meet.service.messaging.Message message = new it.meet.service.messaging.Message();
+//        message.setMessage("Messaggio di prova");
+//        message.setSender("luigi");
+//        message.setReceiver("tommy");
+//        message.setTimestap(DateUtils.getDateString(new Date()));
+//        
+//        gCMManager.sendNotificationToClient(regId, message);
+//    }
 }

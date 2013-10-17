@@ -87,8 +87,8 @@ public class UserAdministrator {
         if (StringUtils.isNotEmpty(userDTO.getSex()) && StringUtils.checkEmailValidity(userDTO.getEmail())) {
             user.setEmail(userDTO.getEmail());
         }
-        if (userDTO.getAge() > 0) {
-            user.setAge(userDTO.getAge());
+        if (userDTO.getDateOfBirth() != null) {
+            user.setDateOfBirth(userDTO.getDateOfBirth());
         }
 
         if (StringUtils.isNotEmpty(userDTO.getTelephoneNumber()) && StringUtils.checkPhoneNumberValidity(userDTO.getTelephoneNumber())) {

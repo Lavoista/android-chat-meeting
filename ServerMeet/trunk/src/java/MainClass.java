@@ -3,6 +3,7 @@ import it.meet.chat.control.ChatServerListener;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.user.UserServiceImpl;
 import it.meet.service.user.entity.UserDTO;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +16,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         MainClass mainClass = new MainClass();
-        mainClass.runServerChat();
+        mainClass.testInsertUser();
     }
     
     private void runServerChat(){
@@ -34,10 +35,10 @@ public class MainClass {
         UserServiceImpl serviceImpl = new UserServiceImpl();
 
         UserDTO user = new UserDTO();
-        user.setUsername("antonio");
-        user.setPassword("aaaa");
+        user.setUsername("antonio2");
+        user.setPassword("antonio12");
 
-        user.setAge(16);
+        user.setDateOfBirth(new Date());
         user.setEmail("aaa@sfsd.it");
         user.setName("Antonio");
         user.setSurname("Albano");
