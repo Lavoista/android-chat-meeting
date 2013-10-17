@@ -1,6 +1,7 @@
 package it.meet.service.user.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * The user object
@@ -10,19 +11,12 @@ import java.io.Serializable;
 public class UserDTO implements Serializable {
 
     private String name;
-    
     private String surname;
-    
     private String username;
-    
     private String password;
-    
     private String sex;
-    
-    private int age;
-    
+    private Date dateOfBirth;
     private String email;
-    
     private String telephoneNumber;
 
     /**
@@ -96,20 +90,6 @@ public class UserDTO implements Serializable {
     }
 
     /**
-     * @return the age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * @param age the age to set
-     */
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    /**
      * @return the email
      */
     public String getEmail() {
@@ -136,5 +116,18 @@ public class UserDTO implements Serializable {
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
-    
+
+    /**
+     * @return the dateOfBirth
+     */
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    /**
+     * @param dateOfBirth the dateOfBirth to set
+     */
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 }
