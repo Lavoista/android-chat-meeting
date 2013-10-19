@@ -354,45 +354,6 @@ public class UserAdministrator {
     }
 
     /**
-     *  Check if the user have a registration id to send a offline notification and 
-     * if there isn't a notification already sent.
-     * 
-     * @param username the user to check
-     * @param session the session from database
-     * 
-     * @return the registration id if need to send a notification.
-     * 
-     * @throws MeetException if any error occurs
-     */
-    public String checkSendNotification(String username, Session session) throws MeetException {
-        String registrationId = "";
-        try {
-
-            Criteria criteria = session.createCriteria(Users.class);
-            criteria.add(Restrictions.eq("username", username));
-            criteria.add(Restrictions.isNotEmpty("registrationId"));
-            
-
-
-            List<Users> result = criteria.list();
-            if (result != null && !result.isEmpty()) {
-                registrationId = "sdkhoisdhioghdsoighdsoi";
-            }
-        } catch (Exception ex) {
-            if (ex instanceof MeetException) {
-                throw ((MeetException) ex);
-            } else {
-                throw new MeetException(ErrorCodeEnumeration.MEET9999, ex);
-            }
-        }
-
-
-
-
-        return registrationId;
-    }
-
-    /**
      * Check if the user information are valid
      *
      * @param user the user into to check

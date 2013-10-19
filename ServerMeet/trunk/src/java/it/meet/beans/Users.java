@@ -26,7 +26,7 @@ public class Users implements java.io.Serializable {
     private Set<Messages> messagesesSent = new HashSet<Messages>(0);
     private Set<FriendsRequests> friendRequestReceived = new HashSet<FriendsRequests>(0);
     private Set<Users> friends = new HashSet<Users>(0);
-    private NotificatonOffline lastNotificationOffline;
+    private NotificationOffline lastNotificationOffline;
 
     public Users() {
     }
@@ -37,7 +37,7 @@ public class Users implements java.io.Serializable {
         this.enddate = enddate;
     }
 
-    public Users(String username, String password, String name, String surname, Character sex, String email, String enddate, Date dateOfBirth, String telephonenumber, byte[] photo, Set<Users> blackList, Set<FriendsRequests> friendRequestSent, Set<Messages> messagesesReceived, Set<Messages> messagesesSent, Set<FriendsRequests> friendRequestReceived, Set<Users> friends, NotificatonOffline lastNotificationOffline) {
+    public Users(String username, String password, String name, String surname, Character sex, String email, String enddate, Date dateOfBirth, String telephonenumber, byte[] photo, Set<Users> blackList, Set<FriendsRequests> friendRequestSent, Set<Messages> messagesesReceived, Set<Messages> messagesesSent, Set<FriendsRequests> friendRequestReceived, Set<Users> friends, NotificationOffline lastNotificationOffline) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -188,14 +188,14 @@ public class Users implements java.io.Serializable {
     /**
      * @return the lastNotificationOffline
      */
-    public NotificatonOffline getLastNotificationOffline() {
+    public NotificationOffline getLastNotificationOffline() {
         return lastNotificationOffline;
     }
 
     /**
      * @param lastNotificationOffline the lastNotificationOffline to set
      */
-    public void setLastNotificationOffline(NotificatonOffline lastNotificationOffline) {
+    public void setLastNotificationOffline(NotificationOffline lastNotificationOffline) {
         this.lastNotificationOffline = lastNotificationOffline;
     }
 }

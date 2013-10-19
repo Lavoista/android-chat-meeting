@@ -42,6 +42,8 @@ public enum ErrorCodeEnumeration implements Serializable {
     MEET0024("MEET0024", "No message {0} found to update."),
     MEET0025("MEET0025", "The message {0} is alredy to state {1} "),
     
+    //NOTIFICATIONS
+    MEET0026("MEET0026", "The registration id is mandatory."),
     
     //GENERIC ERROR
     MEET9999("MEET9999", "Error perform operation on database.");

@@ -3,24 +3,27 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 17-ott-2013 20.54.06 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="it.meet.beans.NotificatonOffline" table="notificaton_offline" catalog="meetschema">
+    <class name="it.meet.beans.NotificationOffline" table="notification_offline" catalog="meetschema">
         <id name="username" type="string">
             <column name="username" length="100" />
             <generator class="assigned" />
         </id>
         <one-to-one name="users" class="it.meet.beans.Users"
 			constrained="true"></one-to-one>
-        <property name="registrationid" type="string">
+        <property name="registrationId" type="string">
             <column name="registrationid" length="200" not-null="true" />
         </property>
-        <property name="lastmessage" type="string">
+        <property name="lastMessage" type="string">
             <column name="lastmessage" length="1000" />
         </property>
-        <property name="datelastnotificaton" type="timestamp">
-            <column name="datelastnotificaton" length="19" />
+        <property name="dateLastNotification" type="timestamp">
+            <column name="datelastnotification" length="19" />
         </property>        
-        <property name="state" type="string">
-            <column name="state" length="10" />
+        <property name="status" type="string">
+            <column name="status" length="10" />
+        </property>
+        <property name="deviceType" type="string">
+            <column name="devicetype" length="20" />
         </property>
     </class>
 </hibernate-mapping>

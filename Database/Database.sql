@@ -200,3 +200,13 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2013-10-17 21:15:35
+
+--Modifica 19/10/2013
+
+ALTER TABLE `meetschema`.`notificaton_offline` 
+CHANGE COLUMN `datelastnotificaton` `datelastnotification` TIMESTAMP NULL DEFAULT NULL , RENAME TO  `meetschema`.`notification_offline` ;
+
+ALTER TABLE `meetschema`.`notification_offline` 
+CHANGE COLUMN `state` `status` VARCHAR(10) NULL DEFAULT NULL ,
+ADD COLUMN `devicetype` VARCHAR(20) NOT NULL AFTER `status`;
+

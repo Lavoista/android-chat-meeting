@@ -35,7 +35,7 @@ public class MainClass {
         UserServiceImpl serviceImpl = new UserServiceImpl();
 
         UserDTO user = new UserDTO();
-        user.setUsername("antonio2");
+        user.setUsername("antonio3");
         user.setPassword("antonio12");
 
         user.setDateOfBirth(new Date());

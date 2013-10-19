@@ -1,13 +1,12 @@
 package it.meet.chat.control;
 
 import it.meet.administrator.message.MessageAdminisrator;
-import it.meet.administrator.user.UserAdministrator;
+import it.meet.administrator.message.NotificationAdministrator;
 import it.meet.chat.control.gcm.NotificationManager;
 import it.meet.chat.control.gcm.NotificationManagerFactory;
-import it.meet.chat.control.gcm.NotificationManagerType;
+import it.meet.chat.control.util.NotificationOfflineInfo;
 import it.meet.common.database.DatabaseAdministrator;
 import it.meet.service.common.util.MeetException;
-import it.meet.service.common.util.StringUtils;
 import it.meet.service.messaging.Message;
 import it.meet.service.messaging.MessageType;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -35,12 +34,17 @@ public class MessageOfflineThread extends Thread {
      * The message administrator
      */
     private MessageAdminisrator messageAdminisrator;
+    /**
+     * Notification offline administrator
+     */
+    private NotificationAdministrator notificationAdministrator;
 
     /**
      * The default constructor
      */
     public MessageOfflineThread() {
         this.messageAdminisrator = new MessageAdminisrator();
+        this.notificationAdministrator = new NotificationAdministrator();
     }
 
     /**
@@ -104,12 +108,12 @@ public class MessageOfflineThread extends Thread {
      */
     private void notifyOfflineClient(Message message, Session session) throws MeetException {
         String receiver = message.getReceiver();
-        UserAdministrator userAdministrator = new UserAdministrator();
         try {
-            String registrationId = userAdministrator.checkSendNotification(receiver, session);
-            if (StringUtils.isNotEmpty(registrationId)) {
-                NotificationManager  notificationManager = NotificationManagerFactory.getInstance().getNotificationManager(NotificationManagerType.ANDOID_MANAGER);
-                notificationManager.sendNotificationToClient(registrationId, message);
+            NotificationOfflineInfo notificationOfflineInfo = notificationAdministrator.checkSendNotification(receiver, session);
+            if (notificationOfflineInfo != null) {
+                NotificationManager  notificationManager = NotificationManagerFactory.getInstance().getNotificationManager(notificationOfflineInfo.getDeviceType());
+                notificationManager.sendNotificationToClient(notificationOfflineInfo.getRegistrationId(), message);
+                //notificationAdministrator.saveNotification();
             }
         } catch (MeetException ex) {
             Logger.getLogger(MessageOfflineThread.class.getName()).log(Level.SEVERE, null, ex);

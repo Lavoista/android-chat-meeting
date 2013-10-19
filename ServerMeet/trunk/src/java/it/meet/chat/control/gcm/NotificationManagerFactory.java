@@ -1,5 +1,6 @@
 package it.meet.chat.control.gcm;
 
+import it.meet.service.common.util.DeviceType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class NotificationManagerFactory {
     private NotificationManagerFactory() {
         notificationManagerMap = new HashMap<String, NotificationManager>();
         GCMManager gCMAdministrator = new GCMManager();
-        notificationManagerMap.put(NotificationManagerType.ANDOID_MANAGER.name(), gCMAdministrator);
+        notificationManagerMap.put(DeviceType.ANDROID.name(), gCMAdministrator);
     }
     
     /**
@@ -48,9 +49,9 @@ public class NotificationManagerFactory {
      * 
      * @return the notification manager
      */
-    public NotificationManager getNotificationManager(NotificationManagerType notificationManagerType){
-        if(notificationManagerMap.containsKey(notificationManagerType.name())){
-            return notificationManagerMap.get(notificationManagerType.name());
+    public NotificationManager getNotificationManager(DeviceType deviceType){
+        if(notificationManagerMap.containsKey(deviceType.name())){
+            return notificationManagerMap.get(deviceType.name());
         } else {
             return null;
         }
