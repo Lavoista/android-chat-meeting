@@ -1,6 +1,7 @@
 package it.meet.service.user;
 
 import it.meet.service.common.entity.ResponseDTO;
+import it.meet.service.common.util.DeviceType;
 import it.meet.service.user.entity.UserDTO;
 
 public interface UserService {
@@ -17,5 +18,5 @@ public interface UserService {
     
     ResponseDTO removeFriend(String username, String friendUsername);
     
-    
+    ResponseDTO updateRegistrationId(String username, String registrationId, DeviceType deviceType);
 }
