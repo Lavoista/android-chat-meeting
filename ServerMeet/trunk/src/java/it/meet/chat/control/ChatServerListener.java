@@ -59,7 +59,9 @@ public class ChatServerListener extends Thread {
             System.err.println("Can not start listening on port " + LISTENING_PORT);
             Logger.getLogger(ChatServerListener.class.getName()).log(Level.SEVERE, null, se);
         } finally {
-            serverDispatcher.terminate();
+            if (serverDispatcher != null) {
+                serverDispatcher.terminate();
+            }
         }
     }
 
@@ -76,5 +78,4 @@ public class ChatServerListener extends Thread {
             }
         }
     }
-
 }

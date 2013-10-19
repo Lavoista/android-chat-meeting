@@ -1,6 +1,7 @@
 
 import it.meet.chat.control.ChatServerListener;
 import it.meet.service.common.entity.ResponseDTO;
+import it.meet.service.common.util.DeviceType;
 import it.meet.service.user.UserServiceImpl;
 import it.meet.service.user.entity.UserDTO;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         MainClass mainClass = new MainClass();
-        mainClass.testInsertUser();
+        mainClass.testUpdateRegistrationId();
     }
     
     private void runServerChat(){
@@ -35,7 +36,7 @@ public class MainClass {
         UserServiceImpl serviceImpl = new UserServiceImpl();
 
         UserDTO user = new UserDTO();
-        user.setUsername("antonio3");
+        user.setUsername("antonio4");
         user.setPassword("antonio12");
 
         user.setDateOfBirth(new Date());
@@ -84,6 +85,16 @@ public class MainClass {
         UserServiceImpl serviceImpl = new UserServiceImpl();
 
         ResponseDTO responseDTO = serviceImpl.cancelFriendRequest("antonio", "luirzy");
+        
+        Logger.getLogger(MainClass.class.getName()).log(Level.INFO, responseDTO.getErrorCode() + " " + responseDTO.getErrorDescription());
+    }
+    
+    
+    private void testUpdateRegistrationId() {
+
+        UserServiceImpl serviceImpl = new UserServiceImpl();
+
+        ResponseDTO responseDTO = serviceImpl.updateRegistrationId("luirzy", "aaaaa", DeviceType.ANDROID);
         
         Logger.getLogger(MainClass.class.getName()).log(Level.INFO, responseDTO.getErrorCode() + " " + responseDTO.getErrorDescription());
     }

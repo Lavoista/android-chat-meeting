@@ -1,9 +1,13 @@
 package it.meet.service.user;
 
+import it.meet.administrator.message.NotificationAdministrator;
 import it.meet.administrator.user.UserAdministrator;
+import it.meet.chat.control.gcm.NotificationManager;
 import it.meet.common.database.DatabaseAdministrator;
 import it.meet.service.common.entity.ResponseDTO;
+import it.meet.service.common.util.DeviceType;
 import it.meet.service.common.util.MeetException;
+import it.meet.service.messaging.Message;
 import it.meet.service.user.entity.UserDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +15,7 @@ import org.hibernate.Session;
 
 /**
  * The service implementation
- * 
+ *
  * @author Luigi Vorraro
  */
 public class UserServiceImpl implements UserService {
@@ -24,10 +28,10 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Create a user in the system with the information passed.
-     * 
+     *
      * @param user the user information to create
-     * 
-     * @return 
+     *
+     * @return
      */
     public ResponseDTO createUser(UserDTO user) {
         ResponseDTO responseDTO = new ResponseDTO();
@@ -169,12 +173,35 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
             userAdministrator.removeUnacceptedFriendRequest(username, friendUsername, session);
-            
+
             responseDTO.setErrorCode("");
             responseDTO.setErrorDescription("");
+
+        } catch (MeetException ex) {
+            Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            responseDTO.setErrorCode(ex.getErrorCode());
+            responseDTO.setErrorDescription(ex.getErrorDescription());
+        } finally {
+            if (session != null) {
+                session.disconnect();
+            }
+        }
+
+        return responseDTO;
+    }
+
+    public ResponseDTO updateRegistrationId(String username, String registrationId, DeviceType deviceType) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        Session session = null;
+        try {
+            session = DatabaseAdministrator.getInstance().openSession();
+            
+            NotificationAdministrator notificationAdministrator = new NotificationAdministrator();
+            notificationAdministrator.updateRegistrationId(username, deviceType, registrationId, session);
+                    
             
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);

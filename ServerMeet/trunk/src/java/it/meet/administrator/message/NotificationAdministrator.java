@@ -84,6 +84,9 @@ public class NotificationAdministrator {
         if (StringUtils.isEmpty(registationId)) {
             throw new MeetException(ErrorCodeEnumeration.MEET0026);
         }
+        if (deviceType == null) {
+            throw new MeetException(ErrorCodeEnumeration.MEET0027);
+        }
 
         try {
             Criteria criteria = session.createCriteria(NotificationOffline.class);
