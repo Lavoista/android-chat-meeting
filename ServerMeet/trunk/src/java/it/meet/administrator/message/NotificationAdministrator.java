@@ -98,6 +98,7 @@ public class NotificationAdministrator {
             if (result != null && !result.isEmpty()) {
                 notificationOffline = result.get(0);
                 notificationOffline.setRegistrationId(registationId);
+                notificationOffline.setDeviceType(deviceType.name());
             } else {
                 notificationOffline = new NotificationOffline();
                 notificationOffline.setUsername(username);
