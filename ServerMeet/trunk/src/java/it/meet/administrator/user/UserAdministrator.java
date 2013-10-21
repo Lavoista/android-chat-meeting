@@ -84,7 +84,7 @@ public class UserAdministrator {
         if (StringUtils.isNotEmpty(userDTO.getSex())) {
             user.setSex(userDTO.getSex().charAt(0));
         }
-        if (StringUtils.isNotEmpty(userDTO.getSex()) && StringUtils.checkEmailValidity(userDTO.getEmail())) {
+        if (StringUtils.isNotEmpty(userDTO.getEmail()) && StringUtils.checkEmailValidity(userDTO.getEmail())) {
             user.setEmail(userDTO.getEmail());
         }
         if (userDTO.getDateOfBirth() != null) {
@@ -93,6 +93,9 @@ public class UserAdministrator {
 
         if (StringUtils.isNotEmpty(userDTO.getTelephoneNumber()) && StringUtils.checkPhoneNumberValidity(userDTO.getTelephoneNumber())) {
             user.setTelephonenumber(userDTO.getTelephoneNumber());
+        }
+        if (userDTO.getPhoto() != null && userDTO.getPhoto().length > 0) {
+            user.setPhoto(userDTO.getPhoto());
         }
 
         try {
@@ -149,6 +152,49 @@ public class UserAdministrator {
         }
 
         return user;
+    }
+
+    /**
+     * Update the photo of user
+     * 
+     * @param username the username of photo
+     * @param photo the photo 
+     * @param session the session from database
+     * 
+     * @throws MeetException if any error occurs
+     */
+    public void updatePhoto(String username, byte[] photo, Session session) throws MeetException {
+
+        Transaction tx = null;
+        try {
+
+            if (StringUtils.isEmpty(username)) {
+                throw new MeetException(ErrorCodeEnumeration.MEET0009);
+            }
+
+            Users user = getUserByUsername(username, session);
+            if (user == null) {
+                throw new MeetException(ErrorCodeEnumeration.MEET0008, username);
+            }
+
+            if (photo != null && photo.length > 0) {
+                user.setPhoto(photo);
+            } else {
+                user.setPhoto(null);
+            }
+            tx = session.beginTransaction();
+            session.saveOrUpdate(user);
+            tx.commit();
+        } catch (Exception ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            if (ex instanceof MeetException) {
+                throw ((MeetException) ex);
+            } else {
+                throw new MeetException(ErrorCodeEnumeration.MEET9999, ex);
+            }
+        }
     }
 
     /**

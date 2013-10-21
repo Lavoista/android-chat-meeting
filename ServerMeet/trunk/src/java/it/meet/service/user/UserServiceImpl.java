@@ -2,12 +2,10 @@ package it.meet.service.user;
 
 import it.meet.administrator.message.NotificationAdministrator;
 import it.meet.administrator.user.UserAdministrator;
-import it.meet.chat.control.gcm.NotificationManager;
 import it.meet.common.database.DatabaseAdministrator;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.common.util.DeviceType;
 import it.meet.service.common.util.MeetException;
-import it.meet.service.messaging.Message;
 import it.meet.service.user.entity.UserDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,14 +36,14 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-
+            
             UserAdministrator userAdministrator = new UserAdministrator();
-
+            
             userAdministrator.createUser(user, session);
-
+            
             responseDTO.setErrorCode("");
             responseDTO.setErrorDescription("");
-
+            
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -57,7 +55,7 @@ public class UserServiceImpl implements UserService {
         }
         return responseDTO;
     }
-
+    
     public UserDTO findUserByUserName(String userName) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -73,14 +71,14 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-
+            
             UserAdministrator userAdministrator = new UserAdministrator();
-
+            
             userAdministrator.addFriend(username, friendUsername, session);
-
+            
             responseDTO.setErrorCode("");
             responseDTO.setErrorDescription("");
-
+            
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -90,7 +88,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-
+        
         return responseDTO;
     }
 
@@ -108,14 +106,14 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-
+            
             UserAdministrator userAdministrator = new UserAdministrator();
-
+            
             userAdministrator.sendFriendRequest(username, friendUsername, message, session);
-
+            
             responseDTO.setErrorCode("");
             responseDTO.setErrorDescription("");
-
+            
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -125,7 +123,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-
+        
         return responseDTO;
     }
 
@@ -140,13 +138,13 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-
+            
             UserAdministrator userAdministrator = new UserAdministrator();
             userAdministrator.removeFriend(username, friendUsername, session);
-
+            
             responseDTO.setErrorCode("");
             responseDTO.setErrorDescription("");
-
+            
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -156,7 +154,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-
+        
         return responseDTO;
     }
 
@@ -173,13 +171,13 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-
+            
             UserAdministrator userAdministrator = new UserAdministrator();
             userAdministrator.removeUnacceptedFriendRequest(username, friendUsername, session);
-
+            
             responseDTO.setErrorCode("");
             responseDTO.setErrorDescription("");
-
+            
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -189,10 +187,19 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-
+        
         return responseDTO;
     }
 
+    /**
+     * Update the registration id and the device type
+     *
+     * @param username the username of user
+     * @param registrationId the registration id to update
+     * @param deviceType the device type to update
+     *
+     * @return the response of operation
+     */
     public ResponseDTO updateRegistrationId(String username, String registrationId, DeviceType deviceType) {
         ResponseDTO responseDTO = new ResponseDTO();
         Session session = null;
@@ -201,7 +208,7 @@ public class UserServiceImpl implements UserService {
             
             NotificationAdministrator notificationAdministrator = new NotificationAdministrator();
             notificationAdministrator.updateRegistrationId(username, deviceType, registrationId, session);
-                    
+            
             
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,7 +219,36 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-
+        
+        return responseDTO;
+    }
+    
+    /**
+     * Update the photo of user
+     * @param username the username of user 
+     * @param photo the photo 
+     * 
+     * @return the response of operation
+     */
+    public ResponseDTO updatePhoto(String username, byte[] photo) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        Session session = null;
+        try {
+            session = DatabaseAdministrator.getInstance().openSession();
+            
+            UserAdministrator userAdministrator = new UserAdministrator();
+            userAdministrator.updatePhoto(username, photo, session);
+            
+        } catch (MeetException ex) {
+            Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            responseDTO.setErrorCode(ex.getErrorCode());
+            responseDTO.setErrorDescription(ex.getErrorDescription());
+        } finally {
+            if (session != null) {
+                session.disconnect();
+            }
+        }
+        
         return responseDTO;
     }
 }
