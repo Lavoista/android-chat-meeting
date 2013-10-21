@@ -46,6 +46,8 @@ public enum ErrorCodeEnumeration implements Serializable {
     MEET0026("MEET0026", "The registration id is mandatory."),
     MEET0027("MEET0027", "The device type is mandatory."),
     
+    
+    MEET0055("MEET0055","Errore di connessione"),
     //GENERIC ERROR
     MEET9999("MEET9999", "Error perform operation on database.");
     
