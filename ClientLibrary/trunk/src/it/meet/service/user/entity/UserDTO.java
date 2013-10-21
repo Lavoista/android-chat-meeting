@@ -10,14 +10,42 @@ import java.util.Date;
  */
 public class UserDTO implements Serializable {
 
+    /**
+     * The name of user
+     */
     private String name;
+    /**
+     * The name of user
+     */
     private String surname;
+    /**
+     * The username of user
+     */
     private String username;
+    /**
+     * The password of user
+     */
     private String password;
+    /**
+     * The sex of user
+     */
     private String sex;
+    /**
+     * The date of birth of user
+     */
     private Date dateOfBirth;
+    /**
+     * The email of user
+     */
     private String email;
+    /**
+     * The telephone number of user
+     */
     private String telephoneNumber;
+    /**
+     * The photo of user
+     */
+    private byte[] photo;
 
     /**
      * @return the name
@@ -129,5 +157,19 @@ public class UserDTO implements Serializable {
      */
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    /**
+     * @return the photo
+     */
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    /**
+     * @param photo the photo to set
+     */
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
