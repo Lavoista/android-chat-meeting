@@ -33,7 +33,7 @@
 					android:paddingTop="10dp"
 				    android:gravity="center">
 				    <EditText
-		        		android:id="@+id/editText01"
+		        		android:id="@+id/username"
 		        		android:layout_width="200dp"
 				        android:layout_height="wrap_content"
 				        android:inputType="textPersonName"
@@ -45,7 +45,7 @@
 				    android:paddingTop="10dp"
 				    android:gravity="center">
 				    <EditText
-				        android:id="@+id/EditText02"
+				        android:id="@+id/password"
 				        android:layout_width="200dp"
 				        android:layout_height="wrap_content"
 				        android:inputType="textPassword"
