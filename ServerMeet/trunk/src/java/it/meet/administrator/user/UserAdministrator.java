@@ -419,8 +419,5 @@ public class UserAdministrator {
         } else if (StringUtils.isNotEmpty(user.getTelephoneNumber()) && !StringUtils.checkPhoneNumberValidity(user.getTelephoneNumber())) {
             throw new MeetException(ErrorCodeEnumeration.MEET0012);
         }
-        else {
-            throw new MeetException(ErrorCodeEnumeration.MEET0000);
-        }
     }
 }
