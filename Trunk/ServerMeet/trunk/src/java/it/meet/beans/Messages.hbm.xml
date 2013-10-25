@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-set-2013 9.59.59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="it.meet.beans.Messages" table="messages" catalog="meetschema">
+        <composite-id name="id" class="it.meet.beans.MessagesId">
+            <key-property name="username" type="string">
+                <column name="username" length="100" />
+            </key-property>
+            <key-property name="usernamereceiver" type="string">
+                <column name="usernamereceiver" length="100" />
+            </key-property>
+            <key-property name="date" type="timestamp">
+                <column name="date" length="19" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="sender" class="it.meet.beans.Users" update="false" insert="false" fetch="select">
+            <column name="username" length="100" not-null="true" />
+        </many-to-one>
+        <many-to-one name="receiver" class="it.meet.beans.Users" update="false" insert="false" fetch="select">
+            <column name="usernamereceiver" length="100" not-null="true" />
+        </many-to-one>
+        <property name="state" type="string">
+            <column name="state" length="10" not-null="true" />
+        </property>
+        <property name="message" type="string">
+            <column name="message" length="500" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

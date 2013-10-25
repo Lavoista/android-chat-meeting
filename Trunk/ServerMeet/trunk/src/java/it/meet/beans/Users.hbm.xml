@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-set-2013 9.59.59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="it.meet.beans.Users" table="users" catalog="meetschema">
+        <id name="username" type="string">
+            <column name="username" length="100" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="100" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="100" />
+        </property>
+        <property name="sex" type="java.lang.Character">
+            <column name="sex" length="1" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="150" />
+        </property>
+        <property name="enddate" type="string">
+            <column name="enddate" length="14" not-null="true" />
+        </property>
+        <property name="dateOfBirth" type="java.util.Date">
+            <column name="dateofbirth" />
+        </property>
+        <property name="telephonenumber" type="string">
+            <column name="telephonenumber" length="20" />
+        </property>
+        <property name="photo" type="binary">
+            <column name="photo" />
+        </property>
+        <set name="friendRequestSent" inverse="true">
+            <key>
+                <column name="username" length="100" not-null="true" />
+            </key>
+            <one-to-many class="it.meet.beans.FriendsRequests" />
+        </set>
+        <set name="messagesesReceived" inverse="true">
+            <key>
+                <column name="usernamereceiver" length="100" not-null="true" />
+            </key>
+            <one-to-many class="it.meet.beans.Messages" />
+        </set>
+        <set name="messagesesSent" inverse="true">
+            <key>
+                <column name="username" length="100" not-null="true" />
+            </key>
+            <one-to-many class="it.meet.beans.Messages" />
+        </set>
+        <set name="friendRequestReceived" inverse="true">
+            <key>
+                <column name="usernamefriend" length="100" not-null="true" />
+            </key>
+            <one-to-many class="it.meet.beans.FriendsRequests" />
+        </set>
+        
+        <set name="blackList" table="blacklist">
+            <key>
+                <column name="username" length="100" not-null="true" />
+            </key>
+            <many-to-many entity-name="it.meet.beans.Users">
+                <column name="usernameblackuser" length="100" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="friends" table="users_friends">
+            <key>
+                <column name="username" length="100" not-null="true" />
+            </key>
+            <many-to-many entity-name="it.meet.beans.Users">
+                <column name="usernamefriend" length="100" not-null="true" />
+            </many-to-many>
+        </set>
+        <one-to-one name="lastNotificationOffline" class="it.meet.beans.NotificationOffline" cascade="save-update"></one-to-one>
+        
+    </class>
+</hibernate-mapping>
