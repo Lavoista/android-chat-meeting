@@ -1,0 +1,35 @@
+
+
+<resources>
+    <string name="app_name">Meet</string>
+    <string-array name="planets_array">
+        <item>Entra</item>
+        <item>Il Mio Profilo</item>
+        <item>Ricerca Contatti</item>
+        <item>Conversazioni</item>
+        <item>Amici</item>
+        <item>Richieste Amicizia</item>
+        <item>Black List</item>
+        <item>Luoghi Preferiti</item>
+        <item>Impostazioni</item>        
+        <item>Esci</item>
+    </string-array>
+    <string name="text_localita">Inserisci Localita</string>
+    <string name="Localita">Localita</string>
+    <string name="map1">ciaoMappaGoogle</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="Nome">Nome</string>
+    <string name="Cognome">Cognome</string>
+    <string name="Password">Password</string>
+    <string name="Accedi">Accedi</string>
+    <string name="Registrati">Registrati</string>
+    <string name="Nome_Utente">Nome Utente</string>
+    <string name="MEET0000">Registrazione effettuata con successo</string>
+    <string name="MEET0002">Username non valido, è gia utilizzato da un altro utente</string>
+    <string name="MEET0004">Il Nome Utente è Obbligatorio</string>
+    <string name="MEET0055">Errore di connessione</string>
+    
+</resources>
