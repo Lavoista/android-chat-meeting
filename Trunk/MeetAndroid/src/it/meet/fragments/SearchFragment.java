@@ -1,6 +1,6 @@
 package it.meet.fragments;
 
-import tom.meets.R;
+import it.meet.R;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.InflateException;

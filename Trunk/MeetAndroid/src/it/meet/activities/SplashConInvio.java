@@ -20,8 +20,8 @@ import it.meet.gcm.GcmRegistrarCompat;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import tom.meets.BuildConfig;
-import tom.meets.R;
+import it.meet.BuildConfig;
+import it.meet.R;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;

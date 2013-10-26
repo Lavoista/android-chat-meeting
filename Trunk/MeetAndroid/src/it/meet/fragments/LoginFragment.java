@@ -1,7 +1,7 @@
 package it.meet.fragments;
 
 import it.meet.activities.MainActivity.PlanetFragment;
-import tom.meets.R;
+import it.meet.R;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;

@@ -18,7 +18,7 @@ package it.meet.services;
 
 import it.meet.activities.StartActivity;
 import it.meet.gcm.GcmBroadcastReceiver;
-import tom.meets.R;
+import it.meet.R;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 

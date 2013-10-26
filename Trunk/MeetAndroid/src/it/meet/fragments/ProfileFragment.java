@@ -7,7 +7,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import tom.meets.R;
+import it.meet.R;
 import android.R.color;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;

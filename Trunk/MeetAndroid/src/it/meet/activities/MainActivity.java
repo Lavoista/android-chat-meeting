@@ -21,7 +21,7 @@ import it.meet.fragments.SearchFragment;
 
 import java.util.Locale;
 
-import tom.meets.R;
+import it.meet.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
