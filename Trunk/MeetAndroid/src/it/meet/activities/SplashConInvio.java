@@ -15,7 +15,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import it.meet.gcm.GCMRegistrarCompat;
+import it.meet.gcm.GcmRegistrarCompat;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -60,7 +60,7 @@ public class SplashConInvio extends Activity {
         
         context = getApplicationContext();
         
-        GCMRegistrarCompat.checkDevice(this);
+        GcmRegistrarCompat.checkDevice(this);
       
 	    Log.w("TOM","tra 2 secondi INVIO MESSAGGIO AL SERVER");
 	    try{
@@ -70,9 +70,9 @@ public class SplashConInvio extends Activity {
 	    	
 	    }
         if (BuildConfig.DEBUG) {
-          GCMRegistrarCompat.checkManifest(this);
+          GcmRegistrarCompat.checkManifest(this);
         }
-        final String regId=GCMRegistrarCompat.getRegistrationId(this);
+        final String regId=GcmRegistrarCompat.getRegistrationId(this);
         System.out.println("regId = "+regId);
         if (regId.length() == 0) {
             new RegisterTask(this).execute(SENDER_ID);
@@ -134,7 +134,7 @@ public class SplashConInvio extends Activity {
     }
 
     private static class RegisterTask extends
-    GCMRegistrarCompat.BaseRegisterTask {
+    GcmRegistrarCompat.BaseRegisterTask {
 
   RegisterTask(Context context) {
     super(context);
