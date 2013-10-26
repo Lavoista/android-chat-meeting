@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Set;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-public class GCMRegistrarCompat {
+public class GcmRegistrarCompat {
 	private static final String TAG = "GCMRegistrar";
 	private static final String INTENT_FROM_GCM_MESSAGE = "com.google.android.c2dm.intent.RECEIVE";
 	private static final String PERMISSION_GCM_INTENTS = "com.google.android.c2dm.permission.SEND";
@@ -186,7 +186,7 @@ public class GCMRegistrarCompat {
 		return context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
 	}
 
-	private GCMRegistrarCompat() {
+	private GcmRegistrarCompat() {
 		throw new UnsupportedOperationException();
 	}
 
