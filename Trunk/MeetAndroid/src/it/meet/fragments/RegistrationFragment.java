@@ -1,7 +1,6 @@
 package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
-import it.meet.activities.RegistrationTask;
 import it.meet.activities.MainActivity.PlanetFragment;
 import it.meet.service.user.entity.UserDTO;
 
@@ -11,7 +10,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import tom.meets.R;
+import it.meet.R;
 import android.R.color;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -19,6 +18,7 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -59,6 +59,7 @@ public class RegistrationFragment extends Fragment {
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private String picturePath = "";
+	private ProgressDialog progressBar;
 
 	public RegistrationFragment() {
 		// Empty constructor required for fragment subclasses
@@ -215,14 +216,13 @@ public class RegistrationFragment extends Fragment {
 						public void onClick(View v) {
 							RegistrationTask rt = new RegistrationTask((MainActivity)rootView.getContext());
 							UserDTO utente = new UserDTO();
-							utente.setUsername("Prova Username");
+							utente.setUsername(((EditText) rootView
+									.findViewById(R.id.username)).getText().toString());
 							utente.setPassword("Prova password");
 							utente.setEmail("tom78@kk.com");
 							utente.setSex("M");
 							rt.execute(utente);
-
 						}
-
 					});
 			// Fine codice di ripristino immagine nella view
 
