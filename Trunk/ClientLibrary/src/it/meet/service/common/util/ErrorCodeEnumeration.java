@@ -48,6 +48,7 @@ public enum ErrorCodeEnumeration implements Serializable {
     
     
     MEET0055("MEET0055","Connection Error"),
+    MEET0056("MEET0056","Passwords do not match"),
     //GENERIC ERROR
     MEET9999("MEET9999", "Error perform operation on database.");
     

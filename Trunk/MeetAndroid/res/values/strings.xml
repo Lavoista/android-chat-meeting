@@ -21,15 +21,22 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
-    <string name="Nome">Nome</string>
-    <string name="Cognome">Cognome</string>
+    <string name="UserName">Nome Utente</string>
+    <string name="Name">Nome</string>
+    <string name="Surname">Cognome</string>
     <string name="Password">Password</string>
+    <string name="ConfirmPassword">Conferma Password</string>
+    <string name="EMail">EMail</string>
+    <string name="BirthDate">Data di nascita</string>
+    <string name="Sex">Sesso</string>
     <string name="Accedi">Accedi</string>
     <string name="Registrati">Registrati</string>
-    <string name="Nome_Utente">Nome Utente</string>
     <string name="MEET0000">Registrazione effettuata con successo</string>
     <string name="MEET0002">Username non valido, è gia utilizzato da un altro utente</string>
     <string name="MEET0004">Il Nome Utente è Obbligatorio</string>
+    <string name="MEET0006">L\'indirizzo Email non è valido</string>
     <string name="MEET0055">Errore di connessione</string>
+    <string name="MEET0056">Le password inserite non coincidono</string>
+    <string name="MEET0057">I seguenti campi sono obbligatori:</string>
     
 </resources>

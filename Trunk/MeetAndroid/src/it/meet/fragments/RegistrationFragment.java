@@ -54,7 +54,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 public class RegistrationFragment extends Fragment {
 	private View rootView;
-	EditText campoData;
+	EditText dateField;
 	public static final String ARG_PLANET_NUMBER = "planet_number";
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -72,8 +72,6 @@ public class RegistrationFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
-		System.out.println("creataView");
 		if (rootView != null) {
 			ViewGroup parent = (ViewGroup) rootView.getParent();
 			if (parent != null)
@@ -82,61 +80,14 @@ public class RegistrationFragment extends Fragment {
 		try {
 			rootView = inflater.inflate(R.layout.registration_fragment,
 					container, false);
-			campoData = (EditText) rootView.findViewById(R.id.EditTextData);
-			campoData.setFocusableInTouchMode(false);
-			campoData.setRawInputType(InputType.TYPE_NULL);
+			dateField = (EditText) rootView.findViewById(R.id.birthDate);
+			dateField.setFocusableInTouchMode(false);
+			dateField.setRawInputType(InputType.TYPE_NULL);
+			dateField.setOnClickListener(new OnClickDateFieldListener(rootView,this));
 
-			campoData.setOnClickListener(new EditText.OnClickListener() {
-
-				public void onClick(View v) {
-					OnDateSetListener myDateSetListener = new OnDateSetListener() {
-						@Override
-						public void onDateSet(DatePicker datePicker, int i,
-								int j, int k) {
-							campoData.setText("" + k + "/" + (j + 1) + "/" + i);
-							Calendar c = Calendar.getInstance();
-							DateFormat dateFormat = android.text.format.DateFormat
-									.getDateFormat(getActivity());
-							c.set(i, j, k);
-							Date data = new Date(c.getTimeInMillis());
-							campoData.setText("" + dateFormat.format(data));
-
-						}
-					};
-
-					DatePickerDialog dpdFromDate = new DatePickerDialog(
-							getActivity(), myDateSetListener, 1, 1, 1990);
-					dpdFromDate.getDatePicker().setBackgroundColor(color.black);
-					dpdFromDate.getDatePicker().updateDate(1990, 0, 1);
-					int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-					System.out.println("versione API:" + currentapiVersion);
-					Log.w("TOM", "" + currentapiVersion);
-					if (currentapiVersion >= 11) {
-						try {
-							dpdFromDate.getDatePicker().setCalendarViewShown(
-									false);
-						} catch (Exception e) {
-							e.printStackTrace();
-						} // eat exception in our case
-					}
-					dpdFromDate.show();
-					dpdFromDate.setButton(DialogInterface.BUTTON_NEGATIVE,
-							"Cancel", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									if (which == DialogInterface.BUTTON_NEGATIVE) {
-										// et_to_date.setText("");
-									}
-								}
-							});
-
-				}
-
-			});
-
-			Button caricaFoto = (Button) rootView
-					.findViewById(R.id.buttonCaricaFoto);
-			caricaFoto.setOnClickListener(new View.OnClickListener() {
+			Button loadPhoto = (Button) rootView
+					.findViewById(R.id.loadPhotoButton);
+			loadPhoto.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					Intent i = new Intent(
@@ -145,9 +96,9 @@ public class RegistrationFragment extends Fragment {
 					startActivityForResult(i, RESULT_LOAD_IMAGE);
 				}
 			});
-			Button scattaFoto = (Button) rootView
-					.findViewById(R.id.buttonScattaFoto);
-			scattaFoto.setOnClickListener(new View.OnClickListener() {
+			Button makePhoto = (Button) rootView
+					.findViewById(R.id.makePhotoButton);
+			makePhoto.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					Intent i = new Intent(
@@ -157,16 +108,16 @@ public class RegistrationFragment extends Fragment {
 				}
 			});
 			// Gestione pulsanti rotazione foto sinistra e destra
-			Button ruotaSinistra = (Button) rootView
-					.findViewById(R.id.ruotaFotoSinistra);
-			ruotaSinistra.setOnClickListener(new View.OnClickListener() {
+			Button rotateLeft = (Button) rootView
+					.findViewById(R.id.rotateLeftButton);
+			rotateLeft.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					MainActivity host = (MainActivity) rootView.getContext();
 					Matrix matrix = new Matrix();
 					matrix.postRotate(270.0f);
 					ImageView imageView = (ImageView) rootView
-							.findViewById(R.id.viewFoto);
+							.findViewById(R.id.photoView);
 					imageView.buildDrawingCache();
 					Bitmap myImg = host.immagineFoto;
 					Bitmap resizedBitmap = Bitmap.createBitmap(myImg, 0, 0,
@@ -176,16 +127,16 @@ public class RegistrationFragment extends Fragment {
 
 				}
 			});
-			Button ruotaDestra = (Button) rootView
-					.findViewById(R.id.ruotaFotoDestra);
-			ruotaDestra.setOnClickListener(new View.OnClickListener() {
+			Button rotateRight = (Button) rootView
+					.findViewById(R.id.rotateRightButton);
+			rotateRight.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					MainActivity host = (MainActivity) rootView.getContext();
 					Matrix matrix = new Matrix();
 					matrix.postRotate(90.0f);
 					ImageView imageView = (ImageView) rootView
-							.findViewById(R.id.viewFoto);
+							.findViewById(R.id.photoView);
 					imageView.buildDrawingCache();
 					Bitmap myImg = host.immagineFoto;
 					Bitmap resizedBitmap = Bitmap.createBitmap(myImg, 0, 0,
@@ -205,25 +156,13 @@ public class RegistrationFragment extends Fragment {
 			if (host.immagineFoto != null) {
 				System.out.println("immagine trovata");
 				ImageView imageView = (ImageView) rootView
-						.findViewById(R.id.viewFoto);
+						.findViewById(R.id.photoView);
 				imageView.setImageBitmap(host.immagineFoto);
 			}
-			Button BottoneConfermaRegistrazione = (Button) rootView
-					.findViewById(R.id.confermaRegistrazioneButton);
-			BottoneConfermaRegistrazione
-					.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							RegistrationTask rt = new RegistrationTask((MainActivity)rootView.getContext());
-							UserDTO utente = new UserDTO();
-							utente.setUsername(((EditText) rootView
-									.findViewById(R.id.username)).getText().toString());
-							utente.setPassword("Prova password");
-							utente.setEmail("tom78@kk.com");
-							utente.setSex("M");
-							rt.execute(utente);
-						}
-					});
+			Button submitRegistrationButton = (Button) rootView
+					.findViewById(R.id.submitRegistrationButton);
+			submitRegistrationButton
+					.setOnClickListener(new OnClickSubmitRegistrationListener(rootView));
 			// Fine codice di ripristino immagine nella view
 
 		} catch (InflateException e) {
@@ -232,16 +171,20 @@ public class RegistrationFragment extends Fragment {
 		return rootView;
 	}
 
+	
+	/*
+	 * method used when load or make photo
+	 * system open new activity, when control returns to main activity this method is called
+	 * @see android.app.Fragment#onActivityResult(int, int, android.content.Intent)
+	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == RESULT_LOAD_IMAGE
 				&& resultCode == Activity.RESULT_OK && data != null) {
-
 			Uri selectedImage = data.getData();
 			String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
 			Cursor cursor = rootView.getContext().getContentResolver()
 					.query(selectedImage, filePathColumn, null, null, null);
 			cursor.moveToFirst();
@@ -252,26 +195,21 @@ public class RegistrationFragment extends Fragment {
 
 			// se l'immagine non è quadrata la rendiamo quadrata tagliando le
 			// parti in eccesso
-			int larghezza = temp.getWidth();
-			int altezza = temp.getHeight();
+			int width = temp.getWidth();
+			int height = temp.getHeight();
 			// se l'immagine non è quadrata la rendiamo quadrata tagliando le
 			// parti in eccesso
 			int offsetX = 0;
 			int offsetY = 0;
-			System.out.println("temp.getWidth()=" + temp.getWidth());
-			System.out.println("temp.getHeight()=" + temp.getHeight());
-			if (larghezza > altezza) {
-				offsetX = (larghezza - altezza) / 2;
-				temp = Bitmap.createBitmap(temp, offsetX, 0, altezza, altezza,
+			if (width > height) {
+				offsetX = (width - height) / 2;
+				temp = Bitmap.createBitmap(temp, offsetX, 0, height, height,
 						matrix, true);
-			} else if (altezza > larghezza) {
-				offsetY = (altezza - larghezza) / 2;
-				temp = Bitmap.createBitmap(temp, 0, offsetY, larghezza,
-						larghezza, matrix, true);
+			} else if (height > width) {
+				offsetY = (height - width) / 2;
+				temp = Bitmap.createBitmap(temp, 0, offsetY, width,
+						width, matrix, true);
 			}
-			System.out.println("offsetX=" + offsetX);
-			System.out.println("temp.getWidth()=" + temp.getWidth());
-			System.out.println("temp.getHeight()=" + temp.getHeight());
 
 			temp = temp.createScaledBitmap(temp, 100, 100, true);
 			// temp = Bitmap.createBitmap(temp, 1, 1, temp.getWidth(),
@@ -280,38 +218,34 @@ public class RegistrationFragment extends Fragment {
 			host.immagineFoto = temp;
 			cursor.close();
 			ImageView imageView = (ImageView) rootView
-					.findViewById(R.id.viewFoto);
+					.findViewById(R.id.photoView);
 			imageView.setImageBitmap(temp);
 
 		}
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-			System.out.println("cambio immagine 1");
 			if (resultCode == Activity.RESULT_OK) {
-				System.out.println("cambio immagine 2");
 				Matrix matrix = new Matrix();
 				Bitmap temp = (Bitmap) data.getExtras().get("data");
 				// se l'immagine non è quadrata la rendiamo quadrata tagliando
 				// le parti in eccesso
-				int larghezza = temp.getWidth();
-				int altezza = temp.getHeight();
+				int width = temp.getWidth();
+				int height = temp.getHeight();
 				int offsetX = 0;
 				int offsetY = 0;
-				System.out.println("temp.getWidth()=" + temp.getWidth());
-				System.out.println("temp.getHeight()=" + temp.getHeight());
-				if (larghezza > altezza) {
-					offsetX = (larghezza - altezza) / 2;
-					temp = Bitmap.createBitmap(temp, offsetX, 0, altezza,
-							altezza, matrix, true);
-				} else if (altezza > larghezza) {
-					offsetY = (altezza - larghezza) / 2;
-					temp = Bitmap.createBitmap(temp, 0, offsetY, larghezza,
-							larghezza, matrix, true);
+				if (width > height) {
+					offsetX = (width - height) / 2;
+					temp = Bitmap.createBitmap(temp, offsetX, 0, height,
+							height, matrix, true);
+				} else if (height > width) {
+					offsetY = (height - width) / 2;
+					temp = Bitmap.createBitmap(temp, 0, offsetY, width,
+							width, matrix, true);
 				}
 				temp = temp.createScaledBitmap(temp, 100, 100, true);
 				MainActivity host = (MainActivity) rootView.getContext();
 				host.immagineFoto = temp;
 				ImageView imageView = (ImageView) rootView
-						.findViewById(R.id.viewFoto);
+						.findViewById(R.id.photoView);
 				imageView.setImageBitmap(temp);
 
 			}

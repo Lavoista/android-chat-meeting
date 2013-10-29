@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
             
             userAdministrator.createUser(user, session);
             
-            responseDTO.setErrorCode("");
+            responseDTO.setErrorCode("MEET0000");//Ssend message to client registration performed successfully
             responseDTO.setErrorDescription("");
             
         } catch (MeetException ex) {
