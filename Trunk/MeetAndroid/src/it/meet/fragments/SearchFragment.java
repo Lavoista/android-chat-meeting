@@ -9,31 +9,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class SearchFragment extends Fragment {
-	private View rootView;
-    public static final String ARG_PLANET_NUMBER = "planet_number";
-
+	private static View searchView;//conservo la view in memoria per eliminarla dopo, prima di ricrearla,
+								   //per evitare di avere chiave duplicata sui suoi elementi
     public SearchFragment() {
         // Empty constructor required for fragment subclasses
-    }
-    
-    public void setRootView(View _rootView){
-    	rootView = _rootView;    	
     }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
     	
-    	if (rootView != null) {
-            ViewGroup parent = (ViewGroup) rootView.getParent();
+    	if (searchView != null) {    		
+            ViewGroup parent = (ViewGroup) searchView.getParent();
             if (parent != null)
-                parent.removeView(rootView);
+                parent.removeView(searchView);
         }
+    	
         try {
-        	rootView = inflater.inflate(R.layout.search_fragment, container, false);
+        	searchView = inflater.inflate(R.layout.search_fragment, container, false);
         } catch (InflateException e) {
             /* map is already there, just return view as it is */
+        	e.printStackTrace();
         }
-        return rootView;
+        
+        return searchView;
     }
 }

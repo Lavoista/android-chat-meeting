@@ -15,6 +15,8 @@
         <item>Esci</item>
     </string-array>
     <string name="text_localita">Inserisci Localita</string>
+    <string name="WriteMessage">Scrivi Messaggio</string>
+    <string name="Send">Invia</string>
     <string name="Localita">Localita</string>
     <string name="map1">ciaoMappaGoogle</string>
     <string name="drawer_open">Open navigation drawer</string>

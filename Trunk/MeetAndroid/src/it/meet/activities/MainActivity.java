@@ -16,8 +16,7 @@
 
 package it.meet.activities;
 
-import it.meet.fragments.LoginFragment;
-import it.meet.fragments.SearchFragment;
+import it.meet.fragments.*;
 
 import java.util.Locale;
 
@@ -60,6 +59,10 @@ public class MainActivity extends Activity {
     private CharSequence mTitle;
     private String[] mPlanetTitles;
     private static View rootView;
+    private SearchFragment searchFragment;
+    private LoginFragment loginFragment;
+    private RegistrationFragment registrationFragment;
+    private PlanetFragment planetFragment;
     public Bitmap immagineFoto;//variabile utilizzata per il salvataggio della foto(RegistrationFragment)
 
     @Override
@@ -68,7 +71,6 @@ public class MainActivity extends Activity {
         if(savedInstanceState != null){
         	immagineFoto = savedInstanceState.getParcelable("immagineFoto");
         }
-        System.out.println("ciao");
         setContentView(R.layout.main_activity);
 
         mTitle = mDrawerTitle = getTitle();
@@ -140,19 +142,19 @@ public class MainActivity extends Activity {
         }
         // Handle action buttons
         switch(item.getItemId()) {
-        case R.id.action_websearch:
-            // create intent to perform web search for this planet
-            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
-            // catch event that there's no activity to handle intent
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.app_not_available, Toast.LENGTH_LONG).show();
-            }
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+	        case R.id.action_websearch:
+	            // create intent to perform web search for this planet
+	            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+	            intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
+	            // catch event that there's no activity to handle intent
+	            if (intent.resolveActivity(getPackageManager()) != null) {
+	                startActivity(intent);
+	            } else {
+	                Toast.makeText(this, R.string.app_not_available, Toast.LENGTH_LONG).show();
+	            }
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -166,27 +168,41 @@ public class MainActivity extends Activity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-    	
     	Log.w("Position","position="+position);
     	if(position == 0){
-    		LoginFragment fragmentAccount = new LoginFragment();
-    		fragmentAccount.setRootView(rootView);
+    		if(loginFragment == null){
+    			loginFragment = new LoginFragment();
+    		}
+    		loginFragment.setRootView(rootView);
     		Bundle args = new Bundle();
 	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-	        fragmentAccount.setArguments(args);
+	        loginFragment.setArguments(args);
     		FragmentManager fragmentManager = getFragmentManager();
-	        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentAccount).commit();
+	        fragmentManager.beginTransaction().replace(R.id.content_frame, loginFragment).commit();
 	
     	}
     	else if(position == 2){
-    		Log.w("Position","Non faccio nulla");
-    		SearchFragment fragmentRicerca = new SearchFragment();
-    		fragmentRicerca.setRootView(rootView);
+    		if(searchFragment == null){
+    			searchFragment = new SearchFragment();
+    		}
     		Bundle args = new Bundle();
 	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-	        fragmentRicerca.setArguments(args);
+	        searchFragment.setArguments(args);
     		FragmentManager fragmentManager = getFragmentManager();
-	        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentRicerca).commit();
+	        fragmentManager.beginTransaction().replace(R.id.content_frame, searchFragment).commit();
+    	}
+    	else if(position == 3){
+    		//provo con username di prova 
+    		//l'username è utilizzato per cercare i messaggi inviati e ricevuti da quel contatto
+    		String username = "francescaMiranda";//questo valore sara letto dall'utente selezionato
+    		ChatFragment chatFragment = new ChatFragment();
+    		chatFragment.setRemoteUsername(username);
+    		chatFragment.setLocalUsername("tommy");//questo valore sara letto dall'utente corrente
+    		Bundle args = new Bundle();
+	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+	        chatFragment.setArguments(args);
+    		FragmentManager fragmentManager = getFragmentManager();
+	        fragmentManager.beginTransaction().replace(R.id.content_frame, chatFragment).commit();
     	}
     	else if(position == 8){
     		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
@@ -224,13 +240,15 @@ public class MainActivity extends Activity {
 
     	}
     	else{
-	        Fragment fragment = new PlanetFragment();
+    		if(planetFragment == null){
+    			planetFragment = new PlanetFragment();
+    		}
 	        Bundle args = new Bundle();
 	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-	        fragment.setArguments(args);
+	        planetFragment.setArguments(args);
 	
 	        FragmentManager fragmentManager = getFragmentManager();
-	        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+	        fragmentManager.beginTransaction().replace(R.id.content_frame, planetFragment).commit();
     	}
         //Aggiorno e chiudo il drawer
         mDrawerList.setItemChecked(position, true);
@@ -277,7 +295,7 @@ public class MainActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_planet, container, false);
+            rootView = inflater.inflate(R.layout.planet_fragment, container, false);
             int i = getArguments().getInt(ARG_PLANET_NUMBER);
             String planet = getResources().getStringArray(R.array.planets_array)[i];
 
