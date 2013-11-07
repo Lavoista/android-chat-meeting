@@ -36,11 +36,26 @@ public class ChatMessageAdministrator {
 		cm3.setToUsername(remoteUsername);
 		gc.set(2013, 4, 24, 21, 00, 10);
 		cm1.setData(gc);
-		cm3.setText("dove sei");
+		cm3.setText("dove sei? Non dirmi che sei andato\n a vederti la partita del milan?");
+		
+		ChatMessage cm4 = new ChatMessage();
+		cm4.setFromUsername(localUsername);
+		cm4.setToUsername(remoteUsername);
+		gc.set(2013, 4, 23, 12, 10, 50);
+		cm4.setData(gc);
+		cm4.setText("vabbe");
+		ChatMessage cm5 = new ChatMessage();
+		cm5.setFromUsername(localUsername);
+		cm5.setToUsername(remoteUsername);
+		gc.set(2013, 4, 24, 21, 00, 10);
+		cm5.setData(gc);
+		cm5.setText("tifa sempre forza napoli, capito??");
 		
 		listaMessaggi.add(cm1);
 		listaMessaggi.add(cm2);
 		listaMessaggi.add(cm3);
+		listaMessaggi.add(cm4);
+		listaMessaggi.add(cm5);
 		return listaMessaggi.iterator();
 	}
 	

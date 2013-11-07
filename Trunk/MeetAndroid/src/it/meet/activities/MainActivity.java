@@ -63,6 +63,8 @@ public class MainActivity extends Activity {
     private LoginFragment loginFragment;
     private RegistrationFragment registrationFragment;
     private PlanetFragment planetFragment;
+    private Fragment currentFragment;
+    private int lastPosition = -1;
     public Bitmap immagineFoto;//variabile utilizzata per il salvataggio della foto(RegistrationFragment)
 
     @Override
@@ -169,7 +171,8 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
         // update the main content by replacing fragments
     	Log.w("Position","position="+position);
-    	if(position == 0){
+    	if(position == 0 && lastPosition !=0){
+    		lastPosition = 0;
     		if(loginFragment == null){
     			loginFragment = new LoginFragment();
     		}
@@ -177,11 +180,12 @@ public class MainActivity extends Activity {
     		Bundle args = new Bundle();
 	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
 	        loginFragment.setArguments(args);
+	        
     		FragmentManager fragmentManager = getFragmentManager();
 	        fragmentManager.beginTransaction().replace(R.id.content_frame, loginFragment).commit();
-	
     	}
-    	else if(position == 2){
+    	else if(position == 2 && lastPosition !=2){
+    		lastPosition = 2;
     		if(searchFragment == null){
     			searchFragment = new SearchFragment();
     		}
@@ -191,7 +195,8 @@ public class MainActivity extends Activity {
     		FragmentManager fragmentManager = getFragmentManager();
 	        fragmentManager.beginTransaction().replace(R.id.content_frame, searchFragment).commit();
     	}
-    	else if(position == 3){
+    	else if(position == 3 && lastPosition != 3){
+    		lastPosition = 3;
     		//provo con username di prova 
     		//l'username è utilizzato per cercare i messaggi inviati e ricevuti da quel contatto
     		String username = "francescaMiranda";//questo valore sara letto dall'utente selezionato
@@ -239,7 +244,7 @@ public class MainActivity extends Activity {
     		alertDialog2.show();
 
     	}
-    	else{
+    	else{/*
     		if(planetFragment == null){
     			planetFragment = new PlanetFragment();
     		}
@@ -249,6 +254,7 @@ public class MainActivity extends Activity {
 	
 	        FragmentManager fragmentManager = getFragmentManager();
 	        fragmentManager.beginTransaction().replace(R.id.content_frame, planetFragment).commit();
+	        */
     	}
         //Aggiorno e chiudo il drawer
         mDrawerList.setItemChecked(position, true);

@@ -47,6 +47,7 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnHoverListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -54,6 +55,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
@@ -87,11 +89,25 @@ public class ChatFragment extends Fragment {
 			String tempText = temp.getText();
 			LinearLayout linearLayout = (LinearLayout) rootView
 					.findViewById(R.id.messages);
+			System.out.println("measuredHeight="+linearLayout.getMeasuredHeight());
+			LinearLayout linearTemp = new LinearLayout(rootView.getContext());
 			TextView child = new TextView(rootView.getContext());
+			
+			if(temp.getFromUsername().equals(remoteUsername)){
+				linearTemp.setGravity(Gravity.LEFT);
+				child.setBackgroundResource(R.drawable.comic_dialog_left);
+			}
+			else{
+				linearTemp.setGravity(Gravity.RIGHT);
+				child.setBackgroundResource(R.drawable.comic_dialog_right);
+			}
 			child.setText(temp.getText());
-			if(temp.getFromUsername().equals(remoteUsername))child.setGravity(Gravity.LEFT);
-			else child.setGravity(Gravity.RIGHT);
-			linearLayout.addView(child);
+			child.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+		            LayoutParams.WRAP_CONTENT));
+			linearTemp.setPadding(15,10,15,0);
+			linearTemp.addView(child);
+			linearLayout.addView(linearTemp);
+			//ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollViewChat);
 		}
 		
 		
