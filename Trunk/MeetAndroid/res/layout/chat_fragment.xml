@@ -5,20 +5,21 @@
     android:background="@drawable/chat_background"
     android:orientation="vertical"
     tools:context=".MainActivity" >
-
     <ScrollView
+        android:id="@+id/scrollViewChat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent"
+        android:layout_above="@+id/chatEditTextLayout">
         <LinearLayout
             android:id="@+id/messages"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="vertical" >
         </LinearLayout>
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/chatEditTextLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -27,47 +28,24 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp" 
-			android:background="#999999">
+            android:background="#999999"
+            android:paddingBottom="5dp" >
+
             <TableRow
-				android:paddingTop="4dp">
-			<LinearLayout >
+                android:layout_margin="4dp"
+                android:gravity="center_vertical">
+
                 <ImageButton
                     android:id="@+id/ImageButton01"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/smileicon"/>
-                <ImageButton
-                    android:id="@+id/ImageButton02"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="18dp"
-                    android:background="@drawable/galleryicon"/>
-                <ImageButton
-                    android:id="@+id/ImageButton03"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="18dp"
-                    android:background="@drawable/cameraicon"/>
-                <ImageButton
-                    android:id="@+id/ImageButton04"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="18dp"
-                    android:background="@drawable/microphone"/>
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow>
+                    android:background="@drawable/smileicon" />
 
                 <EditText
                     android:id="@+id/insertMessage"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_weight="4"
+                    android:paddingLeft="4dp"
                     android:hint="@string/WriteMessage"
                     android:inputType="textMultiLine"
                     android:selectAllOnFocus="true" >
@@ -78,7 +56,7 @@
                 <Button
                     android:id="@+id/rotateRightButton"
                     android:layout_width="100dp"
-                    android:layout_weight="1"
+                    android:paddingLeft="4dp"
                     android:text="@string/Send"
                     android:textColor="#ffffff" />
             </TableRow>
