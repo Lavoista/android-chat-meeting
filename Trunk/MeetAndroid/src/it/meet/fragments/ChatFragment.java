@@ -86,13 +86,10 @@ public class ChatFragment extends Fragment {
 		//cerco tutti i messaggi inviati e ricevuti dall'utente username
 		while(chatMessages.hasNext()){
 			ChatMessage temp = chatMessages.next();
-			String tempText = temp.getText();
 			LinearLayout linearLayout = (LinearLayout) rootView
 					.findViewById(R.id.messages);
-			System.out.println("measuredHeight="+linearLayout.getMeasuredHeight());
 			LinearLayout linearTemp = new LinearLayout(rootView.getContext());
 			TextView child = new TextView(rootView.getContext());
-			
 			if(temp.getFromUsername().equals(remoteUsername)){
 				linearTemp.setGravity(Gravity.LEFT);
 				child.setBackgroundResource(R.drawable.comic_dialog_left);

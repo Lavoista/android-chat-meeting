@@ -2,6 +2,8 @@ package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
 import it.meet.activities.MainActivity.PlanetFragment;
+import it.meet.registration.classes.OnClickDateFieldListener;
+import it.meet.registration.classes.OnClickSubmitRegistrationListener;
 import it.meet.service.user.entity.UserDTO;
 
 import java.io.ByteArrayOutputStream;
