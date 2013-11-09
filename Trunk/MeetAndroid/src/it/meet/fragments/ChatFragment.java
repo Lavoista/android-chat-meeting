@@ -2,6 +2,7 @@ package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
 import it.meet.activities.MainActivity.PlanetFragment;
+import it.meet.chat.classes.ChatMessage;
 import it.meet.localdb.ChatMessageAdministrator;
 import it.meet.service.user.entity.UserDTO;
 

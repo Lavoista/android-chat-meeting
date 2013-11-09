@@ -1,4 +1,4 @@
-package it.meet.fragments;
+package it.meet.chat.classes;
 
 import java.util.GregorianCalendar;
 

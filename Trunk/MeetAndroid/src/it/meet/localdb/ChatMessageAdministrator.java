@@ -1,6 +1,6 @@
 package it.meet.localdb;
 
-import it.meet.fragments.ChatMessage;
+import it.meet.chat.classes.ChatMessage;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
