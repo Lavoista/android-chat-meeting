@@ -17,7 +17,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         MainClass mainClass = new MainClass();
-        mainClass.testUpdateRegistrationId();
+        mainClass.testLogin();
     }
     
     private void runServerChat(){
@@ -95,6 +95,14 @@ public class MainClass {
         UserServiceImpl serviceImpl = new UserServiceImpl();
 
         ResponseDTO responseDTO = serviceImpl.updateRegistrationId("luirzy", "pipposdjfo", DeviceType.ANDROID);
+        
+        Logger.getLogger(MainClass.class.getName()).log(Level.INFO, responseDTO.getErrorCode() + " " + responseDTO.getErrorDescription());
+    }
+    
+    private void testLogin(){
+        UserServiceImpl serviceImpl = new UserServiceImpl();
+
+        ResponseDTO responseDTO = serviceImpl.login("luirzy", "pipposdjfo");
         
         Logger.getLogger(MainClass.class.getName()).log(Level.INFO, responseDTO.getErrorCode() + " " + responseDTO.getErrorDescription());
     }

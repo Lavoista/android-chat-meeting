@@ -5,6 +5,7 @@ import it.meet.administrator.user.UserAdministrator;
 import it.meet.common.database.DatabaseAdministrator;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.common.util.DeviceType;
+import it.meet.service.common.util.ErrorCodeEnumeration;
 import it.meet.service.common.util.MeetException;
 import it.meet.service.user.entity.UserDTO;
 import java.util.logging.Level;
@@ -36,14 +37,14 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
-            
+
             userAdministrator.createUser(user, session);
-            
-            responseDTO.setErrorCode("MEET0000");//Ssend message to client registration performed successfully
-            responseDTO.setErrorDescription("");
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
         }
         return responseDTO;
     }
-    
+
     public UserDTO findUserByUserName(String userName) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -71,14 +72,14 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
-            
+
             userAdministrator.addFriend(username, friendUsername, session);
-            
-            responseDTO.setErrorCode("");
-            responseDTO.setErrorDescription("");
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -88,7 +89,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-        
+
         return responseDTO;
     }
 
@@ -106,14 +107,14 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
-            
+
             userAdministrator.sendFriendRequest(username, friendUsername, message, session);
-            
-            responseDTO.setErrorCode("");
-            responseDTO.setErrorDescription("");
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -123,7 +124,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-        
+
         return responseDTO;
     }
 
@@ -138,13 +139,13 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
             userAdministrator.removeFriend(username, friendUsername, session);
-            
-            responseDTO.setErrorCode("");
-            responseDTO.setErrorDescription("");
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -154,7 +155,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-        
+
         return responseDTO;
     }
 
@@ -171,13 +172,13 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
             userAdministrator.removeUnacceptedFriendRequest(username, friendUsername, session);
-            
-            responseDTO.setErrorCode("");
-            responseDTO.setErrorDescription("");
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -187,7 +188,7 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-        
+
         return responseDTO;
     }
 
@@ -205,11 +206,13 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             NotificationAdministrator notificationAdministrator = new NotificationAdministrator();
             notificationAdministrator.updateRegistrationId(username, deviceType, registrationId, session);
-            
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -219,15 +222,16 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-        
+
         return responseDTO;
     }
-    
+
     /**
      * Update the photo of user
-     * @param username the username of user 
-     * @param photo the photo 
-     * 
+     *
+     * @param username the username of user
+     * @param photo the photo
+     *
      * @return the response of operation
      */
     public ResponseDTO updatePhoto(String username, byte[] photo) {
@@ -235,10 +239,13 @@ public class UserServiceImpl implements UserService {
         Session session = null;
         try {
             session = DatabaseAdministrator.getInstance().openSession();
-            
+
             UserAdministrator userAdministrator = new UserAdministrator();
             userAdministrator.updatePhoto(username, photo, session);
-            
+
+            responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+            responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+
         } catch (MeetException ex) {
             Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             responseDTO.setErrorCode(ex.getErrorCode());
@@ -248,7 +255,46 @@ public class UserServiceImpl implements UserService {
                 session.disconnect();
             }
         }
-        
+
+        return responseDTO;
+    }
+
+    /**
+     * Execute the login operation
+     *
+     * @param username of user
+     * @param password of user
+     *
+     * @return the response object
+     *
+     */
+    public ResponseDTO login(String username, String password) {
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        Session session = null;
+        try {
+            session = DatabaseAdministrator.getInstance().openSession();
+
+            UserAdministrator userAdministrator = new UserAdministrator();
+            boolean authenticate = userAdministrator.authenticate(username, password, session);
+            if (!authenticate) {
+                responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0022.getErrorCode());
+                responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0022.getErrorDescription());
+            } else {
+                responseDTO.setErrorCode(ErrorCodeEnumeration.MEET0000.getErrorCode());
+                responseDTO.setErrorDescription(ErrorCodeEnumeration.MEET0000.getErrorDescription());
+            }
+
+        } catch (MeetException ex) {
+            Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            responseDTO.setErrorCode(ex.getErrorCode());
+            responseDTO.setErrorDescription(ex.getErrorDescription());
+        } finally {
+            if (session != null) {
+                session.disconnect();
+            }
+        }
+
         return responseDTO;
     }
 }
