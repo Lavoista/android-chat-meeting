@@ -2,6 +2,7 @@ package it.meet.administrator.message;
 
 import it.meet.administrator.user.UserAdministrator;
 import it.meet.beans.NotificationOffline;
+import it.meet.beans.Users;
 import it.meet.chat.control.util.NotificationOfflineInfo;
 import it.meet.service.common.util.DeviceType;
 import it.meet.service.common.util.ErrorCodeEnumeration;
@@ -100,7 +101,11 @@ public class NotificationAdministrator {
                 notificationOffline.setRegistrationId(registationId);
                 notificationOffline.setDeviceType(deviceType.name());
             } else {
+                UserAdministrator userAdministrator = new UserAdministrator();
+                Users users = userAdministrator.getUserByUsername(username, session);
+                
                 notificationOffline = new NotificationOffline();
+                notificationOffline.setUsers(users);
                 notificationOffline.setUsername(username);
                 notificationOffline.setRegistrationId(registationId);
                 notificationOffline.setDeviceType(deviceType.name());

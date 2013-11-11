@@ -94,7 +94,7 @@ public class MainClass {
 
         UserServiceImpl serviceImpl = new UserServiceImpl();
 
-        ResponseDTO responseDTO = serviceImpl.updateRegistrationId("luirzy", "aaaaa", DeviceType.ANDROID);
+        ResponseDTO responseDTO = serviceImpl.updateRegistrationId("luirzy", "pipposdjfo", DeviceType.ANDROID);
         
         Logger.getLogger(MainClass.class.getName()).log(Level.INFO, responseDTO.getErrorCode() + " " + responseDTO.getErrorDescription());
     }
