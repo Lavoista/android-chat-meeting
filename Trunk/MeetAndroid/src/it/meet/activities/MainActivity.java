@@ -17,6 +17,7 @@
 package it.meet.activities;
 
 import it.meet.fragments.*;
+import it.meet.localdb.DatabaseAdministrator;
 
 import java.util.Locale;
 
@@ -65,6 +66,7 @@ public class MainActivity extends Activity {
     private PlanetFragment planetFragment;
     private Fragment currentFragment;
     private int lastPosition = -1;
+    private DatabaseAdministrator dbAdmin;
     public Bitmap immagineFoto;//variabile utilizzata per il salvataggio della foto(RegistrationFragment)
 
     @Override
@@ -115,6 +117,7 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+        setDbAdmin(new DatabaseAdministrator(this));
     }
 
     
@@ -199,10 +202,10 @@ public class MainActivity extends Activity {
     		lastPosition = 3;
     		//provo con username di prova 
     		//l'username è utilizzato per cercare i messaggi inviati e ricevuti da quel contatto
-    		String username = "francescaMiranda";//questo valore sara letto dall'utente selezionato
+    		String username = "luigivorraro";//questo valore sara letto dall'utente selezionato
     		ChatFragment chatFragment = new ChatFragment();
     		chatFragment.setRemoteUsername(username);
-    		chatFragment.setLocalUsername("tommy");//questo valore sara letto dall'utente corrente
+    		chatFragment.setLocalUsername("tommasoalbano");//questo valore sara letto dall'utente corrente
     		Bundle args = new Bundle();
 	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
 	        chatFragment.setArguments(args);
@@ -318,6 +321,18 @@ public class MainActivity extends Activity {
         super.onSaveInstanceState(outState);
         outState.putParcelable("immagineFoto", immagineFoto);
     }
+
+
+
+	public DatabaseAdministrator getDbAdmin() {
+		return dbAdmin;
+	}
+
+
+
+	public void setDbAdmin(DatabaseAdministrator dbAdmin) {
+		this.dbAdmin = dbAdmin;
+	}
 
     
     

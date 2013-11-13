@@ -2,8 +2,8 @@ package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
 import it.meet.activities.MainActivity.PlanetFragment;
-import it.meet.chat.classes.ChatMessage;
-import it.meet.localdb.ChatMessageAdministrator;
+import it.meet.localdb.MessagesAdministrator;
+import it.meet.service.messaging.Message;
 import it.meet.service.user.entity.UserDTO;
 
 import java.io.ByteArrayOutputStream;
@@ -80,18 +80,18 @@ public class ChatFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		ChatMessageAdministrator chatMessageAdministrator = new ChatMessageAdministrator();
-		Iterator<ChatMessage> chatMessages = chatMessageAdministrator.getMessagesFromDb(localUsername,remoteUsername);
+		MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(rootView);
+		Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
 		rootView = inflater.inflate(R.layout.chat_fragment,
 					container, false);
 		//cerco tutti i messaggi inviati e ricevuti dall'utente username
 		while(chatMessages.hasNext()){
-			ChatMessage temp = chatMessages.next();
+			Message temp = chatMessages.next();
 			LinearLayout linearLayout = (LinearLayout) rootView
 					.findViewById(R.id.messages);
 			LinearLayout linearTemp = new LinearLayout(rootView.getContext());
 			TextView child = new TextView(rootView.getContext());
-			if(temp.getFromUsername().equals(remoteUsername)){
+			if(temp.getSender().equals(remoteUsername)){
 				linearTemp.setGravity(Gravity.LEFT);
 				child.setBackgroundResource(R.drawable.comic_dialog_left);
 			}
@@ -99,7 +99,7 @@ public class ChatFragment extends Fragment {
 				linearTemp.setGravity(Gravity.RIGHT);
 				child.setBackgroundResource(R.drawable.comic_dialog_right);
 			}
-			child.setText(temp.getText());
+			child.setText(temp.getMessage());
 			child.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 		            LayoutParams.WRAP_CONTENT));
 			linearTemp.setPadding(15,10,15,0);
