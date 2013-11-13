@@ -24,7 +24,7 @@ public class Message implements Serializable {
     /**
      * The time of creation message.
      */
-    private String timestap;
+    private String timestamp;
     /**
      * The message type
      */
@@ -34,6 +34,16 @@ public class Message implements Serializable {
      */
     private String password;
 
+    /**
+     * The content used into message
+     */
+    private byte[] content;
+    
+    /**
+     * The content-type used into message
+     */
+    private ContentType contentType;
+    
     /**
      * @return the sender
      */
@@ -79,15 +89,15 @@ public class Message implements Serializable {
     /**
      * @return the timestap
      */
-    public String getTimestap() {
-        return timestap;
+    public String getTimestamp() {
+        return timestamp;
     }
 
     /**
-     * @param timestap the timestap to set
+     * @param timestamp the timestap to set
      */
-    public void setTimestap(String timestap) {
-        this.timestap = timestap;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     /**
@@ -116,5 +126,33 @@ public class Message implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    /**
+     * @return the content
+     */
+    public byte[] getContent(){
+        return this.content;
+    }
+    
+    /**
+     * @param content the content to set
+     */
+    public void setContent(byte[] content){
+        this.content = content;
+    }
+    
+    /**
+     * @return content-type  of message
+    */
+    public ContentType getContentType() {
+        return contentType;
+    }
+
+    /**
+     * @param contenttype the content-type to set
+    */
+    public void setContentType(ContentType contentType) {
+        this.contentType = contentType;
     }
 }
