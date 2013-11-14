@@ -2,6 +2,7 @@ package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
 import it.meet.activities.MainActivity.PlanetFragment;
+import it.meet.chat.OnClickSubmitChatListener;
 import it.meet.localdb.MessagesAdministrator;
 import it.meet.service.messaging.Message;
 import it.meet.service.user.entity.UserDTO;
@@ -84,6 +85,7 @@ public class ChatFragment extends Fragment {
 		Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
 		rootView = inflater.inflate(R.layout.chat_fragment,
 					container, false);
+		
 		//cerco tutti i messaggi inviati e ricevuti dall'utente username
 		while(chatMessages.hasNext()){
 			Message temp = chatMessages.next();
@@ -107,6 +109,8 @@ public class ChatFragment extends Fragment {
 			linearLayout.addView(linearTemp);
 			//ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollViewChat);
 		}
+		Button submitMessageButton = (Button) rootView.findViewById(R.id.submitMessageButton);
+		submitMessageButton.setOnClickListener(new OnClickSubmitChatListener(rootView, this)); 
 		
 		
 		return rootView;

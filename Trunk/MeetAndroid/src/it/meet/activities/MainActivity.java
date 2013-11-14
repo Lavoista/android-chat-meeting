@@ -322,13 +322,9 @@ public class MainActivity extends Activity {
         outState.putParcelable("immagineFoto", immagineFoto);
     }
 
-
-
 	public DatabaseAdministrator getDbAdmin() {
 		return dbAdmin;
 	}
-
-
 
 	public void setDbAdmin(DatabaseAdministrator dbAdmin) {
 		this.dbAdmin = dbAdmin;
