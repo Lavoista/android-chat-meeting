@@ -64,17 +64,12 @@ public class MainActivity extends Activity {
     private LoginFragment loginFragment;
     private RegistrationFragment registrationFragment;
     private PlanetFragment planetFragment;
-    private Fragment currentFragment;
     private int lastPosition = -1;
     private DatabaseAdministrator dbAdmin;
-    public Bitmap immagineFoto;//variabile utilizzata per il salvataggio della foto(RegistrationFragment)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null){
-        	immagineFoto = savedInstanceState.getParcelable("immagineFoto");
-        }
         setContentView(R.layout.main_activity);
 
         mTitle = mDrawerTitle = getTitle();
@@ -316,11 +311,6 @@ public class MainActivity extends Activity {
         }
     }
     
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable("immagineFoto", immagineFoto);
-    }
 
 	public DatabaseAdministrator getDbAdmin() {
 		return dbAdmin;

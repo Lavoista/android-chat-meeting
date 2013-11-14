@@ -81,10 +81,11 @@ public class ChatFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		rootView = inflater.inflate(R.layout.chat_fragment,
+				container, false);
 		MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(rootView);
 		Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
-		rootView = inflater.inflate(R.layout.chat_fragment,
-					container, false);
+		
 		
 		//cerco tutti i messaggi inviati e ricevuti dall'utente username
 		while(chatMessages.hasNext()){

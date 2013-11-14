@@ -1,6 +1,7 @@
 package it.meet.registration;
 import it.meet.R;
 import it.meet.activities.MainActivity;
+import it.meet.fragments.RegistrationFragment;
 import it.meet.service.user.entity.UserDTO;
 import it.meet.utils.ErrorsAdministrator;
 import android.graphics.Bitmap;
@@ -33,9 +34,11 @@ public class OnClickSubmitRegistrationListener implements OnClickListener{
 	private String phoneNumber = "";
 	private byte[] photo;
 	private ArrayList<String> emptyFields;
+	private RegistrationFragment registrationFragment;
 	
-	public OnClickSubmitRegistrationListener(View rootView){
+	public OnClickSubmitRegistrationListener(View rootView,RegistrationFragment registrationFragment){
 		this.rootView = rootView;
+		this.registrationFragment = registrationFragment;
 	}
 	@Override
 	public void onClick(View v) {
@@ -109,7 +112,7 @@ public class OnClickSubmitRegistrationListener implements OnClickListener{
 		phoneNumber = (((EditText) rootView
 				.findViewById(R.id.phoneNumber)).getText().toString());
 		
-		Bitmap bitmapPicture = ((MainActivity) rootView.getContext()).immagineFoto;	
+		Bitmap bitmapPicture = registrationFragment.getPhotoImage();	
 		if(bitmapPicture != null){
 			ByteArrayOutputStream stream;
 			byte[] byteArray;

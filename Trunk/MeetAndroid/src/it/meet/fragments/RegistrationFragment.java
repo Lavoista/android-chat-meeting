@@ -62,6 +62,15 @@ public class RegistrationFragment extends Fragment {
 	private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private String picturePath = "";
 	private ProgressDialog progressBar;
+	private static Bitmap photoImage;
+
+	public static Bitmap getPhotoImage() {
+		return photoImage;
+	}
+
+	public static void setPhotoImage(Bitmap photoImage) {
+		RegistrationFragment.photoImage = photoImage;
+	}
 
 	public RegistrationFragment() {
 		// Empty constructor required for fragment subclasses
@@ -115,16 +124,14 @@ public class RegistrationFragment extends Fragment {
 			rotateLeft.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
-					MainActivity host = (MainActivity) rootView.getContext();
 					Matrix matrix = new Matrix();
 					matrix.postRotate(270.0f);
 					ImageView imageView = (ImageView) rootView
 							.findViewById(R.id.photoView);
 					imageView.buildDrawingCache();
-					Bitmap myImg = host.immagineFoto;
-					Bitmap resizedBitmap = Bitmap.createBitmap(myImg, 0, 0,
-							myImg.getWidth(), myImg.getHeight(), matrix, true);
-					host.immagineFoto = resizedBitmap;
+					Bitmap resizedBitmap = Bitmap.createBitmap(photoImage, 0, 0,
+							photoImage.getWidth(), photoImage.getHeight(), matrix, true);
+					photoImage = resizedBitmap;
 					imageView.setImageBitmap(resizedBitmap);
 
 				}
@@ -140,10 +147,9 @@ public class RegistrationFragment extends Fragment {
 					ImageView imageView = (ImageView) rootView
 							.findViewById(R.id.photoView);
 					imageView.buildDrawingCache();
-					Bitmap myImg = host.immagineFoto;
-					Bitmap resizedBitmap = Bitmap.createBitmap(myImg, 0, 0,
-							myImg.getWidth(), myImg.getHeight(), matrix, true);
-					host.immagineFoto = resizedBitmap;
+					Bitmap resizedBitmap = Bitmap.createBitmap(photoImage, 0, 0,
+							photoImage.getWidth(), photoImage.getHeight(), matrix, true);
+					photoImage = resizedBitmap;
 					imageView.setImageBitmap(resizedBitmap);
 
 				}
@@ -154,17 +160,16 @@ public class RegistrationFragment extends Fragment {
 			// potrebbe essere rimossa
 			// Controlliamo se host.immagineFoto ha un'immagine salvata e la
 			// ricarichiamo nella view
-			MainActivity host = (MainActivity) rootView.getContext();
-			if (host.immagineFoto != null) {
+			if (photoImage != null) {
 				System.out.println("immagine trovata");
 				ImageView imageView = (ImageView) rootView
 						.findViewById(R.id.photoView);
-				imageView.setImageBitmap(host.immagineFoto);
+				imageView.setImageBitmap(photoImage);
 			}
 			Button submitRegistrationButton = (Button) rootView
 					.findViewById(R.id.submitRegistrationButton);
 			submitRegistrationButton
-					.setOnClickListener(new OnClickSubmitRegistrationListener(rootView));
+					.setOnClickListener(new OnClickSubmitRegistrationListener(rootView,this));
 			// Fine codice di ripristino immagine nella view
 
 		} catch (InflateException e) {
@@ -216,8 +221,7 @@ public class RegistrationFragment extends Fragment {
 			temp = temp.createScaledBitmap(temp, 100, 100, true);
 			// temp = Bitmap.createBitmap(temp, 1, 1, temp.getWidth(),
 			// temp.getHeight(), matrix, true);
-			MainActivity host = (MainActivity) rootView.getContext();
-			host.immagineFoto = temp;
+			photoImage = temp;
 			cursor.close();
 			ImageView imageView = (ImageView) rootView
 					.findViewById(R.id.photoView);
@@ -244,8 +248,7 @@ public class RegistrationFragment extends Fragment {
 							width, matrix, true);
 				}
 				temp = temp.createScaledBitmap(temp, 100, 100, true);
-				MainActivity host = (MainActivity) rootView.getContext();
-				host.immagineFoto = temp;
+				photoImage = temp;
 				ImageView imageView = (ImageView) rootView
 						.findViewById(R.id.photoView);
 				imageView.setImageBitmap(temp);
