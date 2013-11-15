@@ -112,6 +112,7 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+        this.deleteDatabase("meet.db");
         setDbAdmin(new DatabaseAdministrator(this));
     }
 

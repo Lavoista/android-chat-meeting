@@ -28,7 +28,7 @@ public class MessagesAdministrator {
 		DatabaseAdministrator dbAdmin = ((it.meet.activities.MainActivity) chatView
 				.getContext()).getDbAdmin();
 		SQLiteDatabase db = dbAdmin.getReadableDatabase();
-		String[] columns = new String[] { "sender", "receiver", "messages",
+		String[] columns = new String[] { "sender", "receiver", "text",
 				"binary", "timestamp", "contenttype" };
 		String condition = "(sender = '" + localUsername + "' AND receiver = '"
 				+ remoteUsername + "') OR (receiver = '" + localUsername + "' AND sender = '"
