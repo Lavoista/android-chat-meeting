@@ -100,7 +100,7 @@ class Sender extends Thread {
                 message.setReceiver(arrayString[0]);
                 message.setMessage(arrayString[1]);
                 message.setMessageType(MessageType.CHAT_TYPE);
-                message.setTimestap(DateUtils.getString(new Date()));
+                message.setTimestamp(DateUtils.getString(new Date()));
 
                 objectMapper = new ObjectMapper();
                 jsonRespnse = objectMapper.writeValueAsString(message);
