@@ -111,10 +111,10 @@ int layout conversations_fragment 0x7f030001
 int layout drawer_list_item 0x7f030002
 int layout favoriteplaces_fragment 0x7f030003
 int layout friends_fragment 0x7f030004
-int layout login_fragment 0x7f030005
+int layout login_activity 0x7f030005
 int layout main_activity 0x7f030006
 int layout planet_fragment 0x7f030007
-int layout registration_fragment 0x7f030008
+int layout registration_activity 0x7f030008
 int layout search_fragment 0x7f030009
 int layout settings_fragment 0x7f03000a
 int layout start_activity 0x7f03000b
@@ -169,6 +169,7 @@ int string map1 0x7f06001a
 int string text_localita 0x7f060016
 int style AppBaseTheme 0x7f090001
 int style AppTheme 0x7f090002
+int style AppThemeNoTitleBar 0x7f090003
 int style App_EditTextStyle 0x7f090000
 int[] styleable MapAttrs { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d }
 int styleable MapAttrs_cameraBearing 1

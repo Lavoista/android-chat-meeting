@@ -1,7 +1,8 @@
 package it.meet.registration;
+
 import it.meet.R;
 import it.meet.activities.MainActivity;
-import it.meet.fragments.RegistrationFragment;
+import it.meet.activities.RegistrationActivity;
 import it.meet.service.user.entity.UserDTO;
 import it.meet.utils.ErrorsAdministrator;
 import android.graphics.Bitmap;
@@ -20,8 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-public class OnClickSubmitRegistrationListener implements OnClickListener{
-	private View rootView;
+public class OnClickSubmitRegistrationListener implements OnClickListener {
 	private String userName = "";
 	private String password = "";
 	private String confirmPassword = "";
@@ -34,16 +34,17 @@ public class OnClickSubmitRegistrationListener implements OnClickListener{
 	private String phoneNumber = "";
 	private byte[] photo;
 	private ArrayList<String> emptyFields;
-	private RegistrationFragment registrationFragment;
-	
-	public OnClickSubmitRegistrationListener(View rootView,RegistrationFragment registrationFragment){
-		this.rootView = rootView;
-		this.registrationFragment = registrationFragment;
+	private RegistrationActivity registrationActivity;
+
+	public OnClickSubmitRegistrationListener(
+			RegistrationActivity registrationActivity) {
+		this.registrationActivity = registrationActivity;
 	}
+
 	@Override
 	public void onClick(View v) {
-		if(checkRegistrationFields()){
-			RegistrationTask rt = new RegistrationTask((MainActivity)rootView.getContext());
+		if (checkRegistrationFields()) {
+			RegistrationTask rt = new RegistrationTask(registrationActivity);
 			UserDTO utente = new UserDTO();
 			utente.setUsername(userName);
 			utente.setPassword(password);
@@ -55,110 +56,122 @@ public class OnClickSubmitRegistrationListener implements OnClickListener{
 			utente.setSex(sex);
 			utente.setPhoto(photo);
 			rt.execute(utente);
-		}
-		else{
-			//send error to user 
+		} else {
+			// send error to user
 		}
 	}
-	
-	private boolean checkRegistrationFields(){
+
+	private boolean checkRegistrationFields() {
 		emptyFields = new ArrayList<String>();
-		userName = (((EditText) rootView
-				.findViewById(R.id.username)).getText().toString());
-		if(userName.isEmpty()){
+		userName = (((EditText) registrationActivity.findViewById(R.id.username)).getText()
+				.toString());
+		if (userName.isEmpty()) {
 			emptyFields.add("UserName");
 		}
-		password = (((EditText) rootView
-				.findViewById(R.id.password)).getText().toString());
-		if(password.isEmpty()){
+		password = (((EditText) registrationActivity.findViewById(R.id.password)).getText()
+				.toString());
+		if (password.isEmpty()) {
 			emptyFields.add("Password");
 		}
-		confirmPassword = (((EditText) rootView
+		confirmPassword = (((EditText) registrationActivity
 				.findViewById(R.id.confirmPassword)).getText().toString());
-		if(confirmPassword.isEmpty()){
+		if (confirmPassword.isEmpty()) {
 			emptyFields.add("ConfirmPassword");
 		}
-		name = (((EditText) rootView
-				.findViewById(R.id.name)).getText().toString());
-		if(name.isEmpty()){
+		name = (((EditText) registrationActivity.findViewById(R.id.name)).getText()
+				.toString());
+		if (name.isEmpty()) {
 			emptyFields.add("Name");
 		}
-		surname = (((EditText) rootView
-				.findViewById(R.id.surname)).getText().toString());
-		if(surname.isEmpty()){
+		surname = (((EditText) registrationActivity.findViewById(R.id.surname)).getText()
+				.toString());
+		if (surname.isEmpty()) {
 			emptyFields.add("Surname");
 		}
-		mailAddress = (((EditText) rootView
-				.findViewById(R.id.mailAddress)).getText().toString());
-		if(mailAddress.isEmpty()){
+		mailAddress = (((EditText) registrationActivity.findViewById(R.id.mailAddress))
+				.getText().toString());
+		if (mailAddress.isEmpty()) {
 			emptyFields.add("EMail");
 		}
-		dateField = (((EditText) rootView
-				.findViewById(R.id.birthDate)).getText().toString());
-		if(dateField.isEmpty()){
+		dateField = (((EditText) registrationActivity.findViewById(R.id.birthDate))
+				.getText().toString());
+		if (dateField.isEmpty()) {
 			emptyFields.add("BirthDate");
-		}
-		else{
-			try{
+		} else {
+			try {
 				DateFormat dateFormat = android.text.format.DateFormat
-						.getDateFormat((MainActivity)rootView.getContext());			
+						.getDateFormat(registrationActivity);
 				birthDate = dateFormat.parse(dateField);
-			}
-			catch(Exception e){
-				Toast.makeText(rootView.getContext(),ErrorsAdministrator.getDescription("Error to parse a Date",(MainActivity)rootView.getContext()), Toast.LENGTH_LONG).show();
+			} catch (Exception e) {
+				Toast.makeText(
+						registrationActivity,
+						ErrorsAdministrator.getDescription(
+								"Error to parse a Date",
+								registrationActivity),
+						Toast.LENGTH_LONG).show();
 				return false;
 			}
 		}
-		phoneNumber = (((EditText) rootView
-				.findViewById(R.id.phoneNumber)).getText().toString());
-		
-		Bitmap bitmapPicture = registrationFragment.getPhotoImage();	
-		if(bitmapPicture != null){
+		phoneNumber = (((EditText) registrationActivity.findViewById(R.id.phoneNumber))
+				.getText().toString());
+
+		Bitmap bitmapPicture = registrationActivity.getPhotoImage();
+		if (bitmapPicture != null) {
 			ByteArrayOutputStream stream;
 			byte[] byteArray;
 			stream = new ByteArrayOutputStream();
-			bitmapPicture.compress(Bitmap.CompressFormat.PNG, 100,
-			                    stream);
+			bitmapPicture.compress(Bitmap.CompressFormat.PNG, 100, stream);
 			byteArray = stream.toByteArray();
 
-			photo = byteArray; 
+			photo = byteArray;
 		}
-		boolean sexM = (((RadioButton) rootView
-				.findViewById(R.id.sexM)).isChecked());
-		boolean sexF = (((RadioButton) rootView
-				.findViewById(R.id.sexM)).isChecked());
-		if(sexM){
+		boolean sexM = (((RadioButton) registrationActivity.findViewById(R.id.sexM))
+				.isChecked());
+		boolean sexF = (((RadioButton) registrationActivity.findViewById(R.id.sexM))
+				.isChecked());
+		if (sexM) {
 			sex = "M";
 		}
-		if(sexF){
+		if (sexF) {
 			sex = "F";
 		}
-		if(!sexM && !sexF){
+		if (!sexM && !sexF) {
 			emptyFields.add("Sex");
 		}
-		
-		//required fields control		
-		if(!emptyFields.isEmpty()){
-			String message = ErrorsAdministrator.getDescription("MEET0057",(MainActivity)rootView.getContext());
+
+		// required fields control
+		if (!emptyFields.isEmpty()) {
+			String message = ErrorsAdministrator.getDescription("MEET0057",
+					registrationActivity);
 			Iterator<String> iterator = emptyFields.iterator();
-			while(iterator.hasNext()){
+			while (iterator.hasNext()) {
 				String temp = iterator.next();
-				String temp2 = ErrorsAdministrator.getDescription(temp,(MainActivity)rootView.getContext());
-				message += "\n- "+temp2;
+				String temp2 = ErrorsAdministrator.getDescription(temp,
+						registrationActivity);
+				message += "\n- " + temp2;
 			}
-			Toast.makeText(rootView.getContext(),message, Toast.LENGTH_LONG).show();
+			Toast.makeText(registrationActivity, message, Toast.LENGTH_LONG)
+					.show();
 			return false;
 		}
-		
-		if(!mailAddress.contains("@")){
-			Toast.makeText(rootView.getContext(),ErrorsAdministrator.getDescription("MEET0006",(MainActivity)rootView.getContext()), Toast.LENGTH_LONG).show();
+
+		if (!mailAddress.contains("@")) {
+			Toast.makeText(
+					registrationActivity,
+					ErrorsAdministrator.getDescription("MEET0006",
+							registrationActivity),
+					Toast.LENGTH_LONG).show();
 			return false;
 		}
-		if(!password.equals(confirmPassword)){
-			Toast.makeText(rootView.getContext(),ErrorsAdministrator.getDescription("MEET0056",(MainActivity)rootView.getContext()), Toast.LENGTH_LONG).show();
+		if (!password.equals(confirmPassword)) {
+			Toast.makeText(
+					registrationActivity,
+					ErrorsAdministrator.getDescription("MEET0056",
+							registrationActivity),
+					Toast.LENGTH_LONG).show();
 			return false;
 		}
-		
+
 		return true;
 	}
 

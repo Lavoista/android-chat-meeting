@@ -1,7 +1,7 @@
 package it.meet.registration;
 
 import it.meet.R;
-import it.meet.fragments.RegistrationFragment;
+import it.meet.activities.RegistrationActivity;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -17,14 +17,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 public class OnClickDateFieldListener implements OnClickListener{
-	private View rootView;
 	private EditText dateField;
-	private RegistrationFragment regitrationFragment;
+	private RegistrationActivity registrationActivity;
 	
-	public OnClickDateFieldListener(View _rootView,RegistrationFragment regitrationFragment){
-		this.rootView = _rootView;
-		dateField = (EditText) rootView.findViewById(R.id.birthDate);
-		this.regitrationFragment = regitrationFragment;
+	public OnClickDateFieldListener(RegistrationActivity registrationActivity){
+		dateField = (EditText) registrationActivity.findViewById(R.id.birthDate);
+		this.registrationActivity = registrationActivity;
 		
 	}
 	
@@ -36,7 +34,7 @@ public class OnClickDateFieldListener implements OnClickListener{
 				dateField.setText("" + k + "/" + (j + 1) + "/" + i);
 				Calendar c = Calendar.getInstance();
 				DateFormat dateFormat = android.text.format.DateFormat
-						.getDateFormat(regitrationFragment.getActivity());
+						.getDateFormat(registrationActivity);
 				c.set(i, j, k);
 				Date data = new Date(c.getTimeInMillis());
 				dateField.setText("" + dateFormat.format(data));
@@ -45,7 +43,7 @@ public class OnClickDateFieldListener implements OnClickListener{
 		};
 
 		DatePickerDialog dpdFromDate = new DatePickerDialog(
-				regitrationFragment.getActivity(), myDateSetListener, 1, 1, 1990);
+				registrationActivity, myDateSetListener, 1, 1, 1990);
 		dpdFromDate.getDatePicker().setBackgroundColor(color.black);
 		dpdFromDate.getDatePicker().updateDate(1990, 0, 1);
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;

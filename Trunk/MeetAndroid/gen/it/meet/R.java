@@ -246,10 +246,10 @@ containing a value of this type.
         public static final int drawer_list_item=0x7f030002;
         public static final int favoriteplaces_fragment=0x7f030003;
         public static final int friends_fragment=0x7f030004;
-        public static final int login_fragment=0x7f030005;
+        public static final int login_activity=0x7f030005;
         public static final int main_activity=0x7f030006;
         public static final int planet_fragment=0x7f030007;
-        public static final int registration_fragment=0x7f030008;
+        public static final int registration_activity=0x7f030008;
         public static final int search_fragment=0x7f030009;
         public static final int settings_fragment=0x7f03000a;
         public static final int start_activity=0x7f03000b;
@@ -369,15 +369,20 @@ containing a value of this type.
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
         
          */
         public static final int AppBaseTheme=0x7f090001;
         /**  Application theme. 
          */
         public static final int AppTheme=0x7f090002;
+        public static final int AppThemeNoTitleBar=0x7f090003;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
     
          */
         public static final int App_EditTextStyle=0x7f090000;

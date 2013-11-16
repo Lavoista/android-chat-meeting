@@ -61,8 +61,6 @@ public class MainActivity extends Activity {
     private String[] mPlanetTitles;
     private static View rootView;
     private SearchFragment searchFragment;
-    private LoginFragment loginFragment;
-    private RegistrationFragment registrationFragment;
     private PlanetFragment planetFragment;
     private int lastPosition = -1;
     private DatabaseAdministrator dbAdmin;
@@ -171,17 +169,7 @@ public class MainActivity extends Activity {
         // update the main content by replacing fragments
     	Log.w("Position","position="+position);
     	if(position == 0 && lastPosition !=0){
-    		lastPosition = 0;
-    		if(loginFragment == null){
-    			loginFragment = new LoginFragment();
-    		}
-    		loginFragment.setRootView(rootView);
-    		Bundle args = new Bundle();
-	        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-	        loginFragment.setArguments(args);
-	        
-    		FragmentManager fragmentManager = getFragmentManager();
-	        fragmentManager.beginTransaction().replace(R.id.content_frame, loginFragment).commit();
+    		
     	}
     	else if(position == 2 && lastPosition !=2){
     		lastPosition = 2;
