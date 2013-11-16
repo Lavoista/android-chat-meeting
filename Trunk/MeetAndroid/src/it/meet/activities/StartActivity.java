@@ -23,6 +23,7 @@ public class StartActivity extends Activity {
 			public void run() {
 
 				if (storedInfo.getString("loggedUser", "").isEmpty()) {
+					
 					startActivity(new Intent(StartActivity.this,
 							LoginActivity.class));
 				} else {

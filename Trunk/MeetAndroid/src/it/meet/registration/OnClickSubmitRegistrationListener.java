@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 public class OnClickSubmitRegistrationListener implements OnClickListener {
+	
 	private String userName = "";
 	private String password = "";
 	private String confirmPassword = "";

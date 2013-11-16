@@ -28,7 +28,6 @@ public class RegistrationTask extends AsyncTask<UserDTO,Boolean,Void>{
 	
 	public RegistrationTask(Activity context) {
 		this.context = context;
-		this.progressBar = progressBar;
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -27,19 +27,23 @@ public class RegistrationActivity extends Activity{
 	private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private String picturePath = "";
 	private ProgressDialog progressBar;
-	private static Bitmap photoImage;
+	private Bitmap photoImage;
 
-	public static Bitmap getPhotoImage() {
+	public Bitmap getPhotoImage() {
 		return photoImage;
 	}
 
-	public static void setPhotoImage(Bitmap image) {
+	public void setPhotoImage(Bitmap image) {
 		photoImage = image;
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(savedInstanceState != null){
+			photoImage = savedInstanceState.getParcelable("photoImage");
+        }
+		System.out.println("create view registration");
 		try {
 			setContentView(R.layout.registration_activity);
 			dateField = (EditText) findViewById(R.id.birthDate);
@@ -107,7 +111,7 @@ public class RegistrationActivity extends Activity{
 			// potrebbe essere rimossa
 			// Controlliamo se host.immagineFoto ha un'immagine salvata e la
 			// ricarichiamo nella view
-			if (photoImage != null) {
+			if (photoImage != null ) {
 				System.out.println("immagine trovata");
 				ImageView imageView = (ImageView) findViewById(R.id.photoView);
 				imageView.setImageBitmap(photoImage);
@@ -199,4 +203,12 @@ public class RegistrationActivity extends Activity{
 		}
 
 	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState)
+	{
+	    super.onSaveInstanceState(outState);
+	    outState.putParcelable("photoImage", this.photoImage);
+	}
+	
 }
