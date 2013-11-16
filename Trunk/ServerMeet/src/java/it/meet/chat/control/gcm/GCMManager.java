@@ -38,7 +38,7 @@ public class GCMManager extends NotificationManager {
         Message gcmMessage = new Message.Builder().addData(NotificationKey.MESSAGE.getKey(), message.getMessage())
                 .addData(NotificationKey.RECEIVER_USER.getKey(), message.getReceiver())
                 .addData(NotificationKey.SENDER_USER.getKey(), message.getSender())
-                .addData(NotificationKey.TIMESTAMP.getKey(), message.getTimestap()).build();
+                .addData(NotificationKey.TIMESTAMP.getKey(), message.getTimestamp()).build();
         try {
             Result result = sender.send(gcmMessage, registrationId, 5);
             System.out.println(result.getErrorCodeName());
