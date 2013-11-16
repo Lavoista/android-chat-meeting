@@ -10,9 +10,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:text="meet"
+        android:text="Meet"
         android:textColor="#ffff99"
-        android:textSize="52sp"
+        android:textSize="60sp"
         android:textStyle="italic|bold"
         android:typeface="serif" />  
      <TextView
@@ -22,7 +22,7 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:text="have fun!"
-        android:textColor="#0000aa" />
+        android:textColor="#ffffff" />
      <ScrollView 
         android:layout_width="match_parent"
     	android:layout_height="match_parent"
@@ -35,7 +35,7 @@
 			    android:layout_width="match_parent">
 				<TableRow 
 					android:layout_height="10dp" 
-					android:paddingTop="20dp"
+					android:paddingTop="60dp"
 					android:gravity="center_horizontal">
 					<EditText
 					   android:id="@+id/editText1"
@@ -67,17 +67,21 @@
 						android:id="@+id/button1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						android:textColor="#ffffff"
+						android:background="@drawable/rounded_button"
 						android:text="@string/Accedi" />
    				</TableRow>
 				<TableRow 
 					android:layout_height="10dp" 
-					android:paddingTop="30dp"
+					android:paddingTop="10dp"
 					android:gravity="center_horizontal">  
 					<Button
 						android:id="@+id/Button01"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginBottom="19dp"
+						android:background="@drawable/rounded_button"
+						android:textColor="#ffffff"
 						android:text="@string/Registrati" />
 				</TableRow>
 			</TableLayout>

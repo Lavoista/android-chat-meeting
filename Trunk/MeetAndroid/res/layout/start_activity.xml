@@ -12,9 +12,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="147dp"
         android:gravity="center_horizontal"
-        android:text="meet"
+        android:text="Meet"
         android:textColor="#ffff99"
-        android:textSize="52sp"
+        android:textSize="62sp"
         android:textStyle="italic|bold"
         android:typeface="serif" />
 
@@ -25,6 +25,6 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:text="have fun!"
-        android:textColor="#0000aa" />
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
