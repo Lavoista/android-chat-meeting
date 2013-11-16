@@ -53,7 +53,7 @@ public class MessageAdminisrator {
             messages.getId().setUsername(message.getSender());
             messages.getId().setUsernamereceiver(message.getReceiver());
             try {
-                messages.getId().setDate(DateUtils.getDate(message.getTimestap()));
+                messages.getId().setDate(DateUtils.getDate(message.getTimestamp()));
             } catch (ParseException ex) {
                 Logger.getLogger(MessageAdminisrator.class.getName()).log(Level.SEVERE, null, ex);
                 throw new MeetException(ErrorCodeEnumeration.MEET0019);
@@ -94,11 +94,11 @@ public class MessageAdminisrator {
         checkMessageValidity(message);
 
         try {
-            String keyMessage = message.getSender() + "-" + message.getReceiver() + "-" + DateUtils.getDate(message.getTimestap());
+            String keyMessage = message.getSender() + "-" + message.getReceiver() + "-" + DateUtils.getDate(message.getTimestamp());
             Criteria criteria = session.createCriteria(Messages.class);
             criteria.add(Restrictions.eq("id.username", message.getSender()));
             criteria.add(Restrictions.eq("id.usernamereceiver", message.getReceiver()));
-            criteria.add(Restrictions.eq("id.date", DateUtils.getDate(message.getTimestap())));
+            criteria.add(Restrictions.eq("id.date", DateUtils.getDate(message.getTimestamp())));
 
             List<Messages> result = criteria.list();
             if (result != null && !result.isEmpty()) {
@@ -162,7 +162,7 @@ public class MessageAdminisrator {
                     message.setMessageType(MessageType.CHAT_TYPE);
                     message.setReceiver(receiver);
                     message.setSender(messages.getId().getUsername());
-                    message.setTimestap(DateUtils.getString(messages.getId().getDate()));
+                    message.setTimestamp(DateUtils.getString(messages.getId().getDate()));
                     
                     messagesToSend.add(message);
                 }
@@ -192,7 +192,7 @@ public class MessageAdminisrator {
             throw new MeetException(ErrorCodeEnumeration.MEET0017);
         } else if (StringUtils.isEmpty(message.getReceiver())) {
             throw new MeetException(ErrorCodeEnumeration.MEET0018);
-        } else if (StringUtils.isEmpty(message.getTimestap()) || !DateUtils.isValidDate(message.getTimestap(), "yyyyMMddHHmmss")) {
+        } else if (StringUtils.isEmpty(message.getTimestamp()) || !DateUtils.isValidDate(message.getTimestamp(), "yyyyMMddHHmmss")) {
             throw new MeetException(ErrorCodeEnumeration.MEET0019);
         } else if (StringUtils.isEmpty(message.getMessage())) {
             throw new MeetException(ErrorCodeEnumeration.MEET0020);
