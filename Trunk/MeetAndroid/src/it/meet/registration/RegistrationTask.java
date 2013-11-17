@@ -9,6 +9,8 @@ import org.apache.http.HttpException;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
 
+import it.meet.activities.LoginActivity;
+import it.meet.activities.StartActivity;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.user.UserService;
 import it.meet.service.user.entity.UserDTO;
@@ -67,7 +69,7 @@ public class RegistrationTask extends AsyncTask<UserDTO,Boolean,Void>{
 		if(progressBar!=null)progressBar.dismiss();
 		if(response != null){
 			if(response.getErrorCode().toString().equals("MEET0000")){
-				Toast.makeText(context, ErrorsAdministrator.getDescription(response.getErrorCode(),context), Toast.LENGTH_LONG).show();	     
+				Toast.makeText(context, ErrorsAdministrator.getDescription("successfullyRegistration",context), Toast.LENGTH_LONG).show();	     			
 			}
 			else{
 				Toast.makeText(context, ErrorsAdministrator.getDescription(response.getErrorCode(),context), Toast.LENGTH_LONG).show();

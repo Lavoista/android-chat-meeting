@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
     private String[] mPlanetTitles;
     private static View rootView;
     private SearchFragment searchFragment;
-    private PlanetFragment planetFragment;
     private int lastPosition = -1;
     private DatabaseAdministrator dbAdmin;
 
