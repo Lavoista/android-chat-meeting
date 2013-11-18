@@ -3,7 +3,6 @@
 <resources>
     <string name="app_name">Meet</string>
     <string-array name="planets_array">
-        <item>Entra</item>
         <item>Il Mio Profilo</item>
         <item>Ricerca Contatti</item>
         <item>Conversazioni</item>
@@ -38,6 +37,7 @@
     <string name="MEET0002">Username non valido, è gia utilizzato da un altro utente</string>
     <string name="MEET0004">Il Nome Utente è Obbligatorio</string>
     <string name="MEET0006">L\'indirizzo Email non è valido</string>
+    <string name="MEET0022">Username e/o password non validi</string>
     <string name="MEET0055">Errore di connessione</string>
     <string name="MEET0056">Le password inserite non coincidono</string>
     <string name="MEET0057">I seguenti campi sono obbligatori:</string>
