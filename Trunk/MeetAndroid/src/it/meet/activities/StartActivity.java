@@ -16,12 +16,11 @@ public class StartActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.start_activity);
 		storedInfo = getSharedPreferences(PREFS_NAME, 0);
-
+		
 		int secondsDelayed = 2;// start new Activity after secondsDelayed
 								// seconds
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
-
 				if (storedInfo.getString("loggedUser", "").isEmpty()) {
 					startActivity(new Intent(StartActivity.this,
 							LoginActivity.class));

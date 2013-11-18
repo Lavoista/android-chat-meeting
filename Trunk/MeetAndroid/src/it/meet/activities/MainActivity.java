@@ -225,7 +225,7 @@ public class MainActivity extends Activity {
 							// Write your code here to execute after dialog
 							preferencesEditor.remove("loggedUser");
 							preferencesEditor.commit();
-							System.exit(0);
+							finish();
 						}
 					});
 			// Setting Negative "NO" Btn
