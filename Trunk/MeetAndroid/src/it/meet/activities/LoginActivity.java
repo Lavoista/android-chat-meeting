@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends Activity {
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
