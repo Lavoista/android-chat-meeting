@@ -30,10 +30,10 @@
     <string name="EMail">EMail</string>
     <string name="BirthDate">Data di nascita</string>
     <string name="Sex">Sesso</string>
-    <string name="Accedi">Accedi</string>
-    <string name="Registrati">Registrati</string>
+    <string name="TextLogin">Accedi</string>
+    <string name="TextRegister">Registrati</string>
     <string name="successfullyLogin">Login effettuato con successo</string>
-    <string name="successfullyRegistration">Operazione effettuata con successo</string>
+    <string name="successfullyRegistration">Registrazione effettuata con successo</string>
     <string name="MEET0002">Username non valido, è gia utilizzato da un altro utente</string>
     <string name="MEET0004">Il Nome Utente è Obbligatorio</string>
     <string name="MEET0006">L\'indirizzo Email non è valido</string>
