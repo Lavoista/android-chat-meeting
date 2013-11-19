@@ -62,9 +62,10 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 public class ChatFragment extends Fragment {
-	private View rootView;
+	private View chatView;
 	private static String localUsername;
 	private static String remoteUsername;
+	public static final String ARG_PLANET_NUMBER = "planet_number";
 
 	public ChatFragment() {
 		// Empty constructor required for fragment subclasses
@@ -81,19 +82,22 @@ public class ChatFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.chat_fragment,
+		chatView = inflater.inflate(R.layout.chat_fragment,
 				container, false);
-		MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(rootView);
+		int i = getArguments().getInt(ARG_PLANET_NUMBER);
+		String title = getResources()
+				.getStringArray(R.array.planets_array)[i];
+		getActivity().setTitle(title);
+		MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(chatView);
 		Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
 		
 		
 		//cerco tutti i messaggi inviati e ricevuti dall'utente username
 		while(chatMessages.hasNext()){
 			Message temp = chatMessages.next();
-			LinearLayout linearLayout = (LinearLayout) rootView
-					.findViewById(R.id.messages);
-			LinearLayout linearTemp = new LinearLayout(rootView.getContext());
-			TextView child = new TextView(rootView.getContext());
+			LinearLayout linearLayout = (LinearLayout) chatView.findViewById(R.id.messages);
+			LinearLayout linearTemp = new LinearLayout(chatView.getContext());
+			TextView child = new TextView(chatView.getContext());
 			if(temp.getSender().equals(remoteUsername)){
 				linearTemp.setGravity(Gravity.LEFT);
 				child.setBackgroundResource(R.drawable.comic_dialog_left);
@@ -110,11 +114,11 @@ public class ChatFragment extends Fragment {
 			linearLayout.addView(linearTemp);
 			//ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.scrollViewChat);
 		}
-		Button submitMessageButton = (Button) rootView.findViewById(R.id.submitMessageButton);
-		submitMessageButton.setOnClickListener(new OnClickSubmitChatListener(rootView, this)); 
+		Button submitMessageButton = (Button) chatView.findViewById(R.id.submitMessageButton);
+		submitMessageButton.setOnClickListener(new OnClickSubmitChatListener(chatView, this)); 
 		
 		
-		return rootView;
+		return chatView;
 	}
 
 }
