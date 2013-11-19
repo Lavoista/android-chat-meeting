@@ -80,6 +80,7 @@ public class LoginTask extends AsyncTask<String, Boolean, Void> {
 						ErrorsAdministrator.getDescription("successfullyLogin",
 								context), Toast.LENGTH_SHORT).show();
 				context.startActivity(new Intent(context, MainActivity.class));
+				context.finish();
 				preferencesEditor.putString("loggedUser", userLogin);
 				preferencesEditor.commit();
 			} else {
