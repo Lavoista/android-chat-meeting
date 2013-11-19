@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		if (savedInstanceState == null) {
-			selectItem(0);
+			selectItem(2);
 		}
 		this.deleteDatabase("meet.db");
 		setDbAdmin(new DatabaseAdministrator(this));
@@ -189,7 +189,16 @@ public class MainActivity extends Activity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, searchFragment).commit();
-		} else if (position == 3 && lastPosition != 3) {
+		} else if (position == 2 && lastPosition != 2) {
+			lastPosition = 2;
+			Bundle args = new Bundle();
+			args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+			ConversationsFragment conversationsFragment = new ConversationsFragment();
+			conversationsFragment.setArguments(args);
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, conversationsFragment).commit();
+		}else if (position == 3 && lastPosition != 3) {
 			lastPosition = 3;
 			// provo con username di prova
 			// l'username è utilizzato per cercare i messaggi inviati e ricevuti
