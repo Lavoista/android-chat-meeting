@@ -2,70 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/chat_background"
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
     <ScrollView
-        android:id="@+id/scrollViewChat"
+        android:id="@+id/scrollViewConversations"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/chatEditTextLayout" >
+        android:layout_height="match_parent" >
 
         <LinearLayout
-            android:id="@+id/messages"
+            android:id="@+id/conversations"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="vertical" >
         </LinearLayout>
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/chatEditTextLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom" >
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#eeeeee"
-            android:paddingBottom="5dp" >
-
-            <TableRow
-                android:layout_margin="4dp"
-                android:gravity="center_vertical" >
-
-                <ImageButton
-                    android:id="@+id/ImageButton01"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/smileicon" />
-
-                <EditText
-                    android:id="@+id/insertMessage"
-                    style="@android:style/Widget.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="4"
-                    android:hint="@string/WriteMessage"
-                    android:inputType="textMultiLine"
-                    android:selectAllOnFocus="true" >
-
-                    <requestFocus />
-                </EditText>
-
-                <Button
-                    android:id="@+id/rotateRightButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:padding="0dp"
-                    android:text="@string/Send" />
-            </TableRow>
-        </TableLayout>
-    </RelativeLayout>
 
 </RelativeLayout>

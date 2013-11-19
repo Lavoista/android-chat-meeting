@@ -69,7 +69,7 @@
 						android:layout_height="wrap_content"
 						android:textColor="#ffffff"
 						android:background="@drawable/rounded_button"
-						android:text="@string/Accedi" />
+						android:text="@string/TextLogin" />
    				</TableRow>
 				<TableRow 
 					android:layout_height="10dp" 
@@ -82,7 +82,7 @@
 						android:layout_marginBottom="19dp"
 						android:background="@drawable/rounded_button"
 						android:textColor="#ffffff"
-						android:text="@string/Registrati" />
+						android:text="@string/TextRegister" />
 				</TableRow>
 			</TableLayout>
 		</LinearLayout>
