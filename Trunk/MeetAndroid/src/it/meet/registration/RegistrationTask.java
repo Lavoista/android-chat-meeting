@@ -10,6 +10,7 @@ import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
 
 import it.meet.activities.LoginActivity;
+import it.meet.activities.MainActivity;
 import it.meet.activities.StartActivity;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.user.UserService;
@@ -70,6 +71,9 @@ public class RegistrationTask extends AsyncTask<UserDTO,Boolean,Void>{
 		if(response != null){
 			if(response.getErrorCode().toString().equals("MEET0000")){
 				Toast.makeText(context, ErrorsAdministrator.getDescription("successfullyRegistration",context), Toast.LENGTH_LONG).show();	     			
+				context.startActivity(new Intent(context,
+						LoginActivity.class));
+				context.finish();
 			}
 			else{
 				Toast.makeText(context, ErrorsAdministrator.getDescription(response.getErrorCode(),context), Toast.LENGTH_LONG).show();
