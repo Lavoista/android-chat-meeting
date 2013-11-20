@@ -2,15 +2,15 @@
 
 <resources>
     <string name="app_name">Meet</string>
-    <string-array name="planets_array">
-        <item>Il Mio Profilo</item>
+    <string-array name="menu_array">
         <item>Ricerca Contatti</item>
         <item>Conversazioni</item>
         <item>Amici</item>
         <item>Richieste Amicizia</item>
         <item>Black List</item>
         <item>Luoghi Preferiti</item>
-        <item>Impostazioni</item>        
+        <item>Il Mio Profilo</item>
+        <item>Impostazioni</item>   
         <item>Esci</item>
     </string-array>
     <string name="text_localita">Inserisci Localita</string>
