@@ -1,6 +1,5 @@
 package it.meet.fragments;
 
-import it.meet.activities.MainActivity.PlanetFragment;
 
 import java.lang.reflect.Method;
 import java.text.DateFormat;
@@ -31,26 +30,23 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 public class ProfileFragment extends Fragment {
-	private View rootView;
+	private View profileView;
 	EditText campoData;
-    public static final String ARG_PLANET_NUMBER = "planet_number";
     
     public ProfileFragment() {
         // Empty constructor required for fragment subclasses
     }
     
-    public void setRootView(View _rootView){
-    	rootView = _rootView;    	
-    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-    	
-    	if (rootView != null) {
-            ViewGroup parent = (ViewGroup) rootView.getParent();
+		String title = getResources().getStringArray(R.array.menu_array)[6];
+		getActivity().setTitle(title);
+    	if (profileView != null) {
+            ViewGroup parent = (ViewGroup) profileView.getParent();
             if (parent != null)
-                parent.removeView(rootView);
+                parent.removeView(profileView);
         }
         try {
         	
@@ -61,7 +57,7 @@ public class ProfileFragment extends Fragment {
         } catch (InflateException e) {
             /* map is already there, just return view as it is */
         }
-        return rootView;
+        return profileView;
     }
    
 }

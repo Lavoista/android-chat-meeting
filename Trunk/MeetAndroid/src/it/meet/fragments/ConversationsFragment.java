@@ -32,6 +32,8 @@ public class ConversationsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		conversationsView = inflater.inflate(R.layout.conversations_fragment,
 				container, false);
+		String title = getResources().getStringArray(R.array.menu_array)[1];
+		getActivity().setTitle(title);
 		//MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(conversationView);
 		//Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
 		

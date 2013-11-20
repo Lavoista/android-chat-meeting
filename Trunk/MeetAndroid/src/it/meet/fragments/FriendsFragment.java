@@ -1,7 +1,6 @@
 package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
-import it.meet.activities.MainActivity.PlanetFragment;
 import it.meet.service.user.entity.UserDTO;
 
 import java.io.ByteArrayOutputStream;
@@ -53,29 +52,23 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 public class FriendsFragment extends Fragment {
-	private View rootView;
+	private View friendsView;
 	EditText dateField;
-	public static final String ARG_PLANET_NUMBER = "planet_number";
-	private static int RESULT_LOAD_IMAGE = 1;
-	private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-	private String picturePath = "";
-	private ProgressDialog progressBar;
 
 	public FriendsFragment() {
 		// Empty constructor required for fragment subclasses
-	}
-
-	public void setRootView(View _rootView) {
-		rootView = _rootView;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		rootView = inflater.inflate(R.layout.chat_fragment,
+		friendsView = inflater.inflate(R.layout.chat_fragment,
 					container, false);
-		return rootView;
+		String title = getResources()
+				.getStringArray(R.array.menu_array)[2];
+		getActivity().setTitle(title);
+		return friendsView;
 	}
 
 	

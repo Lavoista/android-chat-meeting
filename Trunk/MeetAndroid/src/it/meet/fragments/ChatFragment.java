@@ -1,7 +1,6 @@
 package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
-import it.meet.activities.MainActivity.PlanetFragment;
 import it.meet.chat.OnClickSubmitChatListener;
 import it.meet.localdb.MessagesAdministrator;
 import it.meet.service.messaging.Message;
@@ -86,7 +85,7 @@ public class ChatFragment extends Fragment {
 				container, false);
 		int i = getArguments().getInt(ARG_PLANET_NUMBER);
 		String title = getResources()
-				.getStringArray(R.array.planets_array)[i];
+				.getStringArray(R.array.menu_array)[i];
 		getActivity().setTitle(title);
 		MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(chatView);
 		Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);

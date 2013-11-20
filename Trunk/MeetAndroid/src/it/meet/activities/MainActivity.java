@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
-	private String[] mPlanetTitles;
+	private String[] framentsTitles;
 	private static View rootView;
 	private SearchFragment searchFragment;
 	private int lastPosition = -1;
@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main_activity);
 
 		mTitle = mDrawerTitle = getTitle();
-		mPlanetTitles = getResources().getStringArray(R.array.planets_array);
+		framentsTitles = getResources().getStringArray(R.array.menu_array);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 				GravityCompat.START);
 		// set up the drawer's list view with items and click listener
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.drawer_list_item, mPlanetTitles));
+				R.layout.drawer_list_item, framentsTitles));
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 		// enable ActionBar app icon to behave as action to toggle nav drawer
@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 		if (savedInstanceState == null) {
-			selectItem(2);
+			selectItem(0);
 		}
 		this.deleteDatabase("meet.db");
 		setDbAdmin(new DatabaseAdministrator(this));
@@ -177,24 +177,22 @@ public class MainActivity extends Activity {
 		// update the main content by replacing fragments
 		Log.w("Position", "position=" + position);
 		if (position == 0 && lastPosition != 0) {
-
-		} else if (position == 1 && lastPosition != 1) {
-			lastPosition = 1;
+			lastPosition = 0;
 			if (searchFragment == null) {
 				searchFragment = new SearchFragment();
 			}
-			Bundle args = new Bundle();
-			args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-			searchFragment.setArguments(args);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, searchFragment).commit();
-		} else if (position == 2 && lastPosition != 2) {
-			lastPosition = 2;
-			Bundle args = new Bundle();
-			args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+		} else if (position == 1 && lastPosition != 1) {
+			lastPosition = 1;
 			ConversationsFragment conversationsFragment = new ConversationsFragment();
-			conversationsFragment.setArguments(args);
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, conversationsFragment).commit();
+		}else if (position == 2 && lastPosition != 2) {
+			lastPosition = 2;
+			FriendsFragment conversationsFragment = new FriendsFragment();
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, conversationsFragment).commit();
@@ -210,9 +208,6 @@ public class MainActivity extends Activity {
 			chatFragment.setLocalUsername("tommasoalbano");// questo valore sara
 															// letto dall'utente
 															// corrente
-			Bundle args = new Bundle();
-			args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-			chatFragment.setArguments(args);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, chatFragment).commit();
@@ -261,7 +256,7 @@ public class MainActivity extends Activity {
 		}
 		// Aggiorno e chiudo il drawer
 		mDrawerList.setItemChecked(position, true);
-		setTitle(mPlanetTitles[position]);
+		//setTitle(mPlanetTitles[position]);
 		mDrawerLayout.closeDrawer(mDrawerList);
 
 	}
@@ -294,33 +289,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Fragment di prova dovra essere eliminato
 	 */
-	public static class PlanetFragment extends Fragment {
-		public static final String ARG_PLANET_NUMBER = "planet_number";
-
-		public PlanetFragment() {
-			// Empty constructor required for fragment subclasses
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			rootView = inflater.inflate(R.layout.planet_fragment, container,
-					false);
-			int i = getArguments().getInt(ARG_PLANET_NUMBER);
-			String planet = getResources()
-					.getStringArray(R.array.planets_array)[i];
-
-			/*
-			 * int imageId =
-			 * getResources().getIdentifier(planet.toLowerCase(Locale
-			 * .getDefault()), "drawable", getActivity().getPackageName());
-			 * ((ImageView)
-			 * rootView.findViewById(R.id.image)).setImageResource(imageId);
-			 * getActivity().setTitle(planet);
-			 */
-			return rootView;
-		}
-	}
+	
 
 	public DatabaseAdministrator getDbAdmin() {
 		return dbAdmin;
