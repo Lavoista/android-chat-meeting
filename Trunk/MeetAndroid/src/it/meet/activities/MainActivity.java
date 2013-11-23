@@ -19,14 +19,10 @@ package it.meet.activities;
 import it.meet.fragments.*;
 import it.meet.localdb.DatabaseAdministrator;
 
-import java.util.Locale;
-
 import it.meet.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import com.google.android.gms.maps.MapFragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.DialogInterface;
@@ -34,22 +30,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.InflateException;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -60,7 +51,6 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] framentsTitles;
-	private static View rootView;
 	private SearchFragment searchFragment;
 	private int lastPosition = -1;
 	private DatabaseAdministrator dbAdmin;
@@ -260,18 +250,7 @@ public class MainActivity extends Activity {
 					});
 			alertDialog2.show();
 
-		} else {/*
-				 * if(planetFragment == null){ planetFragment = new
-				 * PlanetFragment(); } Bundle args = new Bundle();
-				 * args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-				 * planetFragment.setArguments(args);
-				 * 
-				 * FragmentManager fragmentManager = getFragmentManager();
-				 * fragmentManager
-				 * .beginTransaction().replace(R.id.content_frame,
-				 * planetFragment).commit();
-				 */
-		}
+		} 
 		// Aggiorno e chiudo il drawer
 		mDrawerList.setItemChecked(position, true);
 		// setTitle(mPlanetTitles[position]);

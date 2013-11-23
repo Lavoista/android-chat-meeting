@@ -26,7 +26,6 @@ public class RegistrationActivity extends Activity{
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private String picturePath = "";
-	private ProgressDialog progressBar;
 	private Bitmap photoImage;
 
 	public Bitmap getPhotoImage() {

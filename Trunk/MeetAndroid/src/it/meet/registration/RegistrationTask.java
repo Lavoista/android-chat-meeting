@@ -1,28 +1,20 @@
 package it.meet.registration;
 
-import java.net.ConnectException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.http.HttpException;
 
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
 
 import it.meet.activities.LoginActivity;
-import it.meet.activities.MainActivity;
-import it.meet.activities.StartActivity;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.user.UserService;
 import it.meet.service.user.entity.UserDTO;
 import it.meet.utils.ErrorsAdministrator;
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.telephony.SmsManager;
 import android.widget.Toast;
 
 public class RegistrationTask extends AsyncTask<UserDTO,Boolean,Void>{
