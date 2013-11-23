@@ -7,7 +7,7 @@
         <item>Conversazioni</item>
         <item>Amici</item>
         <item>Richieste Amicizia</item>
-        <item>Black List</item>
+        <item>Contatti Bloccati</item>
         <item>Luoghi Preferiti</item>
         <item>Il Mio Profilo</item>
         <item>Impostazioni</item>   
@@ -32,14 +32,19 @@
     <string name="Sex">Sesso</string>
     <string name="TextLogin">Accedi</string>
     <string name="TextRegister">Registrati</string>
-    <string name="successfullyLogin">Login effettuato con successo</string>
-    <string name="successfullyRegistration">Registrazione effettuata con successo</string>
-    <string name="MEET0002">Username non valido, è gia utilizzato da un altro utente</string>
-    <string name="MEET0004">Il Nome Utente è Obbligatorio</string>
-    <string name="MEET0006">L\'indirizzo Email non è valido</string>
-    <string name="MEET0022">Username e/o password non validi</string>
-    <string name="MEET0055">Errore di connessione</string>
-    <string name="MEET0056">Le password inserite non coincidono</string>
+    <string name="SUCCESSFULLY_LOGIN">Login effettuato con successo</string>
+    <string name="SUCCESSFULLY_REGISTRATION">Registrazione effettuata con successo</string>
+    <string name="NO_CONVERSATIONS_FOUND">Non ci sono conversazioni, accedi alla lista amici ed inizia a chattare.</string>
+    <string name="NO_FRIENDS_FOUND">Nessun contatto aggiunto alla lista degli amici.</string>
+    <string name="NO_FRIEND_REQUESTS_FOUND">Non hai nessuna richiesta di amicizia.</string>
+    <string name="NO_BLACKLIST_FOUND">Nessun contatto è stato bloccato.</string>
+    <string name="NO_FAVORITE_PLACE_FOUND">Nessuna luogo è stato aggiunto alla lista dei preferiti.</string>
+	<string name="MEET0002">L\'Username inserito è gia utilizzato da un altro utente!!</string>
+    <string name="MEET0004">Il Nome Utente è Obbligatorio!!</string>
+    <string name="MEET0006">L\'indirizzo Email non è valido!!</string>
+    <string name="MEET0022">Username e/o password non validi!!</string>
+    <string name="MEET0055">Errore di connessione!!</string>
+    <string name="MEET0056">Le password inserite non coincidono!!</string>
     <string name="MEET0057">I seguenti campi sono obbligatori:</string>
     
 </resources>
