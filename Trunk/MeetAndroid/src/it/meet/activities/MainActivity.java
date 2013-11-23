@@ -18,6 +18,7 @@ package it.meet.activities;
 
 import it.meet.fragments.*;
 import it.meet.localdb.DatabaseAdministrator;
+import it.meet.user.data.UserData;
 
 import it.meet.R;
 
@@ -57,12 +58,13 @@ public class MainActivity extends Activity {
 	String PREFS_NAME = "MeetPreferFile";
 	static SharedPreferences storedInfo;
 	Editor preferencesEditor;
+	private UserData userData;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
-
+		storedInfo = this.getSharedPreferences(PREFS_NAME, 0);
 		mTitle = mDrawerTitle = getTitle();
 		framentsTitles = getResources().getStringArray(R.array.menu_array);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -108,6 +110,14 @@ public class MainActivity extends Activity {
 		}
 		this.deleteDatabase("meet.db");
 		setDbAdmin(new DatabaseAdministrator(this));
+		if (!storedInfo.getString("loggedUser", "").isEmpty()){
+			userData = new UserData(storedInfo.getString("loggedUser", ""));
+		}
+		else{
+			userData = new UserData("");
+		}
+		
+		
 	}
 
 	@Override
@@ -221,7 +231,7 @@ public class MainActivity extends Activity {
 					.replace(R.id.content_frame, settingsFragment).commit();
 		} else if (position == 8) {
 			AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
-			storedInfo = this.getSharedPreferences(PREFS_NAME, 0);
+			
 			preferencesEditor = storedInfo.edit();
 			// Setting Dialog Title
 			alertDialog2.setTitle("Conferma uscita");
