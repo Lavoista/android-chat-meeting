@@ -5,10 +5,12 @@ import it.meet.chat.OnClickSubmitChatListener;
 import it.meet.localdb.MessagesAdministrator;
 import it.meet.service.messaging.Message;
 import it.meet.service.user.entity.UserDTO;
+import it.meet.user.data.UserDataAdministrator;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -65,6 +67,11 @@ public class ChatFragment extends Fragment {
 	private static String localUsername;
 	private static String remoteUsername;
 	public static final String ARG_PLANET_NUMBER = "planet_number";
+	private UserDataAdministrator userDataAdministrator;
+
+	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
+		this.userDataAdministrator = userDataAdministrator;
+	}
 
 	public ChatFragment() {
 		// Empty constructor required for fragment subclasses
@@ -87,13 +94,13 @@ public class ChatFragment extends Fragment {
 		String title = getResources()
 				.getStringArray(R.array.menu_array)[i];
 		getActivity().setTitle(title);
-		MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(chatView);
-		Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
+		ArrayList<Message> chatMessages = userDataAdministrator.getLastChatMessages(remoteUsername);
+		Iterator<Message> chatMessagesIterator = chatMessages.iterator();
 		
 		
 		//cerco tutti i messaggi inviati e ricevuti dall'utente username
-		while(chatMessages.hasNext()){
-			Message temp = chatMessages.next();
+		while(chatMessagesIterator.hasNext()){
+			Message temp = chatMessagesIterator.next();
 			LinearLayout linearLayout = (LinearLayout) chatView.findViewById(R.id.messages);
 			LinearLayout linearTemp = new LinearLayout(chatView.getContext());
 			TextView child = new TextView(chatView.getContext());

@@ -9,13 +9,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ConversationsAdministrator {
+	DatabaseAdministrator dataBaseAdmnistrator;
 	
+	public ConversationsAdministrator(DatabaseAdministrator dataBaseAdmnistrator){
+		this.dataBaseAdmnistrator = dataBaseAdmnistrator;
+	}
 	/*
 	 * get all conversations with localUser = localUsername
 	 * ordered by date (date of last messageChat sended or received
 	 * 
 	 */
-	public Iterator<Conversation> getConversationsFromDb(String localUsername){
+	public ArrayList<Conversation> getConversationsFromDb(String localUsername){
 		
 		
 		ArrayList<Conversation> conversationList= new ArrayList<Conversation>();
@@ -39,7 +43,7 @@ public class ConversationsAdministrator {
 		cm6.setTimestamp(gc2.toString());
 		cm6.setMessage("ok sto al bar, ti aspetto!!");
 		conv2.setLastMessageChat(cm6);
-		return conversationList.iterator();
+		return conversationList;
 	}
 	
 }

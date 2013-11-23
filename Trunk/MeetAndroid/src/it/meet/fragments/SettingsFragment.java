@@ -4,6 +4,7 @@ import it.meet.R;
 import it.meet.chat.OnClickSubmitChatListener;
 import it.meet.localdb.MessagesAdministrator;
 import it.meet.service.messaging.Message;
+import it.meet.user.data.UserDataAdministrator;
 
 import java.util.Iterator;
 
@@ -20,7 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SettingsFragment extends Fragment {
-	private View conversationsView;
+	private View settingsView;
+	private UserDataAdministrator userDataAdministrator;
+
+	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
+		this.userDataAdministrator = userDataAdministrator;
+	}
 
 	public SettingsFragment() {
 		// Empty constructor required for fragment subclasses
@@ -30,7 +36,7 @@ public class SettingsFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		conversationsView = inflater.inflate(R.layout.settings_fragment,
+		settingsView = inflater.inflate(R.layout.settings_fragment,
 				container, false);
 		String title = getResources().getStringArray(R.array.menu_array)[7];
 		getActivity().setTitle(title);
@@ -38,9 +44,10 @@ public class SettingsFragment extends Fragment {
 		//Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
 		
 		
-		Toast.makeText(getActivity(), "NO CONVERSATIONS FOUND",Toast.LENGTH_LONG);
-		return conversationsView;
+		Toast.makeText(getActivity(), "NO CONVERSATIONS FOUND",Toast.LENGTH_LONG).show();
+		return settingsView;
 	}
+
 
 }
 

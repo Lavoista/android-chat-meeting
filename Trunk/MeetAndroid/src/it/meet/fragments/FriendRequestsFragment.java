@@ -4,6 +4,7 @@ import it.meet.R;
 import it.meet.chat.OnClickSubmitChatListener;
 import it.meet.localdb.MessagesAdministrator;
 import it.meet.service.messaging.Message;
+import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
 
 import java.util.Iterator;
@@ -22,6 +23,11 @@ import android.widget.Toast;
 
 public class FriendRequestsFragment extends Fragment {
 	private View friendRequestsView;
+	private UserDataAdministrator userDataAdministrator;
+
+	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
+		this.userDataAdministrator = userDataAdministrator;
+	}
 
 	public FriendRequestsFragment() {
 		// Empty constructor required for fragment subclasses
@@ -43,6 +49,7 @@ public class FriendRequestsFragment extends Fragment {
 				getActivity()),Toast.LENGTH_LONG).show();
 		return friendRequestsView;
 	}
+
 
 }
 

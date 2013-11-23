@@ -2,6 +2,7 @@ package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
 import it.meet.service.user.entity.UserDTO;
+import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
 
 import java.io.ByteArrayOutputStream;
@@ -56,6 +57,11 @@ import android.widget.TextView.OnEditorActionListener;
 public class FriendsFragment extends Fragment {
 	private View friendsView;
 	EditText dateField;
+	private UserDataAdministrator userDataAdministrator;
+
+	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
+		this.userDataAdministrator = userDataAdministrator;
+	}
 
 	public FriendsFragment() {
 		// Empty constructor required for fragment subclasses
@@ -74,6 +80,7 @@ public class FriendsFragment extends Fragment {
 				getActivity()),Toast.LENGTH_LONG).show();
 		return friendsView;
 	}
+
 
 	
 	

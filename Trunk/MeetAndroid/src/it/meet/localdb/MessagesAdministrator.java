@@ -13,21 +13,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 
 public class MessagesAdministrator {
-	private View chatView;
-
-	public MessagesAdministrator(View chatView) {
-		this.chatView = chatView;
+	private DatabaseAdministrator databaseAdministrator;
+	
+	public MessagesAdministrator(DatabaseAdministrator databaseAdministrator) {
+		this.databaseAdministrator = databaseAdministrator;
 	}
 
 	/*
 	 * get messages sended ad received from username reading file in localUser
 	 * path ordered by date
 	 */
-	public Iterator<Message> getMessagesFromDb(String localUsername,
+	public ArrayList<Message> getMessagesFromDb(String localUsername,
 			String remoteUsername) {
-		DatabaseAdministrator dbAdmin = ((it.meet.activities.MainActivity) chatView
-				.getContext()).getDbAdmin();
-		SQLiteDatabase db = dbAdmin.getReadableDatabase();
+		SQLiteDatabase db = databaseAdministrator.getReadableDatabase();
 		String[] columns = new String[] { "sender", "receiver", "text",
 				"binary", "timestamp", "contenttype" };
 		String condition = "(sender = '" + localUsername + "' AND receiver = '"
@@ -54,7 +52,7 @@ public class MessagesAdministrator {
 			listaMessaggi.add(tempMessage);
 		}
 		
-		return listaMessaggi.iterator();
+		return listaMessaggi;
 	}
 	/*
 	 * 

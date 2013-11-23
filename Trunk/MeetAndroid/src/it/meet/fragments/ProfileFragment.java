@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import it.meet.R;
+import it.meet.user.data.UserDataAdministrator;
 import android.R.color;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -32,6 +33,11 @@ import android.widget.EditText;
 public class ProfileFragment extends Fragment {
 	private View profileView;
 	EditText campoData;
+	private UserDataAdministrator userDataAdministrator;
+
+	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
+		this.userDataAdministrator = userDataAdministrator;
+	}
     
     public ProfileFragment() {
         // Empty constructor required for fragment subclasses
@@ -59,5 +65,6 @@ public class ProfileFragment extends Fragment {
         }
         return profileView;
     }
+
    
 }

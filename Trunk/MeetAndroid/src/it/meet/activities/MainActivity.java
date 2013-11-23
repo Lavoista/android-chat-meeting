@@ -17,8 +17,7 @@
 package it.meet.activities;
 
 import it.meet.fragments.*;
-import it.meet.localdb.DatabaseAdministrator;
-import it.meet.user.data.UserData;
+import it.meet.user.data.UserDataAdministrator;
 
 import it.meet.R;
 
@@ -54,11 +53,11 @@ public class MainActivity extends Activity {
 	private String[] framentsTitles;
 	private SearchFragment searchFragment;
 	private int lastPosition = -1;
-	private DatabaseAdministrator dbAdmin;
 	String PREFS_NAME = "MeetPreferFile";
 	static SharedPreferences storedInfo;
 	Editor preferencesEditor;
-	private UserData userData;
+	private UserDataAdministrator userDataAdministrator;//assicurati che l'oggetto non viene ricreato ogni volta, ma soltanto
+	//quando si crea l'activity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,12 +108,11 @@ public class MainActivity extends Activity {
 			selectItem(0);
 		}
 		this.deleteDatabase("meet.db");
-		setDbAdmin(new DatabaseAdministrator(this));
 		if (!storedInfo.getString("loggedUser", "").isEmpty()){
-			userData = new UserData(storedInfo.getString("loggedUser", ""));
+			userDataAdministrator = new UserDataAdministrator(storedInfo.getString("loggedUser", ""),this);
 		}
 		else{
-			userData = new UserData("");
+			userDataAdministrator = new UserDataAdministrator("",this);
 		}
 		
 		
@@ -187,6 +185,7 @@ public class MainActivity extends Activity {
 		} else if (position == 1 && lastPosition != 1) {
 			lastPosition = 1;
 			ConversationsFragment conversationsFragment = new ConversationsFragment();
+			conversationsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, conversationsFragment)
@@ -194,12 +193,14 @@ public class MainActivity extends Activity {
 		} else if (position == 2 && lastPosition != 2) {
 			lastPosition = 2;
 			FriendsFragment friendsFragment = new FriendsFragment();
+			friendsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, friendsFragment).commit();
 		} else if (position == 3 && lastPosition != 3) {
 			lastPosition = 3;
 			FriendRequestsFragment friendRequestFragment = new FriendRequestsFragment();
+			friendRequestFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, friendRequestFragment)
@@ -207,12 +208,14 @@ public class MainActivity extends Activity {
 		} else if (position == 4 && lastPosition != 4) {
 			lastPosition = 4;
 			BlackListFragment blackListFragment = new BlackListFragment();
+			blackListFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, blackListFragment).commit();
 		} else if (position == 5 && lastPosition != 5) {
 			lastPosition = 5;
 			FavoritePlacesFragment favoritePlacesFragment = new FavoritePlacesFragment();
+			favoritePlacesFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, favoritePlacesFragment)
@@ -220,12 +223,14 @@ public class MainActivity extends Activity {
 		} else if (position == 6 && lastPosition != 6) {
 			lastPosition = 6;
 			ProfileFragment profileFragment = new ProfileFragment();
+			profileFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, profileFragment).commit();
 		} else if (position == 7 && lastPosition != 7) {
 			lastPosition = 7;
 			SettingsFragment settingsFragment = new SettingsFragment();
+			settingsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, settingsFragment).commit();
@@ -263,7 +268,6 @@ public class MainActivity extends Activity {
 		} 
 		// Aggiorno e chiudo il drawer
 		mDrawerList.setItemChecked(position, true);
-		// setTitle(mPlanetTitles[position]);
 		mDrawerLayout.closeDrawer(mDrawerList);
 
 	}
@@ -293,16 +297,7 @@ public class MainActivity extends Activity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	/**
-	 * Fragment di prova dovra essere eliminato
-	 */
+	
 
-	public DatabaseAdministrator getDbAdmin() {
-		return dbAdmin;
-	}
-
-	public void setDbAdmin(DatabaseAdministrator dbAdmin) {
-		this.dbAdmin = dbAdmin;
-	}
 
 }

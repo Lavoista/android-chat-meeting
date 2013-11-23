@@ -5,10 +5,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class UsersAdministrator {
-	private SQLiteDatabase db;
-
-	public UsersAdministrator(SQLiteDatabase db) {
-		this.db = db;
+	private DatabaseAdministrator databaseAdministrator;
+	
+	public UsersAdministrator(DatabaseAdministrator databaseAdministrator){
+		this.databaseAdministrator = databaseAdministrator;
 	}
 
 	public void insertUser(String username, String name,
@@ -17,12 +17,12 @@ public class UsersAdministrator {
 		v.put("username", username);
 		v.put("name", name);
 		v.put("surname", surname);
-		db.insert("user", null, v);
+		databaseAdministrator.getReadableDatabase().insert("user", null, v);
 	}
 	
 	public Cursor getUser()
 	{
-		return (this.db.query(
+		return (databaseAdministrator.getReadableDatabase().query(
 			"user", 
 			new String[]{ "username", "name", "surname" }, 
 			null, 
