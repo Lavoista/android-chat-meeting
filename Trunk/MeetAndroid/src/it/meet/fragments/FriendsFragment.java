@@ -2,6 +2,7 @@ package it.meet.fragments;
 
 import it.meet.activities.MainActivity;
 import it.meet.service.user.entity.UserDTO;
+import it.meet.utils.ErrorsAdministrator;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Method;
@@ -49,6 +50,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
 
 public class FriendsFragment extends Fragment {
@@ -68,6 +70,8 @@ public class FriendsFragment extends Fragment {
 		String title = getResources()
 				.getStringArray(R.array.menu_array)[2];
 		getActivity().setTitle(title);
+		Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_FRIENDS_FOUND",
+				getActivity()),Toast.LENGTH_LONG).show();
 		return friendsView;
 	}
 

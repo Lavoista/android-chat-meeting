@@ -77,7 +77,7 @@ public class LoginTask extends AsyncTask<String, Boolean, Void> {
 			if (response.getErrorCode().toString().equals("MEET0000")) {
 				Toast.makeText(
 						context,
-						ErrorsAdministrator.getDescription("successfullyLogin",
+						ErrorsAdministrator.getDescription("SUCCESSFULLY_LOGIN",
 								context), Toast.LENGTH_SHORT).show();
 				context.startActivity(new Intent(context, MainActivity.class));
 				context.finish();

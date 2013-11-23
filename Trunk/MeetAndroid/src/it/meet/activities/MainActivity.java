@@ -189,28 +189,46 @@ public class MainActivity extends Activity {
 			ConversationsFragment conversationsFragment = new ConversationsFragment();
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.content_frame, conversationsFragment).commit();
-		}else if (position == 2 && lastPosition != 2) {
+					.replace(R.id.content_frame, conversationsFragment)
+					.commit();
+		} else if (position == 2 && lastPosition != 2) {
 			lastPosition = 2;
-			FriendsFragment conversationsFragment = new FriendsFragment();
+			FriendsFragment friendsFragment = new FriendsFragment();
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.content_frame, conversationsFragment).commit();
-		}else if (position == 3 && lastPosition != 3) {
+					.replace(R.id.content_frame, friendsFragment).commit();
+		} else if (position == 3 && lastPosition != 3) {
 			lastPosition = 3;
-			// provo con username di prova
-			// l'username è utilizzato per cercare i messaggi inviati e ricevuti
-			// da quel contatto
-			String username = "luigivorraro";// questo valore sara letto
-												// dall'utente selezionato
-			ChatFragment chatFragment = new ChatFragment();
-			chatFragment.setRemoteUsername(username);
-			chatFragment.setLocalUsername("tommasoalbano");// questo valore sara
-															// letto dall'utente
-															// corrente
+			FriendRequestsFragment friendRequestFragment = new FriendRequestsFragment();
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.content_frame, chatFragment).commit();
+					.replace(R.id.content_frame, friendRequestFragment)
+					.commit();
+		} else if (position == 4 && lastPosition != 4) {
+			lastPosition = 4;
+			BlackListFragment blackListFragment = new BlackListFragment();
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, blackListFragment).commit();
+		} else if (position == 5 && lastPosition != 5) {
+			lastPosition = 5;
+			FavoritePlacesFragment favoritePlacesFragment = new FavoritePlacesFragment();
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, favoritePlacesFragment)
+					.commit();
+		} else if (position == 6 && lastPosition != 6) {
+			lastPosition = 6;
+			ProfileFragment profileFragment = new ProfileFragment();
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, profileFragment).commit();
+		} else if (position == 7 && lastPosition != 7) {
+			lastPosition = 7;
+			SettingsFragment settingsFragment = new SettingsFragment();
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.content_frame, settingsFragment).commit();
 		} else if (position == 8) {
 			AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
 			storedInfo = this.getSharedPreferences(PREFS_NAME, 0);
@@ -256,7 +274,7 @@ public class MainActivity extends Activity {
 		}
 		// Aggiorno e chiudo il drawer
 		mDrawerList.setItemChecked(position, true);
-		//setTitle(mPlanetTitles[position]);
+		// setTitle(mPlanetTitles[position]);
 		mDrawerLayout.closeDrawer(mDrawerList);
 
 	}
@@ -289,7 +307,6 @@ public class MainActivity extends Activity {
 	/**
 	 * Fragment di prova dovra essere eliminato
 	 */
-	
 
 	public DatabaseAdministrator getDbAdmin() {
 		return dbAdmin;

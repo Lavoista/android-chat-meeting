@@ -70,7 +70,7 @@ public class RegistrationTask extends AsyncTask<UserDTO,Boolean,Void>{
 		if(progressBar!=null)progressBar.dismiss();
 		if(response != null){
 			if(response.getErrorCode().toString().equals("MEET0000")){
-				Toast.makeText(context, ErrorsAdministrator.getDescription("successfullyRegistration",context), Toast.LENGTH_LONG).show();	     			
+				Toast.makeText(context, ErrorsAdministrator.getDescription("SUCCESSFULLY_REGISTRATION",context), Toast.LENGTH_LONG).show();	     			
 				context.startActivity(new Intent(context,
 						LoginActivity.class));
 				context.finish();

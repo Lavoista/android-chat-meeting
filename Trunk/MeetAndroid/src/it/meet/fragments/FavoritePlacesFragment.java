@@ -20,10 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ConversationsFragment extends Fragment {
-	private View conversationsView;
+public class FavoritePlacesFragment extends Fragment {
+	private View favoritePlacesView;
 
-	public ConversationsFragment() {
+	public FavoritePlacesFragment() {
 		// Empty constructor required for fragment subclasses
 	}
 	
@@ -31,18 +31,17 @@ public class ConversationsFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		conversationsView = inflater.inflate(R.layout.conversations_fragment,
+		favoritePlacesView = inflater.inflate(R.layout.favorite_places_fragment,
 				container, false);
-		String title = getResources().getStringArray(R.array.menu_array)[1];
+		String title = getResources().getStringArray(R.array.menu_array)[5];
 		getActivity().setTitle(title);
 		//MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(conversationView);
 		//Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
 		
 		
-		Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_CONVERSATIONS_FOUND",
+		Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_FAVORITE_PLACE_FOUND",
 				getActivity()),Toast.LENGTH_LONG).show();
-		
-		return conversationsView;
+		return favoritePlacesView;
 	}
 
 }
