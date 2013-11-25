@@ -4,9 +4,12 @@ import it.meet.entity.Conversation;
 import it.meet.localdb.ConversationsAdministrator;
 import it.meet.localdb.DatabaseAdministrator;
 import it.meet.localdb.MessagesAdministrator;
+import it.meet.localdb.UsersAdministrator;
 import it.meet.service.messaging.Message;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import android.content.Context;
 
@@ -14,20 +17,25 @@ public class UserDataAdministrator {
 	private DatabaseAdministrator databaseAdmnistrator;
 	private String localUsername;
 	private String remoteUsername;
-	private ArrayList<Conversation> conversationsList;
+	private ArrayDeque<Conversation> conversationsDeque;
 	private ArrayList<Message> lastChatMessages;
 	private ArrayList<Friend> friendsList;
 	private ArrayList<BlackContact> blackList;
 	private ArrayList<FriendRequest> friendRequestsList;
 	private ArrayList<PreferedSite> preferedSitesList;
 	private UserProfile userProfile;
+	private UsersAdministrator usersAdministrator;
+	private MessagesAdministrator messageAdministrator;
+	private ConversationsAdministrator conversationsAdministrator;
 
 	public UserDataAdministrator(String localUsername,Context context) {
 		this.localUsername = localUsername;
 		databaseAdmnistrator = new DatabaseAdministrator(context);
+		usersAdministrator = new UsersAdministrator(databaseAdmnistrator);
 		//to do set all variables
-		ConversationsAdministrator ConversationsAdministrator = new ConversationsAdministrator(databaseAdmnistrator);
-		setConversationsList(ConversationsAdministrator.getConversationsFromDb(localUsername));
+		conversationsAdministrator = new ConversationsAdministrator(databaseAdmnistrator);
+		messageAdministrator = new MessagesAdministrator(databaseAdmnistrator);
+		conversationsDeque.addAll(conversationsAdministrator.getConversationsFromDb(localUsername));
 		//setFriendsList
 		//setFriendRequestsList
 		//setBlackList
@@ -37,24 +45,43 @@ public class UserDataAdministrator {
 		
 	}
 
-	public String getUsername() {
-		return localUsername;
+	//quando si riceve o si invia un nuovo messaggio si inserisce nel db e si aggiorna la conversationsDeque
+	public void newMessageReceivedOrSended(Message message){	
+		messageAdministrator.insertMessage(message);
+		Iterator<Conversation> iterator = this.conversationsDeque.iterator();
+		Conversation tempConv,toRemove;
+		while(iterator.hasNext()){
+			tempConv = iterator.next();
+			if(tempConv.getRemoteUser().equals(message.getSender()) || tempConv.getRemoteUser().equals(message.getReceiver())){
+				toRemove = tempConv;
+				this.conversationsDeque.remove(toRemove);
+			}
+		}
+		Conversation toInsert = new Conversation();
+		String remoteUsername;
+		toInsert.setLastMessageChat(message);
+		if(!message.getSender().equals(this.localUsername)){
+			remoteUsername = message.getSender();
+			toInsert.setRemoteUser(remoteUsername);
+		}
+		else{
+			remoteUsername = message.getReceiver();
+			toInsert.setRemoteUser(remoteUsername);
+		}
+		byte[] photo = usersAdministrator.getUser(remoteUsername).getPhoto();
+		toInsert.setRemoteUserPhoto(photo);
+		this.conversationsDeque.addFirst(toInsert);
+		
 	}
+	
 
-	public void setUsername(String username) {
-		this.localUsername = username;
-	}
-
-	public ArrayList<Conversation> getConversationsList() {
-		return conversationsList;
-	}
-
-	public void setConversationsList(ArrayList<Conversation> conversationsList) {
-		this.conversationsList = conversationsList;
+	public ArrayDeque<Conversation> getConversationsDeque() {
+		
+		return conversationsDeque;
 	}
 
 	//this method returns last message sended and received to remote user
-	//if remoteUser is different to params read data from databases
+	//if remoteUser is different to param "remoteUserName" read data from database
 	//else read from memory directly
 	public ArrayList<Message> getLastChatMessages(String remoteUserName) {
 		if(remoteUserName.equals(this.remoteUsername)){
@@ -72,41 +99,24 @@ public class UserDataAdministrator {
 		return friendsList;
 	}
 
-	public void setFriendsList(ArrayList<Friend> friendsList) {
-		this.friendsList = friendsList;
-	}
 
 	public ArrayList<BlackContact> getBlackList() {
 		return blackList;
 	}
 
-	public void setBlackList(ArrayList<BlackContact> blackList) {
-		this.blackList = blackList;
-	}
 
 	public ArrayList<FriendRequest> getFriendRequestsList() {
 		return friendRequestsList;
 	}
 
-	public void setFriendRequestsList(
-			ArrayList<FriendRequest> friendRequestsList) {
-		this.friendRequestsList = friendRequestsList;
-	}
 
 	public ArrayList<PreferedSite> getPreferedSitesList() {
 		return preferedSitesList;
-	}
-
-	public void setPreferedSitesList(ArrayList<PreferedSite> preferedSitesList) {
-		this.preferedSitesList = preferedSitesList;
 	}
 
 	public UserProfile getUserProfile() {
 		return userProfile;
 	}
 
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
-	}
 
 }

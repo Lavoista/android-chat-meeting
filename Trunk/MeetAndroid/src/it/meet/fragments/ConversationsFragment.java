@@ -2,11 +2,15 @@ package it.meet.fragments;
 
 import it.meet.R;
 import it.meet.chat.OnClickSubmitChatListener;
+import it.meet.entity.Conversation;
 import it.meet.localdb.MessagesAdministrator;
 import it.meet.service.messaging.Message;
 import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
 
+import java.sql.Blob;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.app.Fragment;
@@ -43,10 +47,23 @@ public class ConversationsFragment extends Fragment {
 		getActivity().setTitle(title);
 		//MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(conversationView);
 		//Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
+		ArrayDeque<Conversation> conversationsDeque = userDataAdministrator.getConversationsDeque();
+		if(conversationsDeque.isEmpty()){
+			Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_CONVERSATIONS_FOUND",
+					getActivity()),Toast.LENGTH_LONG).show();
+		}
+		//there is any conversation
+		else{
+			Iterator<Conversation> conversationsIterator = conversationsDeque.iterator();
+			while(conversationsIterator.hasNext()){
+				Conversation temp = conversationsIterator.next();
+				String username = temp.getRemoteUser();
+				byte[] photo = temp.getRemoteUserPhoto();
+				String timestamp = temp.getLastMessageChat().getTimestamp();
+				String message = temp.getLastMessageChat().getMessage();
+			}
+		}
 		
-		
-		Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_CONVERSATIONS_FOUND",
-				getActivity()),Toast.LENGTH_LONG).show();
 		
 		return conversationsView;
 	}

@@ -1,5 +1,6 @@
 package it.meet.localdb;
 
+import it.meet.entity.User;
 import it.meet.service.messaging.ContentType;
 import it.meet.service.messaging.Message;
 
@@ -8,6 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
@@ -53,6 +55,17 @@ public class MessagesAdministrator {
 		}
 		
 		return listaMessaggi;
+	}
+	
+	public void insertMessage(Message message){
+		ContentValues v = new ContentValues();
+		v.put("text", message.getMessage());
+		v.put("sender", message.getSender());
+		v.put("receiver",message.getReceiver());
+		v.put("binary", message.getContent());
+		v.put("timestamp", message.getTimestamp());
+		v.put("contenttype", message.getContentType().getContentType());
+		databaseAdministrator.getReadableDatabase().insert("message", null, v);
 	}
 	/*
 	 * 

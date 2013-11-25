@@ -6,8 +6,7 @@ import java.sql.Blob;
 
 
 public class Conversation {
-	private Blob remoteUserPhoto;
-	private String localUser;
+	private byte[] remoteUserPhoto;
 	private String remoteUser;
 	private Message lastMessageChat;
 	public String getRemoteUser() {
@@ -16,12 +15,7 @@ public class Conversation {
 	public void setRemoteUser(String remoteUser) {
 		this.remoteUser = remoteUser;
 	}
-	public String getLocalUser() {
-		return localUser;
-	}
-	public void setLocalUser(String localUser) {
-		this.localUser = localUser;
-	}
+	
 	public Message getLastMessageChat() {
 		return lastMessageChat;
 	}
@@ -29,10 +23,10 @@ public class Conversation {
 		this.lastMessageChat = lastMessageChat;
 	}
 	
-	public Blob getRemoteUserPhoto() {
+	public byte[] getRemoteUserPhoto() {
 		return remoteUserPhoto;
 	}
-	public void setRemoteUserPhoto(Blob remoteUserPhoto) {
+	public void setRemoteUserPhoto(byte[] remoteUserPhoto) {
 		this.remoteUserPhoto = remoteUserPhoto;
 	}
 	

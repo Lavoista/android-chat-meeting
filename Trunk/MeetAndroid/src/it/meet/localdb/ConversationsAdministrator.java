@@ -24,7 +24,6 @@ public class ConversationsAdministrator {
 		
 		ArrayList<Conversation> conversationList= new ArrayList<Conversation>();
 		Conversation conv1 = new Conversation();
-		conv1.setLocalUser(localUsername);
 		conv1.setRemoteUser("luigivorraro");
 		Message cm5 = new Message();
 		cm5.setSender(localUsername);
@@ -34,7 +33,6 @@ public class ConversationsAdministrator {
 		cm5.setMessage("tifa sempre forza napoli, capito??");
 		conv1.setLastMessageChat(cm5);
 		Conversation conv2 = new Conversation();
-		conv2.setLocalUser(localUsername);
 		conv2.setRemoteUser("francescamiranda");
 		Message cm6 = new Message();
 		cm6.setSender("francescamiranda");
