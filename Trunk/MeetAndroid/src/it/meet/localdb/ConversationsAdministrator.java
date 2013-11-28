@@ -33,7 +33,8 @@ public class ConversationsAdministrator {
 		//per ogni contatto prendo l'ultimo messaggio inviato o ricevuto da quel contatto
 		Iterator<User> iteratore = listaContatti.iterator();
 		while(iteratore.hasNext()){
-			String remoteUsername = iteratore.next().getUsername();
+			User remoteUser = iteratore.next();
+			String remoteUsername = remoteUser.getUsername();
 			MessagesAdministrator messagesAdministrator = new MessagesAdministrator(databaseAdministrator);
 			ArrayList<Message> listaMessaggi = messagesAdministrator.getMessagesFromDb(localUsername, remoteUsername,"timestamp DESC");;
 			if(listaMessaggi.size()>0){
@@ -41,7 +42,7 @@ public class ConversationsAdministrator {
 				Conversation temp = new Conversation();
 				temp.setLastMessageChat(lastMessage);
 				temp.setRemoteUser(remoteUsername);
-				temp.setRemoteUserPhoto(lastMessageChat);
+				temp.setRemoteUserPhoto(remoteUser.getPhoto());
 				toReturn.add(temp);
 			}
 			
