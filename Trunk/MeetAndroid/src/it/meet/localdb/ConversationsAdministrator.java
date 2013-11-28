@@ -1,6 +1,8 @@
 package it.meet.localdb;
 
 import it.meet.entity.Conversation;
+import it.meet.entity.User;
+import it.meet.service.messaging.ContentType;
 import it.meet.service.messaging.Message;
 
 import java.util.ArrayList;
@@ -8,11 +10,14 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 public class ConversationsAdministrator {
-	DatabaseAdministrator dataBaseAdmnistrator;
+	DatabaseAdministrator databaseAdministrator;
 	
 	public ConversationsAdministrator(DatabaseAdministrator dataBaseAdmnistrator){
-		this.dataBaseAdmnistrator = dataBaseAdmnistrator;
+		this.databaseAdministrator = dataBaseAdmnistrator;
 	}
 	/*
 	 * get all conversations with localUser = localUsername
@@ -20,28 +25,31 @@ public class ConversationsAdministrator {
 	 * 
 	 */
 	public ArrayList<Conversation> getConversationsFromDb(String localUsername){
-		
-		
-		ArrayList<Conversation> conversationList= new ArrayList<Conversation>();
-		Conversation conv1 = new Conversation();
-		conv1.setRemoteUser("luigivorraro");
-		Message cm5 = new Message();
-		cm5.setSender(localUsername);
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(2013, 4, 24, 21, 00, 10);
-		cm5.setTimestamp(gc.toString());
-		cm5.setMessage("tifa sempre forza napoli, capito??");
-		conv1.setLastMessageChat(cm5);
-		Conversation conv2 = new Conversation();
-		conv2.setRemoteUser("francescamiranda");
-		Message cm6 = new Message();
-		cm6.setSender("francescamiranda");
-		GregorianCalendar gc2 = new GregorianCalendar();
-		gc2.set(2013, 4, 27, 22, 00, 10);
-		cm6.setTimestamp(gc2.toString());
-		cm6.setMessage("ok sto al bar, ti aspetto!!");
-		conv2.setLastMessageChat(cm6);
-		return conversationList;
+		//per ogni utente prendo il messaggio piu nuovo (inviato o ricevuto)
+		ArrayList<Conversation> toReturn = new ArrayList<Conversation>();
+		ArrayList<User> listaContatti;
+		UsersAdministrator usersAdministrator = new UsersAdministrator(databaseAdministrator);
+		listaContatti = usersAdministrator.getAllUsers("username !='"+localUsername+"'");
+		//per ogni contatto prendo l'ultimo messaggio inviato o ricevuto da quel contatto
+		Iterator<User> iteratore = listaContatti.iterator();
+		while(iteratore.hasNext()){
+			String remoteUsername = iteratore.next().getUsername();
+			MessagesAdministrator messagesAdministrator = new MessagesAdministrator(databaseAdministrator);
+			ArrayList<Message> listaMessaggi = messagesAdministrator.getMessagesFromDb(localUsername, remoteUsername,"timestamp DESC");;
+			if(listaMessaggi.size()>0){
+				Message lastMessage  = messagesAdministrator.getMessagesFromDb(localUsername, remoteUsername,"timestamp DESC").get(0);
+				Conversation temp = new Conversation();
+				temp.setLastMessageChat(lastMessage);
+				temp.setRemoteUser(remoteUsername);
+				temp.setRemoteUserPhoto(lastMessageChat);
+				toReturn.add(temp);
+			}
+			
+		}
+		if(toReturn.size()>0){
+			return toReturn;
+		}
+		else return null;
 	}
 	
 }

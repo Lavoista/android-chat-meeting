@@ -1,5 +1,7 @@
 package it.meet.localdb;
 
+import java.util.ArrayList;
+
 import it.meet.entity.User;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -23,8 +25,30 @@ public class UsersAdministrator {
 	
 	
 	
-	public User[] getAllUsers(){
-		return null;
+	public ArrayList<User> getAllUsers(String condition){
+		ArrayList<User> toReturn = new ArrayList<User>();
+		SQLiteDatabase db = databaseAdministrator.getReadableDatabase();
+		User user = new User();
+		String sql = "SELECT username,name,surname,photo FROM users where 1 = 1 and "+condition;
+		Cursor cursor = db.rawQuery(sql, new String[] {});
+		cursor.moveToFirst();
+		cursor.moveToPrevious();
+		while(cursor.moveToNext()){
+			user.setUsername(cursor.getString(0));
+			user.setName(cursor.getString(1));
+			user.setSurname(cursor.getString(2));
+			user.setPhoto(cursor.getBlob(3));
+			toReturn.add(user);
+	    }
+		if (cursor != null && !cursor.isClosed()) {
+	        cursor.close();
+	    }
+	    db.close();
+	    if(cursor.getCount() == 0){
+	        return null;
+	    } else {
+	        return toReturn;
+	    }
 	}
 	
 	public User getUser(String username){

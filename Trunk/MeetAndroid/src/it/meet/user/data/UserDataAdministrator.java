@@ -89,7 +89,7 @@ public class UserDataAdministrator {
 		}
 		else{
 			MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(databaseAdmnistrator);
-			this.lastChatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUserName);
+			this.lastChatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUserName,"timestamp");
 			this.remoteUsername = remoteUserName;
 			return lastChatMessages;
 		}

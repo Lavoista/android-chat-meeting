@@ -26,7 +26,7 @@ public class MessagesAdministrator {
 	 * path ordered by date
 	 */
 	public ArrayList<Message> getMessagesFromDb(String localUsername,
-			String remoteUsername) {
+			String remoteUsername,String order) {
 		SQLiteDatabase db = databaseAdministrator.getReadableDatabase();
 		String[] columns = new String[] { "sender", "receiver", "text",
 				"binary", "timestamp", "contenttype" };
@@ -34,7 +34,7 @@ public class MessagesAdministrator {
 				+ remoteUsername + "') OR (receiver = '" + localUsername + "' AND sender = '"
 				+ remoteUsername + "')";
 		Cursor cursor = db.query("messages", columns, condition, null, null,
-				null, "timestamp");
+				null, order);
 		ArrayList<Message> listaMessaggi = new ArrayList<Message>();
 		for (int j = 0; j < cursor.getCount(); j++) {
 			Message tempMessage = new Message();
