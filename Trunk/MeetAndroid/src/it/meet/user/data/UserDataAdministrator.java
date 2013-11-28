@@ -1,6 +1,11 @@
 package it.meet.user.data;
 
+import it.meet.entity.BlackContact;
 import it.meet.entity.Conversation;
+import it.meet.entity.Friend;
+import it.meet.entity.FriendRequest;
+import it.meet.entity.PreferedSite;
+import it.meet.entity.UserProfile;
 import it.meet.localdb.ConversationsAdministrator;
 import it.meet.localdb.DatabaseAdministrator;
 import it.meet.localdb.MessagesAdministrator;
@@ -76,13 +81,13 @@ public class UserDataAdministrator {
 	
 
 	public ArrayDeque<Conversation> getConversationsDeque() {
-		
 		return conversationsDeque;
 	}
 
 	//this method returns last message sended and received to remote user
 	//if remoteUser is different to param "remoteUserName" read data from database
 	//else read from memory directly
+	//to use in chat, when i must to refresh a conversation i read this from memory
 	public ArrayList<Message> getLastChatMessages(String remoteUserName) {
 		if(remoteUserName.equals(this.remoteUsername)){
 			return lastChatMessages;

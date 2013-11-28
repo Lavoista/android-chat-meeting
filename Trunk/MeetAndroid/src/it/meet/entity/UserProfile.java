@@ -1,4 +1,4 @@
-package it.meet.user.data;
+package it.meet.entity;
 
 
 public class UserProfile {
