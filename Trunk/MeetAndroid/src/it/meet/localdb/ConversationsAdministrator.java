@@ -47,10 +47,7 @@ public class ConversationsAdministrator {
 			}
 			
 		}
-		if(toReturn.size()>0){
-			return toReturn;
-		}
-		else return null;
+		return toReturn;
 	}
 	
 }

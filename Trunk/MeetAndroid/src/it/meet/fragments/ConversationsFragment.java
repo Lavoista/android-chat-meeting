@@ -29,14 +29,14 @@ public class ConversationsFragment extends Fragment {
 	private View conversationsView;
 	private UserDataAdministrator userDataAdministrator;
 
-	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
+	public void setUserDataAdministrator(
+			UserDataAdministrator userDataAdministrator) {
 		this.userDataAdministrator = userDataAdministrator;
 	}
 
 	public ConversationsFragment() {
 		// Empty constructor required for fragment subclasses
 	}
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,30 +45,37 @@ public class ConversationsFragment extends Fragment {
 				container, false);
 		String title = getResources().getStringArray(R.array.menu_array)[1];
 		getActivity().setTitle(title);
-		//MessagesAdministrator chatMessagesAdministrator = new MessagesAdministrator(conversationView);
-		//Iterator<Message> chatMessages = chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
-		ArrayDeque<Conversation> conversationsDeque = userDataAdministrator.getConversationsDeque();
-		if(conversationsDeque.isEmpty()){
-			Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_CONVERSATIONS_FOUND",
-					getActivity()),Toast.LENGTH_LONG).show();
+		// MessagesAdministrator chatMessagesAdministrator = new
+		// MessagesAdministrator(conversationView);
+		// Iterator<Message> chatMessages =
+		// chatMessagesAdministrator.getMessagesFromDb(localUsername,remoteUsername);
+		ArrayDeque<Conversation> conversationsDeque = userDataAdministrator
+				.getConversationsDeque();
+		if (conversationsDeque.isEmpty()) {
+			Toast.makeText(
+					getActivity(),
+					ErrorsAdministrator.getDescription(
+							"NO_CONVERSATIONS_FOUND", getActivity()),
+					Toast.LENGTH_LONG).show();
 		}
-		//there is any conversation
-		else{
+		// there is any conversation
+		else {
 			Iterator<Conversation> conversationsIterator = conversationsDeque.iterator();
-			while(conversationsIterator.hasNext()){
+			while (conversationsIterator.hasNext()) {
 				Conversation temp = conversationsIterator.next();
 				String username = temp.getRemoteUser();
 				byte[] photo = temp.getRemoteUserPhoto();
 				String timestamp = temp.getLastMessageChat().getTimestamp();
 				String message = temp.getLastMessageChat().getMessage();
+				LinearLayout linearLayout = (LinearLayout) conversationsView
+						.findViewById(R.id.conversations);
+				TextView child = new TextView(conversationsView.getContext());
+				child.setText(username+":"+message);
+				linearLayout.addView(child);
 			}
 		}
-		
-		
+
 		return conversationsView;
 	}
 
-
-
 }
-

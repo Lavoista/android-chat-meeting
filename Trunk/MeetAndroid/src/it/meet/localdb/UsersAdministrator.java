@@ -44,11 +44,7 @@ public class UsersAdministrator {
 	        cursor.close();
 	    }
 	    db.close();
-	    if(cursor.getCount() == 0){
-	        return null;
-	    } else {
-	        return toReturn;
-	    }
+	    return toReturn;
 	}
 	
 	public User getUser(String username){

@@ -40,7 +40,9 @@ public class UserDataAdministrator {
 		//to do set all variables
 		conversationsAdministrator = new ConversationsAdministrator(databaseAdmnistrator);
 		messageAdministrator = new MessagesAdministrator(databaseAdmnistrator);
-		conversationsDeque.addAll(conversationsAdministrator.getConversationsFromDb(localUsername));
+		ArrayList<Conversation> conversazioni = conversationsAdministrator.getConversationsFromDb(localUsername);
+		conversationsDeque = new ArrayDeque<Conversation>();
+		conversationsDeque.addAll(conversazioni);
 		//setFriendsList
 		//setFriendRequestsList
 		//setBlackList
