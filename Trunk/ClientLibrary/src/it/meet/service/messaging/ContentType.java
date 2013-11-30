@@ -11,9 +11,10 @@ public enum ContentType implements Serializable {
     /*
      * type of content of a message
      */
-    IMAGE_TYPE("IMAGE_TYPE"),
-    AUDIO_TYPE("AUDIO_TYPE"),
-    VIDEO_TYPE("VIDEO_TYPE");
+    TEXT("TEXT"),
+    IMAGE("IMAGE"),
+    AUDIO("AUDIO"),
+    VIDEO("VIDEO");
     
     private String contentType;
     
