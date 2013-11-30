@@ -28,29 +28,37 @@ public class MessagesAdministrator {
 	public ArrayList<Message> getMessagesFromDb(String localUsername,
 			String remoteUsername,String order) {
 		SQLiteDatabase db = databaseAdministrator.getReadableDatabase();
-		String[] columns = new String[] { "sender", "receiver", "text",
-				"binary", "timestamp", "contenttype" };
-		String condition = "(sender = '" + localUsername + "' AND receiver = '"
+		/*String[] columns = new String[] { "sender", "receiver", "text",
+				"binary", "timestamp", "contenttype" };*/
+		String sql = "SELECT sender,receiver,text,binary,timestamp,contenttype FROM messages"+
+				" where (sender = '" + localUsername + "' AND receiver = '"
 				+ remoteUsername + "') OR (receiver = '" + localUsername + "' AND sender = '"
-				+ remoteUsername + "')";
-		Cursor cursor = db.query("messages", columns, condition, null, null,
-				null, order);
+				+ remoteUsername + "') ORDER BY "+order;
+		Cursor cursor = db.rawQuery(sql, new String[] {});
+		/*Cursor cursor = db.query("messages", columns, condition, null, null,
+				null, order);*/
 		ArrayList<Message> listaMessaggi = new ArrayList<Message>();
-		for (int j = 0; j < cursor.getCount(); j++) {
+		cursor.moveToFirst();
+		cursor.moveToPrevious();
+		while(cursor.moveToNext()){
 			Message tempMessage = new Message();
-			cursor.moveToPosition(j);
 			tempMessage.setSender(cursor.getString(cursor
 					.getColumnIndex("sender")));
 			tempMessage.setReceiver(cursor.getString(cursor
 					.getColumnIndex("receiver")));
-			tempMessage.setMessage(cursor.getString(cursor
-					.getColumnIndex("message")));
-			tempMessage.setContent(cursor.getBlob(cursor
-					.getColumnIndex("binary")));
-			tempMessage.setContentType(ContentType.valueOf(cursor
-					.getString(cursor.getColumnIndex("contenttype"))));
-			tempMessage.setTimestamp(cursor.getString(cursor
-					.getColumnIndex("timestamp")));
+			if(cursor.getString(cursor.getColumnIndex("text"))!=null){
+				tempMessage.setMessage(cursor.getString(cursor.getColumnIndex("text")));
+			}
+					
+			if(cursor.getBlob(cursor.getColumnIndex("binary"))!=null){
+				tempMessage.setContent(cursor.getBlob(cursor.getColumnIndex("binary")));
+			}	
+			
+			ContentType ttk = ContentType.valueOf(cursor.getString(cursor.getColumnIndex("contenttype")));
+			tempMessage.setContentType(ttk);
+			String timestampTemp = cursor.getString(cursor
+					.getColumnIndex("timestamp"));
+			tempMessage.setTimestamp(timestampTemp);
 			listaMessaggi.add(tempMessage);
 		}
 		

@@ -107,7 +107,6 @@ public class MainActivity extends Activity {
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
-		this.deleteDatabase("meet.db");
 		if (!storedInfo.getString("loggedUser", "").isEmpty()){
 			userDataAdministrator = new UserDataAdministrator(storedInfo.getString("loggedUser", ""),this);
 		}

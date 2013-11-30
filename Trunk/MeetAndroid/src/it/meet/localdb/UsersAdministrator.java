@@ -34,6 +34,7 @@ public class UsersAdministrator {
 		cursor.moveToFirst();
 		cursor.moveToPrevious();
 		while(cursor.moveToNext()){
+			user = new User();
 			user.setUsername(cursor.getString(0));
 			user.setName(cursor.getString(1));
 			user.setSurname(cursor.getString(2));
