@@ -60,7 +60,7 @@ public class ConversationsFragment extends Fragment {
 		}
 		// there is any conversation
 		else {
-			Iterator<Conversation> conversationsIterator = conversationsDeque.iterator();
+			Iterator<Conversation> conversationsIterator = conversationsDeque.descendingIterator();
 			while (conversationsIterator.hasNext()) {
 				Conversation temp = conversationsIterator.next();
 				String username = temp.getRemoteUser();

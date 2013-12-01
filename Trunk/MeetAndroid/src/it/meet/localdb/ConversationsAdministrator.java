@@ -6,6 +6,7 @@ import it.meet.service.messaging.ContentType;
 import it.meet.service.messaging.Message;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
@@ -45,8 +46,9 @@ public class ConversationsAdministrator {
 				temp.setRemoteUserPhoto(remoteUser.getPhoto());
 				toReturn.add(temp);
 			}
-			
+		
 		}
+	    Collections.sort(toReturn);
 		return toReturn;
 	}
 	

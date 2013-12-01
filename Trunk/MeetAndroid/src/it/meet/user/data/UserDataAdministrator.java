@@ -77,7 +77,7 @@ public class UserDataAdministrator {
 		}
 		byte[] photo = usersAdministrator.getUser(remoteUsername).getPhoto();
 		toInsert.setRemoteUserPhoto(photo);
-		this.conversationsDeque.addFirst(toInsert);
+		this.conversationsDeque.addLast(toInsert);
 		
 	}
 	
