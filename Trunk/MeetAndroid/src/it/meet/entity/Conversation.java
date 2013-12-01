@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.android.gms.R;
+
 import android.util.Log;
 
 
