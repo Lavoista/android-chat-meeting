@@ -13,6 +13,7 @@ import java.util.List;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 
 public class ConversationsAdministrator {
 	DatabaseAdministrator databaseAdministrator;
@@ -36,6 +37,7 @@ public class ConversationsAdministrator {
 		while(iteratore.hasNext()){
 			User remoteUser = iteratore.next();
 			String remoteUsername = remoteUser.getUsername();
+			//String sex = remoteUser.getSex();
 			MessagesAdministrator messagesAdministrator = new MessagesAdministrator(databaseAdministrator);
 			ArrayList<Message> listaMessaggi = messagesAdministrator.getMessagesFromDb(localUsername, remoteUsername,"timestamp DESC");;
 			if(listaMessaggi.size()>0){

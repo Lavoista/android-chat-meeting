@@ -1,19 +1,24 @@
 package it.meet.fragments;
 
 import it.meet.R;
+import it.meet.conversations.ConversationsAdapter;
 import it.meet.entity.Conversation;
 import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,19 +53,14 @@ public class ConversationsFragment extends Fragment {
 		}
 		// there is any conversation
 		else {
-			Iterator<Conversation> conversationsIterator = conversationsDeque.descendingIterator();
-			while (conversationsIterator.hasNext()) {
-				Conversation temp = conversationsIterator.next();
-				String username = temp.getRemoteUser();
-				byte[] photo = temp.getRemoteUserPhoto();
-				String timestamp = temp.getLastMessageChat().getTimestamp();
-				String message = temp.getLastMessageChat().getMessage();
-				LinearLayout linearLayout = (LinearLayout) conversationsView
-						.findViewById(R.id.conversations);
-				TextView child = new TextView(conversationsView.getContext());
-				child.setText(username+":"+message);
-				linearLayout.addView(child);
-			}
+	        ListView listView = (ListView)conversationsView.findViewById(R.id.listViewConversation);
+	        List<Conversation> list = new LinkedList<Conversation>();
+	        Iterator<Conversation> conversationsIterator = conversationsDeque.descendingIterator();
+	        while (conversationsIterator.hasNext()){
+	        	list.add(conversationsIterator.next());
+	        }
+	        ConversationsAdapter adapter = new ConversationsAdapter(this.getActivity(), R.layout.conversations_row, list);
+	        listView.setAdapter(adapter);
 		}
 
 		return conversationsView;
