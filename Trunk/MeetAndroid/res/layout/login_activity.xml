@@ -1,90 +1,92 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".MainActivity" >
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:text="Meet"
-        android:textColor="#ffff99"
-        android:textSize="60sp"
-        android:textStyle="italic|bold"
-        android:typeface="serif" />  
-     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="have fun!"
-        android:textColor="#ffffff" />
-     <ScrollView 
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#12c119"
+    tools:context=".MainActivity" >
+
+    <ScrollView
         android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-    	android:layout_below="@+id/textView2">
-    	<LinearLayout 
-	   	    android:layout_width="match_parent"
-	   		android:layout_height="wrap_content">
-			<TableLayout 
-			    android:layout_height="wrap_content" 
-			    android:layout_width="match_parent">
-				<TableRow 
-					android:layout_height="10dp" 
-					android:paddingTop="60dp"
-					android:gravity="center_horizontal">
-					<EditText
-					   android:id="@+id/LoginUsername"
-					   android:layout_height="wrap_content"
-					   android:layout_width="200dp"
-					   android:inputType="textPersonName"
-					   android:selectAllOnFocus="true"
-					   android:hint="@string/UserName">
-        			   <requestFocus/>
-					</EditText>
-				</TableRow>
-				<TableRow 
-					android:layout_height="10dp" 
-					android:paddingTop="10dp"
-					android:gravity="center_horizontal">
-					<EditText
-					    android:id="@+id/LoginPassword"
-					    android:layout_width="200dp"
-					    android:layout_height="wrap_content"
-					    android:inputType="textPassword"
-					    android:selectAllOnFocus="true"
-					    android:hint="@string/Password" />
-				</TableRow>
-   				<TableRow 
-					android:layout_height="10dp" 
-					android:paddingTop="30dp"
-					android:gravity="center_horizontal">
-					<Button
-						android:id="@+id/SubmitLoginButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textColor="#ffffff"
-						android:background="@drawable/rounded_button"
-						android:text="@string/TextLogin" />
-   				</TableRow>
-				<TableRow 
-					android:layout_height="10dp" 
-					android:paddingTop="10dp"
-					android:gravity="center_horizontal">  
-					<Button
-						android:id="@+id/GoRegistrationButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginBottom="19dp"
-						android:background="@drawable/rounded_button"
-						android:textColor="#ffffff"
-						android:text="@string/TextRegister" />
-				</TableRow>
-			</TableLayout>
-		</LinearLayout>
-	</ScrollView>
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">"
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:src="@drawable/meet_start_logo" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="50dp" >
+
+                    <EditText
+                        android:id="@+id/LoginUsername"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/UserName"
+                        android:inputType="textPersonName"
+                        android:selectAllOnFocus="true" >
+
+                        <requestFocus />
+                    </EditText>
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp" >
+
+                    <EditText
+                        android:id="@+id/LoginPassword"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Password"
+                        android:inputType="textPassword"
+                        android:selectAllOnFocus="true" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="30dp" >
+
+                    <Button
+                        android:id="@+id/SubmitLoginButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_button_green"
+                        android:text="@string/TextLogin"
+                        android:textColor="#ffffff" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="10dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp" >
+
+                    <Button
+                        android:id="@+id/GoRegistrationButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="19dp"
+                        android:background="@drawable/rounded_button_green"
+                        android:text="@string/TextRegister"
+                        android:textColor="#ffffff" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>

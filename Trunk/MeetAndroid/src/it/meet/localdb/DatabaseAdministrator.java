@@ -18,6 +18,7 @@ public class DatabaseAdministrator extends SQLiteOpenHelper {
 				"`photo` blob," +
 				"`name` varchar(45) DEFAULT NULL," +
 				"`surname` varchar(45) DEFAULT NULL," +
+				"`sex` varchar(1) DEFAULT NULL," +
 				"PRIMARY KEY (`username`)" +
 				");");
 		db.execSQL("CREATE TABLE `messages` (" +
@@ -31,6 +32,11 @@ public class DatabaseAdministrator extends SQLiteOpenHelper {
 				"`receiver` varchar(45) REFERENCES " +
 				"`users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE," +
 				"PRIMARY KEY (`idmessage`));");
+		db.execSQL("CREATE TABLE `friends` ("+
+				  "`user` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE ,"+
+				  "`friend` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,"+
+				  "`timestamp` timestamp NULL DEFAULT NULL,"+
+				  "PRIMARY KEY (`user`,`friend`));");
 	}
 
 	@Override

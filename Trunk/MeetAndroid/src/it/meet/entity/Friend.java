@@ -1,5 +1,5 @@
 package it.meet.entity;
 
-public class Friend {
+public class Friend extends User{
 
 }

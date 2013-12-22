@@ -2,6 +2,7 @@ package it.meet.localdb;
 
 import java.util.ArrayList;
 
+import it.meet.entity.Friend;
 import it.meet.entity.User;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -20,6 +21,7 @@ public class UsersAdministrator {
 		v.put("name", user.getName());
 		v.put("surname",user.getSurname());
 		v.put("photo", user.getPhoto());
+		v.put("sex", user.getSex());
 		databaseAdministrator.getReadableDatabase().insert("user", null, v);
 	}
 	
@@ -29,7 +31,7 @@ public class UsersAdministrator {
 		ArrayList<User> toReturn = new ArrayList<User>();
 		SQLiteDatabase db = databaseAdministrator.getReadableDatabase();
 		User user = new User();
-		String sql = "SELECT username,name,surname,photo FROM users where 1 = 1 and "+condition;
+		String sql = "SELECT username,name,surname,photo,sex FROM users where 1 = 1 and "+condition;
 		Cursor cursor = db.rawQuery(sql, new String[] {});
 		cursor.moveToFirst();
 		cursor.moveToPrevious();
@@ -39,6 +41,7 @@ public class UsersAdministrator {
 			user.setName(cursor.getString(1));
 			user.setSurname(cursor.getString(2));
 			user.setPhoto(cursor.getBlob(3));
+			user.setSex(cursor.getString(4));
 			toReturn.add(user);
 	    }
 		if (cursor != null && !cursor.isClosed()) {
@@ -58,6 +61,7 @@ public class UsersAdministrator {
 			toReturn.setName(cursor.getString(1));
 			toReturn.setSurname(cursor.getString(2));
 			toReturn.setPhoto(cursor.getBlob(3));
+			toReturn.setSex(cursor.getString(4));
 	    }
 		if (cursor != null && !cursor.isClosed()) {
 	        cursor.close();
@@ -69,6 +73,30 @@ public class UsersAdministrator {
 	        return toReturn;
 	    }
 	}
-
+	
+	 public ArrayList<Friend> getAllFriends(String localUsername){
+			ArrayList<Friend> toReturn = new ArrayList<Friend>();
+			SQLiteDatabase db = databaseAdministrator.getReadableDatabase();
+			Friend friend;
+			String sql = "SELECT username,name,surname,photo,sex FROM users,friends WHERE friends.friend = users.username"+
+					" AND friends.user = '"+localUsername+"' ORDER BY username";
+			Cursor cursor = db.rawQuery(sql, new String[] {});
+			cursor.moveToFirst();
+			cursor.moveToPrevious();
+			while(cursor.moveToNext()){
+				friend = new Friend();
+				friend.setUsername(cursor.getString(0));
+				friend.setName(cursor.getString(1));
+				friend.setSurname(cursor.getString(2));
+				friend.setPhoto(cursor.getBlob(3));
+				friend.setSex(cursor.getString(4));
+				toReturn.add(friend);
+		    }
+			if (cursor != null && !cursor.isClosed()) {
+		        cursor.close();
+		    }
+		    db.close();
+		    return toReturn;
+		}
 	
 }

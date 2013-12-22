@@ -7,6 +7,7 @@ public class User {
 	private String name;
 	private String surname;
 	private byte[] photo;
+	private String sex;
 	public String getUsername() {
 		return username;
 	}
@@ -30,5 +31,17 @@ public class User {
 	}
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
+	}
+	/**
+	 * @return the sex
+	 */
+	public String getSex() {
+		return sex;
+	}
+	/**
+	 * @param sex the sex to set
+	 */
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 }

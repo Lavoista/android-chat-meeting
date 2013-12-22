@@ -42,7 +42,8 @@ public class RegistrationActivity extends Activity{
 		if(savedInstanceState != null){
 			photoImage = savedInstanceState.getParcelable("photoImage");
         }
-		System.out.println("create view registration");
+		String title = getResources().getString(R.string.userRegistration);
+		setTitle("Registrazione Utente");
 		try {
 			setContentView(R.layout.registration_activity);
 			dateField = (EditText) findViewById(R.id.birthDate);

@@ -64,9 +64,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 public class ChatFragment extends Fragment {
 	private View chatView;
-	private static String localUsername;
-	private static String remoteUsername;
-	public static final String ARG_PLANET_NUMBER = "planet_number";
+	private String remoteUsername;
 	private UserDataAdministrator userDataAdministrator;
 
 	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
@@ -77,9 +75,6 @@ public class ChatFragment extends Fragment {
 		// Empty constructor required for fragment subclasses
 	}
 	
-	public void setLocalUsername(String localUsername){
-		this.localUsername = localUsername;
-	}
 	
 	public void setRemoteUsername(String remoteUsername){
 		this.remoteUsername = remoteUsername;
@@ -90,9 +85,8 @@ public class ChatFragment extends Fragment {
 			Bundle savedInstanceState) {
 		chatView = inflater.inflate(R.layout.chat_fragment,
 				container, false);
-		int i = getArguments().getInt(ARG_PLANET_NUMBER);
 		String title = getResources()
-				.getStringArray(R.array.menu_array)[i];
+				.getStringArray(R.array.menu_array)[3];
 		getActivity().setTitle(title);
 		ArrayList<Message> chatMessages = userDataAdministrator.getLastChatMessages(remoteUsername);
 		Iterator<Message> chatMessagesIterator = chatMessages.iterator();

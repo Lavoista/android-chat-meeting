@@ -46,6 +46,7 @@ public class ConversationsAdministrator {
 				temp.setLastMessageChat(lastMessage);
 				temp.setRemoteUser(remoteUsername);
 				temp.setRemoteUserPhoto(remoteUser.getPhoto());
+				temp.setRemoteUserSex(remoteUser.getSex());
 				toReturn.add(temp);
 			}
 		

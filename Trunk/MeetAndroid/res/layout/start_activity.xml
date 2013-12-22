@@ -2,29 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#12c119"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="147dp"
-        android:gravity="center_horizontal"
-        android:text="Meet"
-        android:textColor="#ffff99"
-        android:textSize="62sp"
-        android:textStyle="italic|bold"
-        android:typeface="serif" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="have fun!"
-        android:textColor="#ffffff" />
+        android:layout_centerInParent="true"
+        android:src="@drawable/meet_start_logo" />
 
 </RelativeLayout>

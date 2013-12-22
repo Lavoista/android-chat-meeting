@@ -23,6 +23,7 @@ import it.meet.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.DialogInterface;
@@ -46,15 +47,15 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
-	private ListView mDrawerList;
+	public ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] framentsTitles;
 	private SearchFragment searchFragment;
-	private int lastPosition = -1;
 	String PREFS_NAME = "MeetPreferFile";
 	static SharedPreferences storedInfo;
+	public Fragment currentFragment;
 	Editor preferencesEditor;
 	private UserDataAdministrator userDataAdministrator;//assicurati che l'oggetto non viene ricreato ogni volta, ma soltanto
 	//quando si crea l'activity
@@ -170,65 +171,67 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	private void selectItem(int position) {
+	public void selectItem(int position) {
 		// update the main content by replacing fragments
 		Log.w("Position", "position=" + position);
-		if (position == 0 && lastPosition != 0) {
-			lastPosition = 0;
+		
+		
+		if (position == 0 && !(currentFragment instanceof  SearchFragment)) {
 			if (searchFragment == null) {
 				searchFragment = new SearchFragment();
 			}
+			currentFragment = searchFragment;
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, searchFragment).commit();
-		} else if (position == 1 && lastPosition != 1) {
-			lastPosition = 1;
+		} else if (position == 1 && !(currentFragment instanceof  ConversationsFragment)) {
 			ConversationsFragment conversationsFragment = new ConversationsFragment();
+			currentFragment = conversationsFragment;
 			conversationsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, conversationsFragment)
 					.commit();
-		} else if (position == 2 && lastPosition != 2) {
-			lastPosition = 2;
+		} else if (position == 2 && !(currentFragment instanceof FriendsFragment)) {
 			FriendsFragment friendsFragment = new FriendsFragment();
+			currentFragment = friendsFragment;
 			friendsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, friendsFragment).commit();
-		} else if (position == 3 && lastPosition != 3) {
-			lastPosition = 3;
+		} else if (position == 3 && !(currentFragment instanceof FriendRequestsFragment)) {
 			FriendRequestsFragment friendRequestFragment = new FriendRequestsFragment();
+			currentFragment = friendRequestFragment;
 			friendRequestFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, friendRequestFragment)
 					.commit();
-		} else if (position == 4 && lastPosition != 4) {
-			lastPosition = 4;
+		} else if (position == 4 && !(currentFragment instanceof BlackListFragment)) {
 			BlackListFragment blackListFragment = new BlackListFragment();
+			currentFragment = blackListFragment;
 			blackListFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, blackListFragment).commit();
-		} else if (position == 5 && lastPosition != 5) {
-			lastPosition = 5;
+		} else if (position == 5 && !(currentFragment instanceof FavoritePlacesFragment)) {
 			FavoritePlacesFragment favoritePlacesFragment = new FavoritePlacesFragment();
+			currentFragment = favoritePlacesFragment;
 			favoritePlacesFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, favoritePlacesFragment)
 					.commit();
-		} else if (position == 6 && lastPosition != 6) {
-			lastPosition = 6;
+		} else if (position == 6 && !(currentFragment instanceof ProfileFragment)) {
 			ProfileFragment profileFragment = new ProfileFragment();
+			currentFragment = profileFragment;
 			profileFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, profileFragment).commit();
-		} else if (position == 7 && lastPosition != 7) {
-			lastPosition = 7;
+		} else if (position == 7 && !(currentFragment instanceof SettingsFragment)) {
 			SettingsFragment settingsFragment = new SettingsFragment();
+			currentFragment = settingsFragment;
 			settingsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
@@ -265,7 +268,6 @@ public class MainActivity extends Activity {
 			alertDialog2.show();
 
 		} 
-		// Aggiorno e chiudo il drawer
 		mDrawerList.setItemChecked(position, true);
 		mDrawerLayout.closeDrawer(mDrawerList);
 
@@ -281,6 +283,21 @@ public class MainActivity extends Activity {
 	 * When using the ActionBarDrawerToggle, you must call it during
 	 * onPostCreate() and onConfigurationChanged()...
 	 */
+	
+	@Override
+	public void onBackPressed(){
+		if(currentFragment instanceof ChatFragment){
+			this.selectItem(1);
+		}
+		else{
+			finish();
+		}
+	    
+	}
+	
+	public void setCurrentFragment(Fragment currentFragment){
+		this.currentFragment=currentFragment;
+	}
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -294,6 +311,10 @@ public class MainActivity extends Activity {
 		super.onConfigurationChanged(newConfig);
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+	
+	public ListView getDrawerList(){
+		return this.mDrawerList;
 	}
 
 	

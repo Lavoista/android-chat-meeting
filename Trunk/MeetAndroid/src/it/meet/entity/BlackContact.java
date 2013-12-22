@@ -1,5 +1,5 @@
 package it.meet.entity;
 
-public class BlackContact {
+public class BlackContact extends User{
 
 }

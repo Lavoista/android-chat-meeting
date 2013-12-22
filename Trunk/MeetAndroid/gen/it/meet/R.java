@@ -144,9 +144,10 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000b;
-        public static final int common_signin_btn_text_light=0x7f04000c;
+        public static final int common_signin_btn_text_dark=0x7f04000c;
+        public static final int common_signin_btn_text_light=0x7f04000d;
         public static final int custom_theme_color=0x7f04000a;
+        public static final int title_background=0x7f04000b;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -190,116 +191,133 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f02001c;
         public static final int common_signin_btn_text_pressed_light=0x7f02001d;
         public static final int drawer_shadow=0x7f02001e;
-        public static final int galleryicon=0x7f02001f;
-        public static final int gradient=0x7f020020;
-        public static final int ic_drawer=0x7f020021;
-        public static final int ic_stat_gcm=0x7f020022;
-        public static final int microphone=0x7f020023;
-        public static final int no_photo_female=0x7f020024;
-        public static final int no_photo_male=0x7f020025;
-        public static final int rettangolo=0x7f020026;
-        public static final int rounded_button=0x7f020027;
-        public static final int smileicon=0x7f020028;
+        public static final int foto_registration_background=0x7f02001f;
+        public static final int galleryicon=0x7f020020;
+        public static final int gradient=0x7f020021;
+        public static final int ic_drawer=0x7f020022;
+        public static final int ic_stat_gcm=0x7f020023;
+        public static final int meet_start_logo=0x7f020024;
+        public static final int microphone=0x7f020025;
+        public static final int no_photo_female=0x7f020026;
+        public static final int no_photo_male=0x7f020027;
+        public static final int pressed_rounded_button_black=0x7f020028;
+        public static final int pressed_rounded_button_green=0x7f020029;
+        public static final int rettangolo=0x7f02002a;
+        public static final int rettangolo_registration=0x7f02002b;
+        public static final int rounded_button_black=0x7f02002c;
+        public static final int rounded_button_green=0x7f02002d;
+        public static final int smileicon=0x7f02002e;
+        public static final int unpressed_rounded_button_black=0x7f02002f;
+        public static final int unpressed_rounded_button_green=0x7f020030;
     }
     public static final class id {
-        public static final int GoRegistrationButton=0x7f050016;
-        public static final int ImageButton01=0x7f05000a;
-        public static final int LoginPassword=0x7f050014;
-        public static final int LoginUsername=0x7f050013;
-        public static final int SubmitLoginButton=0x7f050015;
-        public static final int action_websearch=0x7f05002d;
-        public static final int birthDate=0x7f050023;
-        public static final int chatEditTextLayout=0x7f050008;
-        public static final int confirmPassword=0x7f05001e;
-        public static final int content_frame=0x7f050018;
-        public static final int conversationPhoto=0x7f05000e;
-        public static final int conversations=0x7f050006;
-        public static final int drawer_layout=0x7f050017;
+        public static final int GoRegistrationButton=0x7f05001d;
+        public static final int ImageButton01=0x7f05000c;
+        public static final int LoginPassword=0x7f05001b;
+        public static final int LoginUsername=0x7f05001a;
+        public static final int SubmitLoginButton=0x7f05001c;
+        public static final int action_websearch=0x7f050034;
+        public static final int birthDate=0x7f050025;
+        public static final int blackListRowPhoto=0x7f050006;
+        public static final int blackListRowText1=0x7f050007;
+        public static final int blackListRowText2=0x7f050008;
+        public static final int blackListView=0x7f050005;
+        public static final int chatEditTextLayout=0x7f05000a;
+        public static final int confirmPassword=0x7f050024;
+        public static final int content_frame=0x7f05001f;
+        public static final int conversationPhoto=0x7f050010;
+        public static final int conversations=0x7f050014;
+        public static final int drawer_layout=0x7f05001e;
+        public static final int friendsListView=0x7f050015;
+        public static final int friendsRowPhoto=0x7f050016;
+        public static final int friendsRowText1=0x7f050017;
+        public static final int friendsRowText2=0x7f050018;
         public static final int hybrid=0x7f050004;
-        public static final int image=0x7f05001a;
-        public static final int imageView1=0x7f05001b;
-        public static final int insertMessage=0x7f05000b;
-        public static final int left_drawer=0x7f050019;
-        public static final int listViewConversation=0x7f05000d;
-        public static final int loadPhotoButton=0x7f050026;
-        public static final int mailAddress=0x7f050021;
-        public static final int makePhotoButton=0x7f050027;
-        public static final int map=0x7f05002c;
-        public static final int messages=0x7f050009;
-        public static final int name=0x7f05001f;
+        public static final int image=0x7f050021;
+        public static final int imageView1=0x7f050033;
+        public static final int imageView2=0x7f050019;
+        public static final int insertMessage=0x7f05000d;
+        public static final int left_drawer=0x7f050020;
+        public static final int listViewConversation=0x7f05000f;
+        public static final int loadPhotoButton=0x7f05002c;
+        public static final int mailAddress=0x7f05002a;
+        public static final int makePhotoButton=0x7f05002f;
+        public static final int map=0x7f050032;
+        public static final int messages=0x7f05000b;
+        public static final int name=0x7f050028;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int password=0x7f05001d;
-        public static final int phoneNumber=0x7f050022;
-        public static final int photoView=0x7f050028;
-        public static final int rotateLeftButton=0x7f050029;
-        public static final int rotateRightButton=0x7f05002a;
+        public static final int password=0x7f050023;
+        public static final int phoneNumber=0x7f05002b;
+        public static final int photoView=0x7f05002e;
+        public static final int rotateLeftButton=0x7f05002d;
+        public static final int rotateRightButton=0x7f050030;
         public static final int satellite=0x7f050002;
-        public static final int scrollViewChat=0x7f050007;
-        public static final int scrollViewConversations=0x7f050005;
-        public static final int sexF=0x7f050025;
-        public static final int sexM=0x7f050024;
-        public static final int submitMessageButton=0x7f05000c;
-        public static final int submitRegistrationButton=0x7f05002b;
-        public static final int surname=0x7f050020;
+        public static final int scrollViewChat=0x7f050009;
+        public static final int scrollViewConversations=0x7f050013;
+        public static final int sexF=0x7f050027;
+        public static final int sexM=0x7f050026;
+        public static final int submitMessageButton=0x7f05000e;
+        public static final int submitRegistrationButton=0x7f050031;
+        public static final int surname=0x7f050029;
         public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f050011;
-        public static final int textView1List=0x7f05000f;
-        public static final int textView2=0x7f050012;
-        public static final int textView2List=0x7f050010;
-        public static final int username=0x7f05001c;
+        public static final int textView1List=0x7f050011;
+        public static final int textView2List=0x7f050012;
+        public static final int username=0x7f050022;
     }
     public static final class layout {
         public static final int black_list_fragment=0x7f030000;
-        public static final int chat_fragment=0x7f030001;
-        public static final int conversations_fragment=0x7f030002;
-        public static final int conversations_row=0x7f030003;
-        public static final int drawer_list_item=0x7f030004;
-        public static final int favorite_places_fragment=0x7f030005;
-        public static final int friend_requests_fragment=0x7f030006;
-        public static final int friends_fragment=0x7f030007;
-        public static final int login_activity=0x7f030008;
-        public static final int main_activity=0x7f030009;
-        public static final int planet_fragment=0x7f03000a;
-        public static final int registration_activity=0x7f03000b;
-        public static final int search_fragment=0x7f03000c;
-        public static final int settings_fragment=0x7f03000d;
-        public static final int start_activity=0x7f03000e;
+        public static final int black_list_row=0x7f030001;
+        public static final int chat_fragment=0x7f030002;
+        public static final int conversations_fragment=0x7f030003;
+        public static final int conversations_row=0x7f030004;
+        public static final int drawer_list_item=0x7f030005;
+        public static final int favorite_places_fragment=0x7f030006;
+        public static final int friend_requests_fragment=0x7f030007;
+        public static final int friends_fragment=0x7f030008;
+        public static final int friends_row=0x7f030009;
+        public static final int login_activity=0x7f03000a;
+        public static final int main_activity=0x7f03000b;
+        public static final int planet_fragment=0x7f03000c;
+        public static final int registration_activity=0x7f03000d;
+        public static final int search_fragment=0x7f03000e;
+        public static final int settings_fragment=0x7f03000f;
+        public static final int start_activity=0x7f030010;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
-        public static final int BirthDate=0x7f060025;
-        public static final int ConfirmPassword=0x7f060023;
-        public static final int EMail=0x7f060024;
-        public static final int Localita=0x7f060019;
-        public static final int MEET0002=0x7f060030;
-        public static final int MEET0004=0x7f060031;
-        public static final int MEET0006=0x7f060032;
-        public static final int MEET0022=0x7f060033;
-        public static final int MEET0055=0x7f060034;
-        public static final int MEET0056=0x7f060035;
-        public static final int MEET0057=0x7f060036;
-        public static final int NO_BLACKLIST_FOUND=0x7f06002e;
-        public static final int NO_CONVERSATIONS_FOUND=0x7f06002b;
-        public static final int NO_FAVORITE_PLACE_FOUND=0x7f06002f;
-        public static final int NO_FRIENDS_FOUND=0x7f06002c;
-        public static final int NO_FRIEND_REQUESTS_FOUND=0x7f06002d;
-        public static final int Name=0x7f060020;
-        public static final int Password=0x7f060022;
-        public static final int SUCCESSFULLY_LOGIN=0x7f060029;
-        public static final int SUCCESSFULLY_REGISTRATION=0x7f06002a;
-        public static final int Send=0x7f060018;
-        public static final int Sex=0x7f060026;
-        public static final int Surname=0x7f060021;
-        public static final int TextLogin=0x7f060027;
-        public static final int TextRegister=0x7f060028;
-        public static final int UserName=0x7f06001f;
-        public static final int WriteMessage=0x7f060017;
-        public static final int action_websearch=0x7f06001d;
+        public static final int BirthDate=0x7f060026;
+        public static final int ConfirmPassword=0x7f060024;
+        public static final int EMail=0x7f060025;
+        public static final int Localita=0x7f06001a;
+        public static final int MEET0002=0x7f060031;
+        public static final int MEET0004=0x7f060032;
+        public static final int MEET0006=0x7f060033;
+        public static final int MEET0022=0x7f060034;
+        public static final int MEET0055=0x7f060035;
+        public static final int MEET0056=0x7f060036;
+        public static final int MEET0057=0x7f060037;
+        public static final int NO_BLACKLIST_FOUND=0x7f06002f;
+        public static final int NO_CONVERSATIONS_FOUND=0x7f06002c;
+        public static final int NO_FAVORITE_PLACE_FOUND=0x7f060030;
+        public static final int NO_FRIENDS_FOUND=0x7f06002d;
+        public static final int NO_FRIEND_REQUESTS_FOUND=0x7f06002e;
+        public static final int Name=0x7f060021;
+        public static final int Password=0x7f060023;
+        public static final int SUCCESSFULLY_LOGIN=0x7f06002a;
+        public static final int SUCCESSFULLY_REGISTRATION=0x7f06002b;
+        public static final int Send=0x7f060019;
+        public static final int Sex=0x7f060027;
+        public static final int Surname=0x7f060022;
+        public static final int TextLogin=0x7f060028;
+        public static final int TextRegister=0x7f060029;
+        public static final int UserName=0x7f060020;
+        public static final int WriteMessage=0x7f060018;
+        public static final int action_websearch=0x7f06001e;
         public static final int app_name=0x7f060015;
-        public static final int app_not_available=0x7f06001e;
+        public static final int app_not_available=0x7f06001f;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -378,10 +396,11 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f06000e;
-        public static final int drawer_close=0x7f06001c;
-        public static final int drawer_open=0x7f06001b;
-        public static final int map1=0x7f06001a;
-        public static final int text_localita=0x7f060016;
+        public static final int drawer_close=0x7f06001d;
+        public static final int drawer_open=0x7f06001c;
+        public static final int map1=0x7f06001b;
+        public static final int text_localita=0x7f060017;
+        public static final int userRegistration=0x7f060016;
     }
     public static final class style {
         /** 
@@ -396,7 +415,7 @@ containing a value of this type.
         /**  Application theme. 
          */
         public static final int AppTheme=0x7f090002;
-        public static final int AppThemeNoTitleBar=0x7f090003;
+        public static final int AppThemeNoTitleBar=0x7f090004;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -405,6 +424,7 @@ containing a value of this type.
     
          */
         public static final int App_EditTextStyle=0x7f090000;
+        public static final int WindowTitleBackground=0x7f090003;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

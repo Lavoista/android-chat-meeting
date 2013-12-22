@@ -13,6 +13,7 @@
         <item>Impostazioni</item>   
         <item>Esci</item>
     </string-array>
+    <string name="userRegistration">Registrazione Utente</string>
     <string name="text_localita">Inserisci Localita</string>
     <string name="WriteMessage">Scrivi Messaggio</string>
     <string name="Send">Invia</string>
@@ -34,11 +35,11 @@
     <string name="TextRegister">Registrati</string>
     <string name="SUCCESSFULLY_LOGIN">Login effettuato con successo</string>
     <string name="SUCCESSFULLY_REGISTRATION">Registrazione effettuata con successo</string>
-    <string name="NO_CONVERSATIONS_FOUND">Non ci sono conversazioni, accedi alla lista amici ed inizia a chattare.</string>
+    <string name="NO_CONVERSATIONS_FOUND">Non ci sono conversazioni, accedi alla lista amici ed inizia una nuova conversazione.</string>
     <string name="NO_FRIENDS_FOUND">Nessun contatto aggiunto alla lista degli amici.</string>
     <string name="NO_FRIEND_REQUESTS_FOUND">Non hai nessuna richiesta di amicizia.</string>
     <string name="NO_BLACKLIST_FOUND">Nessun contatto è stato bloccato.</string>
-    <string name="NO_FAVORITE_PLACE_FOUND">Nessuna luogo è stato aggiunto alla lista dei preferiti.</string>
+    <string name="NO_FAVORITE_PLACE_FOUND">Nessun luogo è stato aggiunto alla lista dei preferiti.</string>
 	<string name="MEET0002">L\'Username inserito è gia utilizzato da un altro utente!!</string>
     <string name="MEET0004">Il Nome Utente è Obbligatorio!!</string>
     <string name="MEET0006">L\'indirizzo Email non è valido!!</string>

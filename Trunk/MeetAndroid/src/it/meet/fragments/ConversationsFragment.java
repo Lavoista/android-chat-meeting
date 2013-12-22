@@ -1,7 +1,8 @@
 package it.meet.fragments;
 
 import it.meet.R;
-import it.meet.conversations.ConversationsAdapter;
+import it.meet.conversations.ConversationsItemClickListener;
+import it.meet.conversations.ConversationsListAdapter;
 import it.meet.entity.Conversation;
 import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
@@ -16,6 +17,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -59,8 +62,12 @@ public class ConversationsFragment extends Fragment {
 	        while (conversationsIterator.hasNext()){
 	        	list.add(conversationsIterator.next());
 	        }
-	        ConversationsAdapter adapter = new ConversationsAdapter(this.getActivity(), R.layout.conversations_row, list);
+	        ConversationsListAdapter adapter = new ConversationsListAdapter(this.getActivity(), R.layout.conversations_row, list);
 	        listView.setAdapter(adapter);
+	        ConversationsItemClickListener listener = new ConversationsItemClickListener();
+	        listener.setUserDataAdministrator(userDataAdministrator);
+	        listener.setConversationList(list);
+	        listView.setOnItemClickListener(listener);	        
 		}
 
 		return conversationsView;

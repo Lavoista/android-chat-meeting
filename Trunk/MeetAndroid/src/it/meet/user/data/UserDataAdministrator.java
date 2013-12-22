@@ -5,6 +5,7 @@ import it.meet.entity.Conversation;
 import it.meet.entity.Friend;
 import it.meet.entity.FriendRequest;
 import it.meet.entity.PreferedSite;
+import it.meet.entity.User;
 import it.meet.entity.UserProfile;
 import it.meet.localdb.ConversationsAdministrator;
 import it.meet.localdb.DatabaseAdministrator;
@@ -21,6 +22,14 @@ import android.content.Context;
 public class UserDataAdministrator {
 	private DatabaseAdministrator databaseAdmnistrator;
 	private String localUsername;
+	public String getLocalUsername() {
+		return localUsername;
+	}
+
+	public void setLocalUsername(String localUsername) {
+		this.localUsername = localUsername;
+	}
+
 	private String remoteUsername;
 	private ArrayDeque<Conversation> conversationsDeque;
 	private ArrayList<Message> lastChatMessages;
@@ -43,7 +52,7 @@ public class UserDataAdministrator {
 		ArrayList<Conversation> conversazioni = conversationsAdministrator.getConversationsFromDb(localUsername);
 		conversationsDeque = new ArrayDeque<Conversation>();
 		conversationsDeque.addAll(conversazioni);
-		//setFriendsList
+		friendsList = usersAdministrator.getAllFriends(localUsername);
 		//setFriendRequestsList
 		//setBlackList
 		//setPreferedSitesList
