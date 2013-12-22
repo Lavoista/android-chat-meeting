@@ -78,17 +78,17 @@ public class OnClickSubmitRegistrationListener implements OnClickListener {
 		name = (((EditText) registrationActivity.findViewById(R.id.name)).getText()
 				.toString());
 		if (name.isEmpty()) {
-			emptyFields.add("Name");
+			//emptyFields.add("Name"); if is empty do nothing
 		}
 		surname = (((EditText) registrationActivity.findViewById(R.id.surname)).getText()
 				.toString());
 		if (surname.isEmpty()) {
-			emptyFields.add("Surname");
+			//emptyFields.add("Surname"); if is empty do nothing
 		}
 		mailAddress = (((EditText) registrationActivity.findViewById(R.id.mailAddress))
 				.getText().toString());
 		if (mailAddress.isEmpty()) {
-			emptyFields.add("EMail");
+			//emptyFields.add("EMail"); if is empty do nothing
 		}
 		dateField = (((EditText) registrationActivity.findViewById(R.id.birthDate))
 				.getText().toString());
@@ -152,7 +152,7 @@ public class OnClickSubmitRegistrationListener implements OnClickListener {
 			return false;
 		}
 
-		if (!mailAddress.contains("@")) {
+		if (!mailAddress.isEmpty() && !mailAddress.contains("@")) {
 			Toast.makeText(
 					registrationActivity,
 					ErrorsAdministrator.getDescription("MEET0006",

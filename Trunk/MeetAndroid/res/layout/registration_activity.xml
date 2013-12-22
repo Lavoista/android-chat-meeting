@@ -20,6 +20,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:text="Dati Obbligatori"
+                android:textStyle="bold"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -170,6 +171,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:text="Altri Dati"
+                android:textStyle="bold"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -331,6 +333,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight=".33" >
@@ -339,8 +342,8 @@
                                 android:id="@+id/photoView"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                android:layout_gravity="center" 
-                                android:src="@drawable/no_photo_male"/>"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:src="@drawable/no_photo_male"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -383,7 +386,7 @@
             
             <Button
                 android:id="@+id/submitRegistrationButton"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 
@@ -391,7 +394,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button_green"
-                android:text="Conferma"
+                android:text="Fatto"
                 android:textColor="#ffffff"
                 android:width="200dp" />
             <TextView 
