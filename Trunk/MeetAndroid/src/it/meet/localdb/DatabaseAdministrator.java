@@ -37,6 +37,11 @@ public class DatabaseAdministrator extends SQLiteOpenHelper {
 				  "`friend` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,"+
 				  "`timestamp` timestamp NULL DEFAULT NULL,"+
 				  "PRIMARY KEY (`user`,`friend`));");
+		db.execSQL("CREATE TABLE `blacklist` ("+
+				  "`user` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE ,"+
+				  "`blocked` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,"+
+				  "`timestamp` timestamp NULL DEFAULT NULL,"+
+				  "PRIMARY KEY (`user`,`friend`));");
 	}
 
 	@Override

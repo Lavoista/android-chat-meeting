@@ -45,16 +45,23 @@ public class UserDataAdministrator {
 	public UserDataAdministrator(String localUsername,Context context) {
 		this.localUsername = localUsername;
 		databaseAdmnistrator = new DatabaseAdministrator(context);
+		
+		//Get All Friends
 		usersAdministrator = new UsersAdministrator(databaseAdmnistrator);
-		//to do set all variables
+		friendsList = usersAdministrator.getAllFriends(localUsername);
+		
+		//Get All Conversations
 		conversationsAdministrator = new ConversationsAdministrator(databaseAdmnistrator);
-		messageAdministrator = new MessagesAdministrator(databaseAdmnistrator);
 		ArrayList<Conversation> conversazioni = conversationsAdministrator.getConversationsFromDb(localUsername);
 		conversationsDeque = new ArrayDeque<Conversation>();
 		conversationsDeque.addAll(conversazioni);
-		friendsList = usersAdministrator.getAllFriends(localUsername);
+		
+		//Get All Messages
+		messageAdministrator = new MessagesAdministrator(databaseAdmnistrator);
+		
+		blackList = usersAdministrator.getBlackList(localUsername);
+		
 		//setFriendRequestsList
-		//setBlackList
 		//setPreferedSitesList
 		//setUserProfile
 		
