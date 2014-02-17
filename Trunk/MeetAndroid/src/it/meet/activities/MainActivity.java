@@ -17,7 +17,6 @@
 package it.meet.activities;
 
 import it.meet.fragments.*;
-import it.meet.user.data.UserDataAdministrator;
 
 import it.meet.R;
 
@@ -53,18 +52,15 @@ public class MainActivity extends Activity {
 	private CharSequence mTitle;
 	private String[] framentsTitles;
 	private SearchFragment searchFragment;
-	String PREFS_NAME = "MeetPreferFile";
+	
 	static SharedPreferences storedInfo;
 	public Fragment currentFragment;
 	Editor preferencesEditor;
-	private UserDataAdministrator userDataAdministrator;//assicurati che l'oggetto non viene ricreato ogni volta, ma soltanto
-	//quando si crea l'activity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
-		storedInfo = this.getSharedPreferences(PREFS_NAME, 0);
 		mTitle = mDrawerTitle = getTitle();
 		framentsTitles = getResources().getStringArray(R.array.menu_array);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -107,12 +103,6 @@ public class MainActivity extends Activity {
 
 		if (savedInstanceState == null) {
 			selectItem(0);
-		}
-		if (!storedInfo.getString("loggedUser", "").isEmpty()){
-			userDataAdministrator = new UserDataAdministrator(storedInfo.getString("loggedUser", ""),this);
-		}
-		else{
-			userDataAdministrator = new UserDataAdministrator("",this);
 		}
 		
 		
@@ -184,25 +174,22 @@ public class MainActivity extends Activity {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, searchFragment).commit();
-		} else if (position == 1 && !(currentFragment instanceof  ConversationsFragment)) {
-			ConversationsFragment conversationsFragment = new ConversationsFragment();
+		} else if (position == 1 && !(currentFragment instanceof  ConversationsListFragment)) {
+			ConversationsListFragment conversationsFragment = new ConversationsListFragment();
 			currentFragment = conversationsFragment;
-			conversationsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, conversationsFragment)
 					.commit();
-		} else if (position == 2 && !(currentFragment instanceof FriendsFragment)) {
-			FriendsFragment friendsFragment = new FriendsFragment();
+		} else if (position == 2 && !(currentFragment instanceof FriendsListFragment)) {
+			FriendsListFragment friendsFragment = new FriendsListFragment();
 			currentFragment = friendsFragment;
-			friendsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, friendsFragment).commit();
 		} else if (position == 3 && !(currentFragment instanceof FriendRequestsFragment)) {
 			FriendRequestsFragment friendRequestFragment = new FriendRequestsFragment();
 			currentFragment = friendRequestFragment;
-			friendRequestFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, friendRequestFragment)
@@ -210,63 +197,33 @@ public class MainActivity extends Activity {
 		} else if (position == 4 && !(currentFragment instanceof BlackListFragment)) {
 			BlackListFragment blackListFragment = new BlackListFragment();
 			currentFragment = blackListFragment;
-			blackListFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, blackListFragment).commit();
 		} else if (position == 5 && !(currentFragment instanceof FavoritePlacesFragment)) {
 			FavoritePlacesFragment favoritePlacesFragment = new FavoritePlacesFragment();
 			currentFragment = favoritePlacesFragment;
-			favoritePlacesFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, favoritePlacesFragment)
 					.commit();
-		} else if (position == 6 && !(currentFragment instanceof ProfileFragment)) {
-			ProfileFragment profileFragment = new ProfileFragment();
+		} else if (position == 6 && !(currentFragment instanceof MyProfileFragment)) {
+			MyProfileFragment profileFragment = new MyProfileFragment();
 			currentFragment = profileFragment;
-			profileFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, profileFragment).commit();
 		} else if (position == 7 && !(currentFragment instanceof SettingsFragment)) {
 			SettingsFragment settingsFragment = new SettingsFragment();
 			currentFragment = settingsFragment;
-			settingsFragment.setUserDataAdministrator(userDataAdministrator);
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.content_frame, settingsFragment).commit();
-		} else if (position == 8) {
-			AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
-			
-			preferencesEditor = storedInfo.edit();
-			// Setting Dialog Title
-			alertDialog2.setTitle("Conferma uscita");
-
-			// Setting Dialog Message
-			alertDialog2
-					.setMessage("Sei sicuro di voler uscire dall'applicazione?");
-
-			// Setting Positive "Yes" Btn
-			alertDialog2.setPositiveButton("SI",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							// Write your code here to execute after dialog
-							preferencesEditor.remove("loggedUser");
-							preferencesEditor.commit();
-							finish();
-						}
-					});
-			// Setting Negative "NO" Btn
-			alertDialog2.setNegativeButton("NO",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							// Write your code here to execute after dialog
-							dialog.cancel();
-						}
-					});
-			alertDialog2.show();
-
+		} else if(position == 8){
+			//return to loginFragment
+			this.askLogOut(this);
+		}else if (position == 9) {
+			askExit();
 		} 
 		mDrawerList.setItemChecked(position, true);
 		mDrawerLayout.closeDrawer(mDrawerList);
@@ -288,6 +245,19 @@ public class MainActivity extends Activity {
 	public void onBackPressed(){
 		if(currentFragment instanceof ChatFragment){
 			this.selectItem(1);
+		}
+		else if(currentFragment instanceof FriendProfileFragment){
+			this.selectItem(2);
+		}
+		else if(currentFragment instanceof ConversationsListFragment ||
+				currentFragment instanceof FriendsListFragment ||
+				currentFragment instanceof BlackListFragment ||
+				currentFragment instanceof FavoritePlacesFragment ||
+				currentFragment instanceof FriendRequestsFragment ||
+				currentFragment instanceof MyProfileFragment ||
+				currentFragment instanceof SettingsFragment ||
+				currentFragment instanceof SearchFragment){
+			askExit();
 		}
 		else{
 			finish();
@@ -318,6 +288,70 @@ public class MainActivity extends Activity {
 	}
 
 	
+	public void askExit(){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+		// Setting Dialog Title
+		alertDialog2.setTitle("Conferma uscita");
 
+		// Setting Dialog Message
+		alertDialog2
+				.setMessage("Sei sicuro di voler uscire dall'applicazione?");
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("SI",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						// Write your code here to execute after dialog
+							//preferencesEditor.remove("loggedUser");
+							//preferencesEditor.commit();
+						finish();
+					}
+				});
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton("NO",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						// Write your code here to execute after dialog
+						dialog.cancel();
+					}
+				});
+		alertDialog2.show();
+	}
+	
+	public void askLogOut(Activity gg){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+		final Activity gg1 = gg;
+		String PREFS_NAME = "MeetPreferFile";		
+		storedInfo = this.getSharedPreferences(PREFS_NAME, 0);
+		preferencesEditor = storedInfo.edit();
+		// Setting Dialog Title
+		alertDialog2.setTitle("Conferma Cambio Utente");
+
+		// Setting Dialog Message
+		alertDialog2
+				.setMessage("Sei sicuro di voler disconnettere "+storedInfo.getString("loggedUser", ""));
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("SI",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						// Write your code here to execute after dialog
+						preferencesEditor.remove("loggedUser");
+						preferencesEditor.commit();
+						
+						//bisogna eseguire questo codice per spostarsi sulla LoginActivity
+						gg1.startActivity(new Intent(gg1, LoginActivity.class));
+						//this.finish();
+						finish();
+					}
+				});
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton("NO",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						// Write your code here to execute after dialog
+						dialog.cancel();
+					}
+				});
+		alertDialog2.show();
+	}
 
 }

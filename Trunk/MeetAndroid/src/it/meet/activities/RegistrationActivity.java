@@ -4,7 +4,6 @@ import it.meet.R;
 import it.meet.registration.OnClickDateFieldListener;
 import it.meet.registration.OnClickSubmitRegistrationListener;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -42,7 +41,6 @@ public class RegistrationActivity extends Activity{
 		if(savedInstanceState != null){
 			photoImage = savedInstanceState.getParcelable("photoImage");
         }
-		String title = getResources().getString(R.string.userRegistration);
 		setTitle("Registrazione Utente");
 		try {
 			setContentView(R.layout.registration_activity);
@@ -77,6 +75,9 @@ public class RegistrationActivity extends Activity{
 			rotateLeft.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
+					if(photoImage==null){
+						return;
+					}
 					Matrix matrix = new Matrix();
 					matrix.postRotate(270.0f);
 					ImageView imageView = (ImageView)findViewById(R.id.photoView);
@@ -93,6 +94,9 @@ public class RegistrationActivity extends Activity{
 			rotateRight.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
+					if(photoImage==null){
+						return;
+					}
 					Matrix matrix = new Matrix();
 					matrix.postRotate(90.0f);
 					ImageView imageView = (ImageView) findViewById(R.id.photoView);

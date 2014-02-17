@@ -1,16 +1,17 @@
 package it.meet.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
 
 public class BlackContact extends User{
 
-	private Timestamp timestamp;
+	private Date blockedDate;
 
-	public Timestamp getTimestamp() {
-		return timestamp;
+	public Date getBlockedDate() {
+		return blockedDate;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
+	public void setBlockedDate(Date blockedDate) {
+		this.blockedDate = blockedDate;
 	}
 }

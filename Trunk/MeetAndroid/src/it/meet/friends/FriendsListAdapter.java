@@ -6,6 +6,7 @@ import it.meet.R;
 import it.meet.entity.Conversation;
 import it.meet.entity.Friend;
 import it.meet.entity.User;
+import it.meet.utils.DateUtil;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,7 +36,8 @@ public class FriendsListAdapter extends ArrayAdapter<Friend>{
         convertView = inflater.inflate(R.layout.friends_row, null);
         
         TextView username = (TextView)convertView.findViewById(R.id.friendsRowText1);
-        TextView lastMessage = (TextView)convertView.findViewById(R.id.friendsRowText2);
+        TextView phrase = (TextView)convertView.findViewById(R.id.friendsRowText2);
+        TextView sexAge = (TextView)convertView.findViewById(R.id.friendsRowTextSexAge);
         ImageView photoView = (ImageView)convertView.findViewById(R.id.friendsRowPhoto);
         Friend c = getItem(position);
         String sex = c.getSex();
@@ -53,7 +55,17 @@ public class FriendsListAdapter extends ArrayAdapter<Friend>{
         else{
         	photoView.setImageDrawable(noPhotoAvailable);
         }
-        username.setText(c.getUsername());
+        //capitalize first letter in every word in username
+        String usernameVar = c.getUsername();
+        String[] tokens = usernameVar.split(" ");
+        String resultString = "";
+        for(int h=0;h<tokens.length;h++){
+        	tokens[h] = tokens[h].substring(0,1).toUpperCase()+tokens[h].substring(1,tokens[h].length());
+        	resultString += tokens[h]+" ";
+        }
+        sexAge.setText(sex + " " + DateUtil.getAge(c.getBirthdate()));
+        username.setText(resultString);
+        phrase.setText(c.getPhrase());
         return convertView;
     }
 

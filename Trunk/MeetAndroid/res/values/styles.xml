@@ -28,6 +28,7 @@
         <!-- <item name="android:textStyle">@style/editTxt_theme</item> -->
         <item name="android:editTextStyle">@style/App_EditTextStyle</item>
         <item name="android:actionBarStyle">@style/WindowTitleBackground</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/list_activated_background</item>
     </style>
     
     <style name="WindowTitleBackground" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">>     

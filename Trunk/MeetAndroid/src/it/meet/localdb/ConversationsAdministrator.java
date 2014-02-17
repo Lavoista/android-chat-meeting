@@ -2,18 +2,12 @@ package it.meet.localdb;
 
 import it.meet.entity.Conversation;
 import it.meet.entity.User;
-import it.meet.service.messaging.ContentType;
 import it.meet.service.messaging.Message;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
-import java.util.List;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
 
 public class ConversationsAdministrator {
 	DatabaseAdministrator databaseAdministrator;

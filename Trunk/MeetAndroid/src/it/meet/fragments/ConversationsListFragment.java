@@ -17,24 +17,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class ConversationsFragment extends Fragment {
+public class ConversationsListFragment extends Fragment {
 	private View conversationsView;
 	private UserDataAdministrator userDataAdministrator;
 
-	public void setUserDataAdministrator(
-			UserDataAdministrator userDataAdministrator) {
-		this.userDataAdministrator = userDataAdministrator;
-	}
 
-	public ConversationsFragment() {
+	public ConversationsListFragment() {
 		// Empty constructor required for fragment subclasses
 	}
 
@@ -45,6 +36,7 @@ public class ConversationsFragment extends Fragment {
 				container, false);
 		String title = getResources().getStringArray(R.array.menu_array)[1];
 		getActivity().setTitle(title);
+		userDataAdministrator = UserDataAdministrator.getInstance(this.getActivity());
 		ArrayDeque<Conversation> conversationsDeque = userDataAdministrator
 				.getConversationsDeque();
 		if (conversationsDeque.isEmpty()) {
@@ -65,7 +57,6 @@ public class ConversationsFragment extends Fragment {
 	        ConversationsListAdapter adapter = new ConversationsListAdapter(this.getActivity(), R.layout.conversations_row, list);
 	        listView.setAdapter(adapter);
 	        ConversationsItemClickListener listener = new ConversationsItemClickListener();
-	        listener.setUserDataAdministrator(userDataAdministrator);
 	        listener.setConversationList(list);
 	        listView.setOnItemClickListener(listener);	        
 		}

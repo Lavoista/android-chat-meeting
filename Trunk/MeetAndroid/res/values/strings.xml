@@ -11,6 +11,7 @@
         <item>Luoghi Preferiti</item>
         <item>Il Mio Profilo</item>
         <item>Impostazioni</item>   
+        <item>Cambia Utente</item> 
         <item>Esci</item>
     </string-array>
     <string name="userRegistration">Registrazione Utente</string>
@@ -33,6 +34,7 @@
     <string name="Sex">Sesso</string>
     <string name="TextLogin">Accedi</string>
     <string name="TextRegister">Registrati</string>
+    <string name="OpenChat">Apri Chat</string>
     <string name="SUCCESSFULLY_LOGIN">Login effettuato con successo</string>
     <string name="SUCCESSFULLY_REGISTRATION">Registrazione effettuata con successo</string>
     <string name="NO_CONVERSATIONS_FOUND">Non ci sono conversazioni, accedi alla lista amici ed inizia una nuova conversazione.</string>

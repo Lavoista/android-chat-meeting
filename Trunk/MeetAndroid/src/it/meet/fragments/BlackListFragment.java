@@ -9,9 +9,6 @@ import it.meet.R;
 import it.meet.blackList.BlackListAdapter;
 import it.meet.blackList.BlackListItemClickListener;
 import it.meet.entity.BlackContact;
-import it.meet.entity.Friend;
-import it.meet.friends.FriendsItemClickListener;
-import it.meet.friends.FriendsListAdapter;
 import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
 
@@ -28,9 +25,6 @@ public class BlackListFragment extends Fragment {
 	private View blackListView;
 	private UserDataAdministrator userDataAdministrator;
 
-	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
-		this.userDataAdministrator = userDataAdministrator;
-	}
 
 	public BlackListFragment() {
 		// Empty constructor required for fragment subclasses
@@ -43,7 +37,8 @@ public class BlackListFragment extends Fragment {
 		blackListView = inflater.inflate(R.layout.black_list_fragment,
 				container, false);
 		String title = getResources().getStringArray(R.array.menu_array)[4];
-		getActivity().setTitle(title);		
+		getActivity().setTitle(title);	
+		userDataAdministrator = UserDataAdministrator.getInstance(this.getActivity());
 		ArrayList<BlackContact> blackList = userDataAdministrator.getBlackList();
 		if (blackList.isEmpty()) {
 			Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_BLACKLIST_FOUND",
@@ -59,7 +54,6 @@ public class BlackListFragment extends Fragment {
 	        BlackListAdapter adapter = new BlackListAdapter(this.getActivity(), R.layout.black_list_row, list);
 	        listView.setAdapter(adapter);
 	        BlackListItemClickListener listener = new BlackListItemClickListener();
-	        listener.setUserDataAdministrator(userDataAdministrator);
 	        listener.setBlackList(list);
 	        listView.setOnItemClickListener(listener);	        
 		}

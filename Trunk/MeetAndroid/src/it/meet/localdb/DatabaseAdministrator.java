@@ -19,12 +19,19 @@ public class DatabaseAdministrator extends SQLiteOpenHelper {
 				"`name` varchar(45) DEFAULT NULL," +
 				"`surname` varchar(45) DEFAULT NULL," +
 				"`sex` varchar(1) DEFAULT NULL," +
+				"`phrase` varchar(250) DEFAULT NULL," +
+				"`birthdate` varchar(20) DEFAULT NULL," +
+				"`city` varchar(100) DEFAULT NULL," +
+				"`province` varchar(100) DEFAULT NULL," +
+				"`nation` varchar(100) DEFAULT NULL," +
+				"`phone` varchar(30) DEFAULT NULL," +
+				"`favouritesex` varchar(1) DEFAULT NULL," +
 				"PRIMARY KEY (`username`)" +
 				");");
 		db.execSQL("CREATE TABLE `messages` (" +
 				"`idmessage` int(11) NOT NULL ," +
 				"`text` varchar(200) DEFAULT NULL," +
-				"`timestamp` timestamp NULL DEFAULT NULL," +
+				"`timestamp` varchar(20) NULL DEFAULT NULL," +
 				"`contenttype` varchar(20) DEFAULT NULL," +
 				"`binary` binary DEFAULT NULL," +
 				"`sender` varchar(45) NOT NULL REFERENCES `users` " +
@@ -35,13 +42,13 @@ public class DatabaseAdministrator extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE `friends` ("+
 				  "`user` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE ,"+
 				  "`friend` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,"+
-				  "`timestamp` timestamp NULL DEFAULT NULL,"+
+				  "`addedDate` varchar(20) NULL DEFAULT NULL,"+
 				  "PRIMARY KEY (`user`,`friend`));");
 		db.execSQL("CREATE TABLE `blacklist` ("+
 				  "`user` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE ,"+
 				  "`blocked` varchar(45) NOT NULL REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,"+
-				  "`timestamp` timestamp NULL DEFAULT NULL,"+
-				  "PRIMARY KEY (`user`,`friend`));");
+				  "`blockedDate` varchar(20) DEFAULT NULL,"+
+				  "PRIMARY KEY (`user`,`blocked`));");
 	}
 
 	@Override

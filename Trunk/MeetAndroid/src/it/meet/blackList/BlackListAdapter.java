@@ -4,9 +4,6 @@ import java.util.List;
 
 import it.meet.R;
 import it.meet.entity.BlackContact;
-import it.meet.entity.Conversation;
-import it.meet.entity.Friend;
-import it.meet.entity.User;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

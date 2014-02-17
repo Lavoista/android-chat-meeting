@@ -1,7 +1,6 @@
 package it.meet.fragments;
 
 import it.meet.entity.Friend;
-import it.meet.entity.User;
 import it.meet.friends.FriendsListAdapter;
 import it.meet.friends.FriendsItemClickListener;
 import it.meet.user.data.UserDataAdministrator;
@@ -22,16 +21,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class FriendsFragment extends Fragment {
+public class FriendsListFragment extends Fragment {
 	private View friendsView;
 	EditText dateField;
 	private UserDataAdministrator userDataAdministrator;
 
-	public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
-		this.userDataAdministrator = userDataAdministrator;
-	}
 
-	public FriendsFragment() {
+	public FriendsListFragment() {
 		// Empty constructor required for fragment subclasses
 	}
 
@@ -44,6 +40,7 @@ public class FriendsFragment extends Fragment {
 		String title = getResources()
 				.getStringArray(R.array.menu_array)[2];
 		getActivity().setTitle(title);
+		userDataAdministrator = UserDataAdministrator.getInstance(this.getActivity());
 		ArrayList<Friend> friendList = userDataAdministrator.getFriendsList();
 		if (friendList.isEmpty()) {
 			Toast.makeText(getActivity(), ErrorsAdministrator.getDescription("NO_FRIENDS_FOUND",
@@ -59,7 +56,6 @@ public class FriendsFragment extends Fragment {
 	        FriendsListAdapter adapter = new FriendsListAdapter(this.getActivity(), R.layout.friends_row, list);
 	        listView.setAdapter(adapter);
 	        FriendsItemClickListener listener = new FriendsItemClickListener();
-	        listener.setUserDataAdministrator(userDataAdministrator);
 	        listener.setFriendsList(list);
 	        listView.setOnItemClickListener(listener);	        
 		}

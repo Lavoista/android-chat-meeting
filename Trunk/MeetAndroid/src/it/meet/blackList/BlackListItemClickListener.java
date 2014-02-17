@@ -12,9 +12,7 @@ public class BlackListItemClickListener implements OnItemClickListener {
 	private UserDataAdministrator userDataAdministrator;
 	private List<BlackContact> blackList;
     	
-		public void setUserDataAdministrator(UserDataAdministrator userDataAdministrator) {
-			this.userDataAdministrator = userDataAdministrator;
-		}
+		
 		public void setBlackList(List<BlackContact> blackList) {
 			this.blackList = blackList;
 		}

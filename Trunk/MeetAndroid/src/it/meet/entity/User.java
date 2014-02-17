@@ -1,6 +1,6 @@
 package it.meet.entity;
 
-import java.sql.Blob;
+import java.util.Date;
 
 public class User {
 	private String username;
@@ -8,6 +8,14 @@ public class User {
 	private String surname;
 	private byte[] photo;
 	private String sex;
+	private String phrase;
+	private Date birthdate;
+	private String city;
+	private String province;
+	private String nation;
+	private String phone;
+	private String favouriteSex;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -43,5 +51,47 @@ public class User {
 	 */
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	public String getPhrase() {
+		return phrase;
+	}
+	public void setPhrase(String phrase) {
+		this.phrase = phrase;
+	}
+	public Date getBirthdate() {
+		return birthdate;
+	}
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getFavouriteSex() {
+		return favouriteSex;
+	}
+	public void setFavouriteSex(String favouriteSex) {
+		this.favouriteSex = favouriteSex;
 	}
 }
