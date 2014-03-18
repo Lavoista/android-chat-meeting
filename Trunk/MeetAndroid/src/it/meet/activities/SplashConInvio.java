@@ -1,23 +1,14 @@
 package it.meet.activities;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import it.meet.gcm.GcmRegistrarCompat;
 
-import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import it.meet.BuildConfig;
@@ -25,8 +16,6 @@ import it.meet.R;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 
 public class SplashConInvio extends Activity {
 	public static final String EXTRA_MESSAGE = "message";

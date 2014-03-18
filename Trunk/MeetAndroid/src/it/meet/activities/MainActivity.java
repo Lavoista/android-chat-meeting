@@ -41,7 +41,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -87,12 +89,14 @@ public class MainActivity extends Activity {
 		R.string.drawer_open, /* "open drawer" description for accessibility */
 		R.string.drawer_close /* "close drawer" description for accessibility */
 		) {
+			@Override
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(mTitle);
 				invalidateOptionsMenu(); // creates call to
 											// onPrepareOptionsMenu()
 			}
 
+			@Override
 			public void onDrawerOpened(View drawerView) {
 				getActionBar().setTitle(mDrawerTitle);
 				invalidateOptionsMenu(); // creates call to
@@ -244,7 +248,17 @@ public class MainActivity extends Activity {
 	@Override
 	public void onBackPressed(){
 		if(currentFragment instanceof ChatFragment){
-			this.selectItem(1);
+			
+			if(((ChatFragment)currentFragment).getPopupWindow().isShowing()){
+				((ChatFragment)currentFragment).getPopupWindow().dismiss();
+				FrameLayout.LayoutParams  baseChatLayoutParams = new FrameLayout.LayoutParams(
+		                android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT);
+				RelativeLayout baseChatLayout = (RelativeLayout)findViewById(R.id.base_chat_layout2);
+				baseChatLayout.setLayoutParams(baseChatLayoutParams);
+			}
+			else{
+				this.selectItem(1);
+			}			
 		}
 		else if(currentFragment instanceof FriendProfileFragment){
 			this.selectItem(2);
@@ -299,6 +313,7 @@ public class MainActivity extends Activity {
 		// Setting Positive "Yes" Btn
 		alertDialog2.setPositiveButton("SI",
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// Write your code here to execute after dialog
 							//preferencesEditor.remove("loggedUser");
@@ -309,6 +324,7 @@ public class MainActivity extends Activity {
 		// Setting Negative "NO" Btn
 		alertDialog2.setNegativeButton("NO",
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// Write your code here to execute after dialog
 						dialog.cancel();
@@ -332,6 +348,7 @@ public class MainActivity extends Activity {
 		// Setting Positive "Yes" Btn
 		alertDialog2.setPositiveButton("SI",
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// Write your code here to execute after dialog
 						preferencesEditor.remove("loggedUser");
@@ -346,6 +363,7 @@ public class MainActivity extends Activity {
 		// Setting Negative "NO" Btn
 		alertDialog2.setNegativeButton("NO",
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// Write your code here to execute after dialog
 						dialog.cancel();
@@ -353,5 +371,7 @@ public class MainActivity extends Activity {
 				});
 		alertDialog2.show();
 	}
+	
+
 
 }

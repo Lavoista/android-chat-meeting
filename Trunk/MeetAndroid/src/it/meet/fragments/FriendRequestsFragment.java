@@ -1,7 +1,6 @@
 package it.meet.fragments;
 
 import it.meet.R;
-import it.meet.user.data.UserDataAdministrator;
 import it.meet.utils.ErrorsAdministrator;
 
 import android.app.Fragment;

@@ -1,8 +1,6 @@
 package it.meet.fragments;
 
 import it.meet.R;
-import it.meet.user.data.UserDataAdministrator;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;

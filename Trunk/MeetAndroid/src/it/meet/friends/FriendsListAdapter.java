@@ -3,10 +3,7 @@ package it.meet.friends;
 import java.util.List;
 
 import it.meet.R;
-import it.meet.entity.Conversation;
 import it.meet.entity.Friend;
-import it.meet.entity.User;
-import it.meet.utils.DateUtil;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FriendsListAdapter extends ArrayAdapter<Friend>{
-	private Drawable noPhotoMale,noPhotoFemale,noPhotoAvailable;
+	private Drawable noPhotoMale,noPhotoFemale,noPhotoAvailable,onLineImage,offLineImage;
 	private Bitmap bmp;
 	private byte[] byteArray;
     public FriendsListAdapter(Context context, int textViewResourceId,
@@ -27,6 +24,8 @@ public class FriendsListAdapter extends ArrayAdapter<Friend>{
         super(context, textViewResourceId, objects);
         noPhotoMale = this.getContext().getResources().getDrawable(R.drawable.no_photo_male);
         noPhotoFemale = this.getContext().getResources().getDrawable(R.drawable.no_photo_female);
+        onLineImage = this.getContext().getResources().getDrawable(R.drawable.on_line_image);
+        offLineImage = this.getContext().getResources().getDrawable(R.drawable.on_line_image);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class FriendsListAdapter extends ArrayAdapter<Friend>{
         
         TextView username = (TextView)convertView.findViewById(R.id.friendsRowText1);
         TextView phrase = (TextView)convertView.findViewById(R.id.friendsRowText2);
-        TextView sexAge = (TextView)convertView.findViewById(R.id.friendsRowTextSexAge);
+        ImageView onLine = (ImageView)convertView.findViewById(R.id.friendsRowOnLine);
         ImageView photoView = (ImageView)convertView.findViewById(R.id.friendsRowPhoto);
         Friend c = getItem(position);
         String sex = c.getSex();
@@ -63,7 +62,7 @@ public class FriendsListAdapter extends ArrayAdapter<Friend>{
         	tokens[h] = tokens[h].substring(0,1).toUpperCase()+tokens[h].substring(1,tokens[h].length());
         	resultString += tokens[h]+" ";
         }
-        sexAge.setText(sex + " " + DateUtil.getAge(c.getBirthdate()));
+        onLine.setImageDrawable(onLineImage);
         username.setText(resultString);
         phrase.setText(c.getPhrase());
         return convertView;

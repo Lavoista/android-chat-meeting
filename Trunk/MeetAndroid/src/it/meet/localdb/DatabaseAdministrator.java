@@ -12,6 +12,7 @@ public class DatabaseAdministrator extends SQLiteOpenHelper {
 		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
 	}
 
+	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE `users` (" +
 				"`username` varchar(45) NOT NULL," +

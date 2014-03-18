@@ -45,11 +45,11 @@ public class Conversation implements Comparable<Object> {
 		}
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			Date thisDate = (Date) sdf.parse(this.getLastMessageChat()
+			Date thisDate = sdf.parse(this.getLastMessageChat()
 					.getTimestamp());
 			System.out.println("thisDate = " + thisDate);
 
-			Date otherDate = (Date) sdf.parse(other.getLastMessageChat()
+			Date otherDate = sdf.parse(other.getLastMessageChat()
 					.getTimestamp());
 			System.out.println("otherDate = " + otherDate);
 			return thisDate.compareTo(otherDate);

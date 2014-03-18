@@ -25,6 +25,7 @@ public class LoginActivity extends Activity {
 			Button buttonOne = (Button) findViewById(R.id.GoRegistrationButton);
 
 			buttonOne.setOnClickListener(new Button.OnClickListener() {
+				@Override
 				public void onClick(View v) {
 					startActivity(new Intent(LoginActivity.this,
 							RegistrationActivity.class));

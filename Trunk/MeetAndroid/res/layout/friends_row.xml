@@ -24,24 +24,22 @@
 
             <TextView
                 android:id="@+id/friendsRowText1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
+                android:layout_weight=".85"
                 android:text=""
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="serif" />
 
-            <TextView
-                android:id="@+id/friendsRowTextSexAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+            <ImageView
+                android:id="@+id/friendsRowOnLine"
                 android:singleLine="true"
-                android:text=""
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:typeface="serif" />
+                android:layout_weight=".15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            
         </LinearLayout>
 
         <TextView

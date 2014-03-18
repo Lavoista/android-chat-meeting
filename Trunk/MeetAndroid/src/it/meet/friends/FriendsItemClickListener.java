@@ -3,12 +3,9 @@ package it.meet.friends;
 import java.util.List;
 
 import it.meet.R;
-import it.meet.fragments.ChatFragment;
 import it.meet.fragments.FriendProfileFragment;
-import it.meet.fragments.MyProfileFragment;
 import it.meet.user.data.UserDataAdministrator;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.view.View;
 import android.widget.AdapterView;

@@ -11,7 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.provider.MediaStore.MediaColumns;
 import android.text.InputType;
 import android.view.InflateException;
 import android.view.View;
@@ -143,7 +143,7 @@ public class RegistrationActivity extends Activity{
 		if (requestCode == RESULT_LOAD_IMAGE
 				&& resultCode == Activity.RESULT_OK && data != null) {
 			Uri selectedImage = data.getData();
-			String[] filePathColumn = { MediaStore.Images.Media.DATA };
+			String[] filePathColumn = { MediaColumns.DATA };
 			Cursor cursor = getContentResolver()
 					.query(selectedImage, filePathColumn, null, null, null);
 			cursor.moveToFirst();
@@ -170,7 +170,7 @@ public class RegistrationActivity extends Activity{
 						width, matrix, true);
 			}
 
-			temp = temp.createScaledBitmap(temp, 100, 100, true);
+			temp = Bitmap.createScaledBitmap(temp, 100, 100, true);
 			// temp = Bitmap.createBitmap(temp, 1, 1, temp.getWidth(),
 			// temp.getHeight(), matrix, true);
 			photoImage = temp;
@@ -198,7 +198,7 @@ public class RegistrationActivity extends Activity{
 					temp = Bitmap.createBitmap(temp, 0, offsetY, width,
 							width, matrix, true);
 				}
-				temp = temp.createScaledBitmap(temp, 100, 100, true);
+				temp = Bitmap.createScaledBitmap(temp, 100, 100, true);
 				photoImage = temp;
 				ImageView imageView = (ImageView)findViewById(R.id.photoView);
 				imageView.setImageBitmap(temp);

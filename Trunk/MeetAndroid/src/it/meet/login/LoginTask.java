@@ -6,12 +6,11 @@ import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
 
 import it.meet.activities.MainActivity;
-import it.meet.activities.StartActivity;
 import it.meet.service.common.entity.ResponseDTO;
 import it.meet.service.user.UserService;
-import it.meet.service.user.entity.UserDTO;
 import it.meet.utils.ErrorsAdministrator;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -62,7 +61,7 @@ public class LoginTask extends AsyncTask<String, Boolean, Void> {
 		progressBar = new ProgressDialog(context);
 		progressBar.setCancelable(true);
 		progressBar.setMessage("Attendere ...");
-		progressBar.setProgressStyle(ProgressDialog.THEME_HOLO_DARK);
+		progressBar.setProgressStyle(AlertDialog.THEME_HOLO_DARK);
 		progressBar.setIndeterminate(true);
 		progressBar.setCancelable(false);
 		progressBar.show();

@@ -2,8 +2,6 @@ package it.meet.utils;
 
 import android.app.Activity;
 import android.content.res.Resources;
-import it.meet.service.common.entity.ResponseDTO;
-import it.meet.service.common.util.StringUtils;
 
 
 /**

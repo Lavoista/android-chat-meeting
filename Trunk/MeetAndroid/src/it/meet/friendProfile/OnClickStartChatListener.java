@@ -24,6 +24,7 @@ public class OnClickStartChatListener implements OnClickListener{
 	public void onClick(View v) {
 		ChatFragment chatFragment = new ChatFragment();
 		((MainActivity) v.getContext()).setCurrentFragment(chatFragment);
+
 		chatFragment.setRemoteUsername(remoteUsername);
 		FragmentManager fragmentManager = ((Activity) rootView.getContext()).getFragmentManager();
 		fragmentManager.beginTransaction()

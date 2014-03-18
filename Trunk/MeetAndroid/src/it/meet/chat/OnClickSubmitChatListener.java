@@ -18,6 +18,7 @@ public class OnClickSubmitChatListener implements OnClickListener{
 		
 	}
 	
+	@Override
 	public void onClick(View v) {
 		messageField.setText("");
 	}

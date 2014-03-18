@@ -20,6 +20,7 @@ public class StartActivity extends Activity {
 		int secondsDelayed = 2;// start new Activity after secondsDelayed
 								// seconds
 		new Handler().postDelayed(new Runnable() {
+			@Override
 			public void run() {
 				if (storedInfo.getString("loggedUser", "").isEmpty()) {
 					startActivity(new Intent(StartActivity.this,

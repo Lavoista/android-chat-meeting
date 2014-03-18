@@ -2,24 +2,13 @@ package it.meet.login;
 
 import it.meet.R;
 import it.meet.activities.LoginActivity;
-import it.meet.activities.MainActivity;
-import it.meet.activities.RegistrationActivity;
-import it.meet.service.user.entity.UserDTO;
 import it.meet.utils.ErrorsAdministrator;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 public class OnClickSubmitLoginListener implements OnClickListener {

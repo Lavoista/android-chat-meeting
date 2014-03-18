@@ -17,7 +17,6 @@
 package it.meet.services;
 
 import it.meet.activities.StartActivity;
-import it.meet.gcm.GcmBroadcastReceiver;
 import it.meet.R;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -30,6 +29,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
 /**
@@ -85,7 +85,7 @@ public class GcmIntentService extends IntentService {
             }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
-        GcmBroadcastReceiver.completeWakefulIntent(intent);
+        WakefulBroadcastReceiver.completeWakefulIntent(intent);
     }
 
     // Put the message into a notification and post it.

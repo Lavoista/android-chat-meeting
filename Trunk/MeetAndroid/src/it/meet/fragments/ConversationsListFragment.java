@@ -53,7 +53,7 @@ public class ConversationsListFragment extends Fragment {
 	        Iterator<Conversation> conversationsIterator = conversationsDeque.descendingIterator();
 	        while (conversationsIterator.hasNext()){
 	        	list.add(conversationsIterator.next());
-	        }
+			}
 	        ConversationsListAdapter adapter = new ConversationsListAdapter(this.getActivity(), R.layout.conversations_row, list);
 	        listView.setAdapter(adapter);
 	        ConversationsItemClickListener listener = new ConversationsItemClickListener();

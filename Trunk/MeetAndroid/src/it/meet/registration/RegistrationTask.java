@@ -12,6 +12,7 @@ import it.meet.service.user.UserService;
 import it.meet.service.user.entity.UserDTO;
 import it.meet.utils.ErrorsAdministrator;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -50,7 +51,7 @@ public class RegistrationTask extends AsyncTask<UserDTO,Boolean,Void>{
 		progressBar = new ProgressDialog(context);
 		progressBar.setCancelable(true);
 		progressBar.setMessage("Attendere ...");
-		progressBar.setProgressStyle(ProgressDialog.THEME_HOLO_DARK);
+		progressBar.setProgressStyle(AlertDialog.THEME_HOLO_DARK);
 		progressBar.setIndeterminate(true);
 		progressBar.setCancelable(false);
 		progressBar.show();
